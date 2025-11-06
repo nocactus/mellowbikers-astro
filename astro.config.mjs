@@ -1,9 +1,14 @@
 import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  output: 'server', // <── voeg deze regel toe
+  site: 'https://astro.mellowbikers.nl', // <-- belangrijk voor sitemap
+  output: 'server',
   adapter: cloudflare(),
-  integrations: [mdx()],
+  integrations: [
+    mdx(),
+    sitemap(), // <-- voegt automatisch sitemap.xml toe
+  ],
 });
