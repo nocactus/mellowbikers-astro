@@ -1,8 +1,26 @@
 ---
+import { Image } from "astro:assets";
+
 const { image, title, subtitle, overlay = true } = Astro.props;
+
+// image kan een absoluut pad zijn uit /public/assets/uploads/
+// of een import vanuit /src/assets/uploads/
 ---
-<section class="relative flex items-center justify-center text-center text-white h-[55vh] md:h-[65vh] bg-cover bg-center" style={`background-image: url(${image});`}>
+
+<section class="relative flex items-center justify-center text-center text-white h-[55vh] md:h-[65vh] overflow-hidden">
+  <!-- Hero-afbeelding -->
+  <Image
+    src={image}
+    alt={title}
+    widths={[480, 768, 1024, 1440, 1920]}
+    formats={["avif", "webp", "jpeg"]}
+    class="absolute inset-0 w-full h-full object-cover"
+    loading="eager"
+    decoding="async"
+  />
+
   {overlay && <div class="absolute inset-0 bg-black/40"></div>}
+
   <div class="relative z-10 max-w-3xl px-6 py-10">
     <h1 class="text-4xl md:text-6xl font-extrabold drop-shadow">{title}</h1>
     {subtitle && <p class="mt-4 text-xl drop-shadow">{subtitle}</p>}
