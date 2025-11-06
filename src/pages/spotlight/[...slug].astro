@@ -1,0 +1,8 @@
+---
+const md = await Astro.glob("../../content/spotlight/*.md");
+const current = md.find(p => p.url === Astro.url.pathname);
+import SpotlightItem from "../../layouts/SpotlightItem.astro";
+---
+<SpotlightItem frontmatter={current.frontmatter}>
+  <current.Content />
+</SpotlightItem>

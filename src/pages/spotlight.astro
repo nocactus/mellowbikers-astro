@@ -1,0 +1,19 @@
+---
+import Default from "../layouts/Default.astro";
+const posts = await Astro.glob("../content/spotlight/*.md");
+---
+<Default title="Spotlight | Mellowbikers">
+  <section class="container py-10">
+    <h1 class="text-3xl font-extrabold mb-6">Spotlight</h1>
+    <div class="grid md:grid-cols-2 gap-6">
+      {posts.sort((a,b)=> new Date(b.frontmatter.date)-new Date(a.frontmatter.date)).map(({url, frontmatter}) => (
+        <a href={url} class="card block">
+          {frontmatter.image && <img src={frontmatter.image} alt="" class="w-full h-44 object-cover rounded-xl mb-3" loading="lazy" />}
+          <h2 class="text-xl font-bold mb-1">{frontmatter.title}</h2>
+          {frontmatter.teaser && <p class="text-sm mb-2">{frontmatter.teaser}</p>}
+          <small>{new Date(frontmatter.date).toLocaleDateString('nl-NL')}</small>
+        </a>
+      ))}
+    </div>
+  </section>
+</Default>

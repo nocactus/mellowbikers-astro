@@ -1,0 +1,105 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//ical.marudot.com//iCal Event Maker
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:Europe/Brussels
+LAST-MODIFIED:20240422T053450Z
+TZURL:https://www.tzurl.org/zoneinfo-outlook/Europe/Brussels
+X-LIC-LOCATION:Europe/Brussels
+BEGIN:DAYLIGHT
+TZNAME:CEST
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZNAME:CET
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTAMP:20250131T105906Z
+UID:1738318184804-5155674@ical.marudot.com
+DTSTART;TZID=Europe/Brussels:20250105T090000
+DTEND;TZID=Europe/Brussels:20250105T130000
+SUMMARY:Mellowbikers – Oliebollenrit
+URL:https://mellowbikers.nl/agenda/
+DESCRIPTION:We beginnen het jaar met een rustig ritje om de overtollige Kerstkilo’s eraf te fietsen en daarna weer aan te vullen met oliebollen en bubbels.
+LOCATION:Cafe Krijnen\, Dubbelstraat 88\, 4611 GM Bergen op Zoom
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250131T105906Z
+UID:1738318184805-9818569@ical.marudot.com
+DTSTART;TZID=Europe/Brussels:20250209T090000
+DTEND;TZID=Europe/Brussels:20250209T130000
+SUMMARY:Mellowbikers – Rondje Leeuw van Vlaanderen
+URL:https://mellowbikers.nl/agenda/
+DESCRIPTION:In het wiel van Martijn F. Over de mooiste routes van de Brabantse Wal. Aansluitend iets eten en drinken…?
+LOCATION:Restaurant Leew van Vlaanderen\, Antwerpsebaan 413\, 2040 Antwerpen\, Belgium
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250131T105906Z
+UID:1738318184805-6740240@ical.marudot.com
+DTSTART;TZID=Europe/Brussels:20250316T090000
+DTEND;TZID=Europe/Brussels:20250316T130000
+SUMMARY:Mellowbikers – Pascal Classic 2025
+URL:https://mellowbikers.nl/agenda/
+DESCRIPTION:Jaarlijkse respect-ride voor onze oud-penningmeester. Baarden verplicht natuurlijk. Start 9 uur bij Bozlust. Aansluitend bier en bitterballen.
+LOCATION:Bozlust\, Boslustweg 1\, 4624 RB Bergen op Zoom
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250131T105906Z
+UID:1738318184805-6394877@ical.marudot.com
+DTSTART;TZID=Europe/Brussels:20250413T100000
+DTEND;TZID=Europe/Brussels:20250413T140000
+SUMMARY:Mellowbikers – Westenschouwen en meer
+URL:https://mellowbikers.nl/agenda/
+DESCRIPTION:Rondje Zeeland met Mr. en Mrs. V. Grote kans op bolussen en bier 🤘.
+LOCATION:Burg-Haamstede
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250131T105906Z
+UID:1738318184805-2729341@ical.marudot.com
+DTSTART;TZID=Europe/Brussels:20250501T110000
+DTEND;TZID=Europe/Brussels:20250504T190000
+SUMMARY:EK Single Speed 2025
+URL:https://mellowbikers.nl/agenda/
+DESCRIPTION:EK Singlespeed in Luik. Voor de echte Single Speed liefhebbers en campinggangers die van een feestje houden. 🍻
+LOCATION:Luik\, België
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250131T105906Z
+UID:1738318184805-3009234@ical.marudot.com
+DTSTART;TZID=Europe/Brussels:20250518T090000
+DTEND;TZID=Europe/Brussels:20250518T130000
+SUMMARY:Mellowbikers – Knakworstenrit 🌭
+URL:https://mellowbikers.nl/agenda/
+DESCRIPTION:Rustiek rondje door de bossen met een worst en koffie stop ergens in het woud. 😎🌲
+LOCATION:Cafe Krijnen\, Dubbelstraat 88\, 4611 GM Bergen op Zoom
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250131T105906Z
+UID:1738318184805-4689158@ical.marudot.com
+DTSTART;TZID=Europe/Brussels:20250620T090000
+DTEND;TZID=Europe/Brussels:20250622T190000
+SUMMARY:Mellow Bike Festival
+URL:https://mellowbikers.nl/festival/
+DESCRIPTION:Het leukste MTB-campingweekend voor iedereen. Met live muziek\, lekker eten en lokaal bier.
+LOCATION:Rommeshoef\, 
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250131T105906Z
+UID:1738318184805-1712249@ical.marudot.com
+DTSTART;TZID=Europe/Brussels:20250822T110000
+DTEND;TZID=Europe/Brussels:20250824T190000
+SUMMARY:Mellowbikers – Mellow Camping Weekend 🇩🇪
+URL:https://mellowbikers.nl/agenda/
+DESCRIPTION:Mellow-Wochenende im Osten. Mit coolen Trails\, Schnitzel und natürlich Weizen…jawohl\, we bezoeken onze oosterburen. Viel Spaß und Prost!
+LOCATION:Duitsland
+END:VEVENT
+END:VCALENDAR
