@@ -1,16 +1,32 @@
 ---
-const { frontmatter } = Astro.props;
+import { Image } from "astro:assets";
 import Default from "./Default.astro";
+
+const { frontmatter } = Astro.props;
 ---
+
 <Default title={`${frontmatter.title} | Mellowbikers`}>
-  <section class="relative flex items-center justify-center text-center text-white h-[40vh] bg-cover bg-center" style={frontmatter.image ? `background-image: url(${frontmatter.image});` : ""}>
-    <div class="absolute inset-0 bg-black/40"></div>
+  <section class="relative flex items-center justify-center text-center text-white h-[40vh] bg-slate-900 overflow-hidden">
+    {frontmatter.image && (
+      <Image
+        src={frontmatter.image}
+        alt={frontmatter.title}
+        widths={[480, 768, 1024, 1440, 1920]}
+        formats={["avif", "webp", "jpeg"]}
+        class="absolute inset-0 w-full h-full object-cover brightness-75"
+        loading="eager"
+        decoding="async"
+      />
+    )}
     <div class="relative z-10 max-w-3xl px-6">
       <h1 class="text-4xl md:text-5xl font-extrabold drop-shadow">{frontmatter.title}</h1>
       {frontmatter.teaser && <p class="mt-3 text-lg drop-shadow">{frontmatter.teaser}</p>}
     </div>
   </section>
+
   <main class="container py-10">
-    <article class="prose prose-slate dark:prose-invert max-w-none"><slot /></article>
+    <article class="prose prose-slate dark:prose-invert max-w-none">
+      <slot />
+    </article>
   </main>
 </Default>

@@ -1,19 +1,36 @@
 ---
 import Default from "../layouts/Default.astro";
+import { Image } from "astro:assets";
+
 const posts = await Astro.glob("../content/spotlight/*.md");
 ---
+
 <Default title="Spotlight | Mellowbikers">
   <section class="container py-10">
     <h1 class="text-3xl font-extrabold mb-6">Spotlight</h1>
     <div class="grid md:grid-cols-2 gap-6">
-      {posts.sort((a,b)=> new Date(b.frontmatter.date)-new Date(a.frontmatter.date)).map(({url, frontmatter}) => (
-        <a href={url} class="card block">
-          {frontmatter.image && <img src={frontmatter.image} alt="" class="w-full h-44 object-cover rounded-xl mb-3" loading="lazy" />}
-          <h2 class="text-xl font-bold mb-1">{frontmatter.title}</h2>
-          {frontmatter.teaser && <p class="text-sm mb-2">{frontmatter.teaser}</p>}
-          <small>{new Date(frontmatter.date).toLocaleDateString('nl-NL')}</small>
-        </a>
-      ))}
+      {posts
+        .sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date))
+        .map(({ url, frontmatter }) => (
+          <a href={url} class="block rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
+            {frontmatter.image && (
+              <Image
+                src={frontmatter.image}
+                alt={frontmatter.title}
+                widths={[480, 768, 1024]}
+                formats={["avif", "webp", "jpeg"]}
+                class="w-full h-44 object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+            <div class="p-4 bg-white dark:bg-slate-800">
+              <h2 class="text-xl font-bold mb-1 text-slate-900 dark:text-slate-50">{frontmatter.title}</h2>
+              {frontmatter.teaser && <p class="text-sm mb-2 text-slate-600 dark:text-slate-300">{frontmatter.teaser}</p>}
+              <small class="text-slate-400">{new Date(frontmatter.date).toLocaleDateString('nl-NL')}</small>
+            </div>
+          </a>
+        ))}
     </div>
   </section>
 </Default>
