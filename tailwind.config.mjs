@@ -6,8 +6,8 @@ export default {
     extend: {
       colors: {
         mellow: {
-          pink: '#ea4f86',
-          dark: '#111827',
+          red: '#E52227',
+          dark: '#1C0607',
         },
       },
       fontFamily: {
