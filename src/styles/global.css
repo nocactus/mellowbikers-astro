@@ -1,5 +1,28 @@
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/Inter-Variable.woff2") format("woff2");
+    font-weight: 100 900; /* volledige gewicht-range */
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Inter";
+    src: url("/fonts/Inter-VariableItalic.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+  }
+  
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 .container{max-width:72rem;margin:0 auto;padding:0 1rem}
 .btn{@apply inline-flex items-center justify-center px-4 py-2 rounded-xl font-semibold bg-mellow-pink text-white}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-Variable.woff2") format("woff2");
+  font-weight: 100 900; /* volledige gewicht-range */
+  font-style: normal;
+  font-display: swap;
+}
