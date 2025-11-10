@@ -18,13 +18,16 @@
 @tailwind utilities;
 
 @layer base {
-  html, body {
+  html {
     font-family: "Inter", sans-serif;
     font-synthesis: none;
+    font-optical-sizing: auto;
   }
-  html { font-optical-sizing: auto; }
-
+  body {
+    font-family: inherit;
+  }
 }
+
 
 .container{max-width:72rem;margin:0 auto;padding:0 1rem}
 .btn{@apply inline-flex items-center justify-center px-4 py-2 rounded-xl font-semibold bg-mellow-pink text-white}
