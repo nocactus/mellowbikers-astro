@@ -13,8 +13,9 @@ const { image, title, subtitle, overlay = true } = Astro.props;
     src={image}
     alt={title}
     widths={[480, 768, 1024, 1440, 1920]}
+    sizes="100vw"
     formats={["avif", "webp", "jpeg"]}
-    class="absolute inset-0 w-full h-full object-cover"
+    class="absolute inset-0 w-full h-full object-cover object-center"
     loading="eager"
     decoding="async"
   />
