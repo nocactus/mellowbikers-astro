@@ -16,13 +16,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html, body {
+    font-family: "Inter", sans-serif;
+  }
+}
+
 .container{max-width:72rem;margin:0 auto;padding:0 1rem}
 .btn{@apply inline-flex items-center justify-center px-4 py-2 rounded-xl font-semibold bg-mellow-pink text-white}
-
-@font-face {
-  font-family: "Inter";
-  src: url("/fonts/Inter-Variable.woff2") format("woff2");
-  font-weight: 100 900; /* volledige gewicht-range */
-  font-style: normal;
-  font-display: swap;
-}
