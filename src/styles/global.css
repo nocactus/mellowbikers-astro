@@ -20,7 +20,10 @@
 @layer base {
   html, body {
     font-family: "Inter", sans-serif;
+    font-synthesis: none;
   }
+  html { font-optical-sizing: auto; }
+
 }
 
 .container{max-width:72rem;margin:0 auto;padding:0 1rem}
