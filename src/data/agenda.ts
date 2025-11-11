@@ -66,7 +66,7 @@ export const agendaData = {
       date: "Zo 19 Oktober",
       title: "Open Mellow Rit 🙌",
       description: "Dit is je kans: geen inschrijving, gewoon op komen dagen met je mountainbike en helm en aansluiten! No worries, nieuwe vrienden maken, lekker biken!",
-      completed: false
+      completed: true
     },
     {
       date: "Zo 16 November",
