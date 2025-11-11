@@ -77,10 +77,14 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Verstuur inschrijving via Postmark
     const postmarkToken = import.meta.env.POSTMARK_API_TOKEN;
+    console.log('Postmark token available:', !!postmarkToken);
+    
     if (postmarkToken) {
-      const client = new ServerClient(postmarkToken);
+      try {
+        const client = new ServerClient(postmarkToken);
+        console.log('Sending membership email via Postmark...');
       
-      await client.sendEmail({
+        const result = await client.sendEmail({
         From: 'noreply@mellowbikers.nl',
         To: 'info@mellowbikers.nl',
         ReplyTo: data.email,
@@ -127,8 +131,15 @@ ${data.experience || 'Niet opgegeven'}
           <h3>Mountainbike ervaring</h3>
           <p>${data.experience ? data.experience.replace(/\n/g, '<br>') : '<em>Niet opgegeven</em>'}</p>
         `,
-      });
+        });
+        
+        console.log('Membership email sent successfully:', result.MessageID);
+      } catch (emailError) {
+        console.error('Postmark error:', emailError);
+        // Ga door met succes response, maar log de error
+      }
     } else {
+      console.log('No Postmark token found - email not sent');
       console.log('Lid worden formulier ingediend:', data);
     }
 

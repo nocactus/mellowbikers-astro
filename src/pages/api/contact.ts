@@ -58,30 +58,41 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Verstuur email via Postmark
     const postmarkToken = import.meta.env.POSTMARK_API_TOKEN;
+    console.log('Postmark token available:', !!postmarkToken);
+    
     if (postmarkToken) {
-      const client = new ServerClient(postmarkToken);
-      
-      await client.sendEmail({
-        From: 'noreply@mellowbikers.nl',
-        To: 'info@mellowbikers.nl',
-        ReplyTo: data.email,
-        Subject: `Nieuw contactbericht van ${data.name}`,
-        TextBody: `
+      try {
+        const client = new ServerClient(postmarkToken);
+        console.log('Sending email via Postmark...');
+        
+        const result = await client.sendEmail({
+          From: 'noreply@mellowbikers.nl',
+          To: 'info@mellowbikers.nl',
+          ReplyTo: data.email,
+          Subject: `Nieuw contactbericht van ${data.name}`,
+          TextBody: `
 Naam: ${data.name}
 Email: ${data.email}
 
 Bericht:
 ${data.message}
-        `,
-        HtmlBody: `
-          <h2>Nieuw contactbericht</h2>
-          <p><strong>Naam:</strong> ${data.name}</p>
-          <p><strong>Email:</strong> <a href="mailto:${data.email}">${data.email}</a></p>
-          <h3>Bericht:</h3>
-          <p>${data.message.replace(/\n/g, '<br>')}</p>
-        `,
-      });
+          `,
+          HtmlBody: `
+            <h2>Nieuw contactbericht</h2>
+            <p><strong>Naam:</strong> ${data.name}</p>
+            <p><strong>Email:</strong> <a href="mailto:${data.email}">${data.email}</a></p>
+            <h3>Bericht:</h3>
+            <p>${data.message.replace(/\n/g, '<br>')}</p>
+          `,
+        });
+        
+        console.log('Email sent successfully:', result.MessageID);
+      } catch (emailError) {
+        console.error('Postmark error:', emailError);
+        // Ga door met succes response, maar log de error
+      }
     } else {
+      console.log('No Postmark token found - email not sent');
       console.log('Contact formulier ingediend:', data);
     }
 
