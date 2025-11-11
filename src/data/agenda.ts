@@ -1,0 +1,108 @@
+export const agendaData = {
+  introText: "De agenda is lekker gevuld dit jaar. Wat je ook voor activiteit zoekt, er is voldoende te doen. En anders regel je zelf een tof tripje naar dat nieuwe bikepark. Of die gezellige kroeg ergens halverwege die tocht in Limburg...",
+  leadText: "Naast deze clubritten worden er natuurlijk een hoop ritten tussendoor georganiseerd door leden. En ook de reguliere weekend-ritjes (vaak op zondag) zijn populair.",
+  items: [
+    {
+      date: "Zo 5 januari",
+      title: "Oliebollenrit",
+      description: "We beginnen het jaar met een rustig ritje de overtollige Kerstkilo's eraf fietsen om daarna het calorieëntekort weer aanvullen met superverse oliebollen. Ook dit jaar weer met veel liefde gebakken door de vrouw van de secretaris. En er zijn bubbels!",
+      completed: true
+    },
+    {
+      date: "Zo 9 februari",
+      title: "Rondje Leeuw van Vlaanderen",
+      description: "In het wiel van Martijn F. Over de mooiste routes van de Brabantse Wal. Aansluitend iets eten en drinken...?",
+      completed: true
+    },
+    {
+      date: "Zo 16 maart",
+      title: "Pascal Classic",
+      description: "De legendarische jaarlijks respect-ride voor onze oud-penningmeester. Baarden verplicht natuurlijk. Start 9 uur bij Bozlust. Of als Pascal wakker is. Aansluitend bier en bitterballen.",
+      completed: true
+    },
+    {
+      date: "13 april",
+      title: "Westenschouwen en meer",
+      description: "Rondje Zeeland met Mr. en Mrs. V. Grote kans op bolussen en bier 🤘",
+      completed: true
+    },
+    {
+      date: "1-4 mei",
+      title: "EK Single Speed",
+      description: "EK Singlespeed in Luik. Voor de echte Single Speed liefhebbers. En voor campinggangers die van een feestje houden. 🍻",
+      completed: true
+    },
+    {
+      date: "Zo 18 mei",
+      title: "Knakworstenrit 🌭",
+      description: "Vette trails? Vette worsten! Rustiek rondje door de bossen met een worst en koffie stop ergens in het woud. 😎🌲",
+      completed: true
+    },
+    {
+      date: "20-22 juni",
+      title: "Mellowbikers BBB-weekend",
+      description: "Kom ook naar dit unieke weekend vol toffe ritten, goed gezelschap, bier, BBQ, Belgische koffiekoeken en bizarre bingo. En dat alles op onze eigen camping – gewoon zoals een Mellow-weekend hoort te zijn.",
+      completed: true
+    },
+    {
+      date: "22-24 augustus",
+      title: "Mellow Camping Weekend 🇩🇪",
+      description: "Mellow-Wochenende im Osten. Mit coolen Trails, Schnitzel und natürlich Weizen...jawolh, we bezoeken onze oosterburen. Viel Spaß und Prost!",
+      completed: true
+    },
+    {
+      date: "1e week September",
+      title: "Enduro Weekend Saalbach 🇦🇹",
+      description: "Hacklberg, Panorama, Milka, X-Line, Bergstadl. Epische trails in Saalbach: lift omhoog, zwaartekracht naarbeneden. Knallen!",
+      completed: true
+    },
+    {
+      date: "Zo 21 September",
+      title: "Sweet Surprise Ride 🍭",
+      description: "Het zomerseizoen is zo'n beetje voorbij, dus geen ijscoupe met aardbijen deze rit. Wel een andere zoete verrassing. Vertrek 9.00 uur bij Caravanpark Staartse Duinen, Putsebaan 30 te Huijbergen!",
+      completed: false
+    },
+    {
+      date: "Zo 19 Oktober",
+      title: "Open Mellow Rit 🙌",
+      description: "Dit is je kans: geen inschrijving, gewoon op komen dagen met je mountainbike en helm en aansluiten! No worries, nieuwe vrienden maken, lekker biken!",
+      completed: false
+    },
+    {
+      date: "Zo 16 November",
+      title: "Bergse Torenrit 🗼",
+      description: "We gaan op grote hoogte langs alle torens van Bergen op Zoom. Dat wil je echt niet missen: hoogtemeters maken zonder fiets!",
+      completed: false
+    },
+    {
+      date: "Zo 14 December",
+      title: "Snertrit met Fellows 👋",
+      description: "De jaarlijkse traditie: start bij Hoeve Hildernisse, alle Fellows mogen mee dus spreek een Mellow aan als je erbij wil zijn! En na afloop natuurlijk huisgemaakte snert en een lekker biertje.",
+      completed: false
+    },
+    {
+      date: "Zo 11 Januari",
+      title: "Oliebollenrit 🍪",
+      description: "We luiden het nieuwe jaar in met de beste ballen die je ooit hebt gehad van de beste bakker die we kennen.",
+      completed: false
+    },
+    {
+      date: "Wo 14 Januari",
+      title: "ALV",
+      description: "Onze jaarlijkse ledenvergadering, ergens in een kroeg in Bergen op Zoom...",
+      completed: false
+    },
+    {
+      date: "12-14 juni 2026",
+      title: "Mellow Weekend",
+      description: "Samen op pad, tent, camper, caravan mee, kampvuurtje, bbq, biertje...en de mooiste trails in Luxemburg. Wie gaat er mee? ✋",
+      completed: false
+    },
+    {
+      date: "25-27 September 2026",
+      title: "BKSS 🇧🇪",
+      description: "We regelen voor onze zuiderburen het jaarlijkse Singlespeed-feestje: no gears = more fun! Natuurlijk in onze favoriete kampeerboerderij De Rommeshoef bij Essen. Meer info volgt!",
+      completed: false
+    }
+  ]
+};

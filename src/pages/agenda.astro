@@ -1,52 +1,9 @@
 ---
 import Default from "../layouts/Default.astro";
 import Hero from "../components/Hero.astro";
-import { readFileSync } from 'fs';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import { agendaData } from "../data/agenda";
 
-// Lees het agenda.md bestand
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const agendaMdPath = join(__dirname, '../content/agenda.md');
-const agendaMdContent = readFileSync(agendaMdPath, 'utf-8');
-
-// Parse frontmatter en content
-const frontmatterMatch = agendaMdContent.match(/^---\n([\s\S]*?)\n---/);
-const frontmatter: any = {};
-if (frontmatterMatch) {
-  const yamlContent = frontmatterMatch[1];
-  yamlContent.split('\n').forEach(line => {
-    const [key, ...valueParts] = line.split(':');
-    if (key && valueParts.length > 0) {
-      const value = valueParts.join(':').trim().replace(/^["']|["']$/g, '');
-      frontmatter[key.trim()] = value;
-    }
-  });
-}
-
-// Parse agenda items (simpele YAML-achtige parsing)
-const contentAfterFrontmatter = agendaMdContent.replace(/^---\n[\s\S]*?\n---\n/, '');
-const agendaItems: Array<{date: string, title: string, description: string, completed: boolean}> = [];
-
-let currentItem: any = null;
-contentAfterFrontmatter.split('\n').forEach(line => {
-  if (line.trim().startsWith('- date:')) {
-    if (currentItem) agendaItems.push(currentItem);
-    currentItem = { date: line.split('date:')[1].trim().replace(/^["']|["']$/g, '') };
-  } else if (currentItem) {
-    if (line.trim().startsWith('title:')) {
-      currentItem.title = line.split('title:')[1].trim().replace(/^["']|["']$/g, '');
-    } else if (line.trim().startsWith('description:')) {
-      currentItem.description = line.split('description:')[1].trim().replace(/^["']|["']$/g, '');
-    } else if (line.trim().startsWith('completed:')) {
-      currentItem.completed = line.split('completed:')[1].trim() === 'true';
-    }
-  }
-});
-if (currentItem) agendaItems.push(currentItem);
-
-const { introText, leadText } = frontmatter;
+const { introText, leadText, items: agendaItems } = agendaData;
 ---
 <Default title="agenda | Mellowbikers">
   
