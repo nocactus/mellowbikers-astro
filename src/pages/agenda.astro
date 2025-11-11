@@ -1,10 +1,22 @@
 ---
 import Default from "../layouts/Default.astro";
 import Hero from "../components/Hero.astro";
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 
-const agendaEntry = await getEntry('agenda', 'data');
-const { introText, leadText, items: agendaItems } = agendaEntry.data;
+// Haal settings op
+const settings = await getEntry('agenda-settings', 'settings');
+const { introText, leadText } = settings.data;
+
+// Haal alle agenda items op en sorteer ze
+const allAgendaItems = await getCollection('agenda-items');
+const agendaItems = allAgendaItems
+  .sort((a, b) => a.data.order - b.data.order)
+  .map(item => ({
+    date: item.data.date,
+    title: item.data.title,
+    description: item.body,
+    completed: item.data.completed,
+  }));
 ---
 <Default title="agenda | Mellowbikers">
   
