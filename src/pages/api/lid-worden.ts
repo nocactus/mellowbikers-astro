@@ -16,7 +16,7 @@ interface LidWordenFormData {
   'cf-turnstile-response': string;
 }
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
   try {
     const formData = await request.formData();
     const data: LidWordenFormData = {
@@ -55,7 +55,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Turnstile verificatie
-    const turnstileSecret = import.meta.env.TURNSTILE_SECRET_KEY;
+    const turnstileSecret = (locals.runtime?.env?.TURNSTILE_SECRET_KEY as string) || import.meta.env.TURNSTILE_SECRET_KEY;
     if (turnstileSecret && data['cf-turnstile-response']) {
       const turnstileResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
         method: 'POST',
@@ -76,8 +76,13 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Verstuur inschrijving via Postmark
-    const postmarkToken = import.meta.env.POSTMARK_API_TOKEN;
+    const postmarkToken = (locals.runtime?.env?.POSTMARK_API_TOKEN as string) || import.meta.env.POSTMARK_API_TOKEN;
     console.log('Postmark token available:', !!postmarkToken);
+    console.log('Environment check:', {
+      hasRuntime: !!locals.runtime,
+      hasEnv: !!locals.runtime?.env,
+      tokenLength: postmarkToken?.length || 0
+    });
     
     if (postmarkToken) {
       try {
