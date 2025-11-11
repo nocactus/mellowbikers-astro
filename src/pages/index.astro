@@ -234,10 +234,52 @@ import Hero from "../components/Hero.astro";
         </div>
         <div class="bg-[#d90b1e] rounded-lg p-6" id="contact">
           <p class="text-[#f1ffff] font-bold mb-4">Formulier. Voor contact.</p>
-          <!-- Form placeholder - add your custom contact form here -->
-          <div class="text-[#f1ffff] text-sm">
-            Contact formulier komt hier
-          </div>
+          
+          <form id="contact-form" class="space-y-4">
+            <div>
+              <label for="name" class="block text-[#f1ffff] text-sm mb-1">Naam *</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                required
+                class="w-full px-4 py-2 rounded bg-[#0d0f19] text-[#f1ffff] border border-[#2affcc] focus:outline-none focus:border-[#1fe6b8]"
+              />
+            </div>
+            
+            <div>
+              <label for="email" class="block text-[#f1ffff] text-sm mb-1">Email *</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required
+                class="w-full px-4 py-2 rounded bg-[#0d0f19] text-[#f1ffff] border border-[#2affcc] focus:outline-none focus:border-[#1fe6b8]"
+              />
+            </div>
+            
+            <div>
+              <label for="message" class="block text-[#f1ffff] text-sm mb-1">Bericht *</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                rows="4" 
+                required
+                class="w-full px-4 py-2 rounded bg-[#0d0f19] text-[#f1ffff] border border-[#2affcc] focus:outline-none focus:border-[#1fe6b8] resize-none"
+              ></textarea>
+            </div>
+            
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAACAWjYvDp07zRShL"></div>
+            
+            <div id="contact-message" class="hidden text-sm"></div>
+            
+            <button 
+              type="submit" 
+              class="w-full px-6 py-3 rounded-lg bg-[#004fff] hover:bg-[#003acc] text-[#f1ffff] font-medium transition-colors border-2 border-[#004fff] hover:border-[#85afff] disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Verstuur bericht
+            </button>
+          </form>
         </div>
       </div>
     </section>
@@ -248,3 +290,52 @@ import Hero from "../components/Hero.astro";
     </section>
 
 </Default>
+
+<script>
+  // Contact form handler
+  const contactForm = document.getElementById('contact-form') as HTMLFormElement;
+  const contactMessage = document.getElementById('contact-message') as HTMLDivElement;
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitButton = contactForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+      submitButton.disabled = true;
+      submitButton.textContent = 'Versturen...';
+      
+      try {
+        const formData = new FormData(contactForm);
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          body: formData,
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+          contactMessage.textContent = result.message;
+          contactMessage.className = 'text-[#2affcc] text-sm';
+          contactMessage.classList.remove('hidden');
+          contactForm.reset();
+          
+          // Reset turnstile
+          if (window.turnstile) {
+            window.turnstile.reset();
+          }
+        } else {
+          contactMessage.textContent = result.error || 'Er ging iets mis. Probeer het later opnieuw.';
+          contactMessage.className = 'text-[#d90b1e] text-sm bg-white/10 p-2 rounded';
+          contactMessage.classList.remove('hidden');
+        }
+      } catch (error) {
+        contactMessage.textContent = 'Er ging iets mis. Probeer het later opnieuw.';
+        contactMessage.className = 'text-[#d90b1e] text-sm bg-white/10 p-2 rounded';
+        contactMessage.classList.remove('hidden');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Verstuur bericht';
+      }
+    });
+  }
+</script>

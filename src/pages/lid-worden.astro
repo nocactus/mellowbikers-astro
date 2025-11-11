@@ -33,12 +33,146 @@ import Hero from "../components/Hero.astro";
             Vul het formulier op deze pagina in, verstuur het en we nemen snel contact met je op.
           </p>
 
-          <!-- Form Placeholder -->
-          <div class="bg-[#0d0f19] border-2 border-[#2affcc] rounded-lg p-6 mb-6">
-            <p class="text-[#f1ffff] text-center">
-              Hier komt het lid-worden formulier
-            </p>
-          </div>
+          <!-- Lid Worden Form -->
+          <form id="lid-worden-form" class="space-y-6 mb-6">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label for="firstName" class="block text-[#f1ffff] text-sm mb-1">Voornaam *</label>
+                <input 
+                  type="text" 
+                  id="firstName" 
+                  name="firstName" 
+                  required
+                  class="w-full px-4 py-2 rounded bg-[#1a1d2e] text-[#f1ffff] border border-[#2affcc] focus:outline-none focus:border-[#1fe6b8]"
+                />
+              </div>
+              
+              <div>
+                <label for="lastName" class="block text-[#f1ffff] text-sm mb-1">Achternaam *</label>
+                <input 
+                  type="text" 
+                  id="lastName" 
+                  name="lastName" 
+                  required
+                  class="w-full px-4 py-2 rounded bg-[#1a1d2e] text-[#f1ffff] border border-[#2affcc] focus:outline-none focus:border-[#1fe6b8]"
+                />
+              </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label for="email" class="block text-[#f1ffff] text-sm mb-1">Email *</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  required
+                  class="w-full px-4 py-2 rounded bg-[#1a1d2e] text-[#f1ffff] border border-[#2affcc] focus:outline-none focus:border-[#1fe6b8]"
+                />
+              </div>
+              
+              <div>
+                <label for="phone" class="block text-[#f1ffff] text-sm mb-1">Telefoon *</label>
+                <input 
+                  type="tel" 
+                  id="phone" 
+                  name="phone" 
+                  required
+                  class="w-full px-4 py-2 rounded bg-[#1a1d2e] text-[#f1ffff] border border-[#2affcc] focus:outline-none focus:border-[#1fe6b8]"
+                />
+              </div>
+            </div>
+            
+            <div>
+              <label for="address" class="block text-[#f1ffff] text-sm mb-1">Adres *</label>
+              <input 
+                type="text" 
+                id="address" 
+                name="address" 
+                required
+                class="w-full px-4 py-2 rounded bg-[#1a1d2e] text-[#f1ffff] border border-[#2affcc] focus:outline-none focus:border-[#1fe6b8]"
+              />
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label for="zipCode" class="block text-[#f1ffff] text-sm mb-1">Postcode *</label>
+                <input 
+                  type="text" 
+                  id="zipCode" 
+                  name="zipCode" 
+                  required
+                  class="w-full px-4 py-2 rounded bg-[#1a1d2e] text-[#f1ffff] border border-[#2affcc] focus:outline-none focus:border-[#1fe6b8]"
+                />
+              </div>
+              
+              <div>
+                <label for="city" class="block text-[#f1ffff] text-sm mb-1">Plaats *</label>
+                <input 
+                  type="text" 
+                  id="city" 
+                  name="city" 
+                  required
+                  class="w-full px-4 py-2 rounded bg-[#1a1d2e] text-[#f1ffff] border border-[#2affcc] focus:outline-none focus:border-[#1fe6b8]"
+                />
+              </div>
+            </div>
+            
+            <div>
+              <label for="birthDate" class="block text-[#f1ffff] text-sm mb-1">Geboortedatum *</label>
+              <input 
+                type="date" 
+                id="birthDate" 
+                name="birthDate" 
+                required
+                class="w-full px-4 py-2 rounded bg-[#1a1d2e] text-[#f1ffff] border border-[#2affcc] focus:outline-none focus:border-[#1fe6b8]"
+              />
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label for="emergencyContact" class="block text-[#f1ffff] text-sm mb-1">Noodcontact naam</label>
+                <input 
+                  type="text" 
+                  id="emergencyContact" 
+                  name="emergencyContact"
+                  class="w-full px-4 py-2 rounded bg-[#1a1d2e] text-[#f1ffff] border border-[#2affcc] focus:outline-none focus:border-[#1fe6b8]"
+                />
+              </div>
+              
+              <div>
+                <label for="emergencyPhone" class="block text-[#f1ffff] text-sm mb-1">Noodcontact telefoon</label>
+                <input 
+                  type="tel" 
+                  id="emergencyPhone" 
+                  name="emergencyPhone"
+                  class="w-full px-4 py-2 rounded bg-[#1a1d2e] text-[#f1ffff] border border-[#2affcc] focus:outline-none focus:border-[#1fe6b8]"
+                />
+              </div>
+            </div>
+            
+            <div>
+              <label for="experience" class="block text-[#f1ffff] text-sm mb-1">Mountainbike ervaring (optioneel)</label>
+              <textarea 
+                id="experience" 
+                name="experience" 
+                rows="3"
+                placeholder="Vertel ons kort over je mountainbike ervaring..."
+                class="w-full px-4 py-2 rounded bg-[#1a1d2e] text-[#f1ffff] border border-[#2affcc] focus:outline-none focus:border-[#1fe6b8] resize-none"
+              ></textarea>
+            </div>
+            
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAACAWjYvDp07zRShL"></div>
+            
+            <div id="lid-worden-message" class="hidden text-sm"></div>
+            
+            <button 
+              type="submit" 
+              class="w-full px-6 py-3 rounded-lg bg-[#004fff] hover:bg-[#003acc] text-[#f1ffff] font-medium transition-colors border-2 border-[#004fff] hover:border-[#85afff] disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Inschrijving versturen
+            </button>
+          </form>
 
           <p class="text-sm text-[#f1ffff]">
             Dit formulier liever downloaden, uitprinten, invullen en aan onze secretaris geven? Niet heel milieuvriendelijk maar het kan ook, <a href="https://f002.backblazeb2.com/file/Mellowbikers/Inschrijfformulier+2022.pdf" target="_blank" rel="noreferrer noopener" class="underline text-[#2affcc] hover:text-[#1fe6b8]">klik hier om het bestand te downloaden</a>.
@@ -54,3 +188,55 @@ import Hero from "../components/Hero.astro";
 
   </main>
 </Default>
+
+<script>
+  // Lid worden form handler
+  const lidWordenForm = document.getElementById('lid-worden-form') as HTMLFormElement;
+  const lidWordenMessage = document.getElementById('lid-worden-message') as HTMLDivElement;
+
+  if (lidWordenForm) {
+    lidWordenForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitButton = lidWordenForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+      submitButton.disabled = true;
+      submitButton.textContent = 'Versturen...';
+      
+      try {
+        const formData = new FormData(lidWordenForm);
+        const response = await fetch('/api/lid-worden', {
+          method: 'POST',
+          body: formData,
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+          lidWordenMessage.textContent = result.message;
+          lidWordenMessage.className = 'text-[#2affcc] text-sm bg-[#2affcc]/10 p-3 rounded';
+          lidWordenMessage.classList.remove('hidden');
+          lidWordenForm.reset();
+          
+          // Reset turnstile
+          if (window.turnstile) {
+            window.turnstile.reset();
+          }
+          
+          // Scroll naar bericht
+          lidWordenMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          lidWordenMessage.textContent = result.error || 'Er ging iets mis. Probeer het later opnieuw.';
+          lidWordenMessage.className = 'text-[#d90b1e] text-sm bg-[#d90b1e]/10 p-3 rounded border border-[#d90b1e]';
+          lidWordenMessage.classList.remove('hidden');
+        }
+      } catch (error) {
+        lidWordenMessage.textContent = 'Er ging iets mis. Probeer het later opnieuw.';
+        lidWordenMessage.className = 'text-[#d90b1e] text-sm bg-[#d90b1e]/10 p-3 rounded border border-[#d90b1e]';
+        lidWordenMessage.classList.remove('hidden');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Inschrijving versturen';
+      }
+    });
+  }
+</script>
