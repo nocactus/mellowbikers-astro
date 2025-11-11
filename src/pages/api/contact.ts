@@ -66,7 +66,7 @@ export const POST: APIRoute = async ({ request }) => {
         console.log('Sending email via Postmark...');
         
         const result = await client.sendEmail({
-          From: 'noreply@mellowbikers.nl',
+          From: 'info@mellowbikers.nl',
           To: 'info@mellowbikers.nl',
           ReplyTo: data.email,
           Subject: `Nieuw contactbericht van ${data.name}`,
