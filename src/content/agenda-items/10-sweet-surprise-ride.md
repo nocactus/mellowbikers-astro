@@ -1,7 +1,7 @@
 ---
 date: "Zo 21 September"
 title: "Sweet Surprise Ride 🍭"
-completed: false
+completed: true
 order: 10
 ---
 

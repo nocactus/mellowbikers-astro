@@ -1,7 +1,7 @@
 ---
 date: "Zo 19 Oktober"
 title: "Open Mellow Rit 🙌"
-completed: false
+completed: true
 order: 11
 ---
 
