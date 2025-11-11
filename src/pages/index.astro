@@ -329,7 +329,8 @@ import Hero from "../components/Hero.astro";
           contactMessage.classList.remove('hidden');
         }
       } catch (error) {
-        contactMessage.textContent = 'Er ging iets mis. Probeer het later opnieuw.';
+        console.error('Contact form error:', error);
+        contactMessage.textContent = 'Er ging iets mis. Probeer het later opnieuw. Error: ' + (error instanceof Error ? error.message : 'Unknown error');
         contactMessage.className = 'text-[#d90b1e] text-sm bg-white/10 p-2 rounded';
         contactMessage.classList.remove('hidden');
       } finally {

@@ -1,3 +1,4 @@
+import type { APIRoute } from 'astro';
 import { ServerClient } from 'postmark';
 
 interface LidWordenFormData {
@@ -15,9 +16,9 @@ interface LidWordenFormData {
   'cf-turnstile-response': string;
 }
 
-export async function onRequestPost(context: any) {
+export const POST: APIRoute = async ({ request }) => {
   try {
-    const formData = await context.request.formData();
+    const formData = await request.formData();
     const data: LidWordenFormData = {
       firstName: formData.get('firstName') as string,
       lastName: formData.get('lastName') as string,
@@ -54,7 +55,7 @@ export async function onRequestPost(context: any) {
     }
 
     // Turnstile verificatie
-    const turnstileSecret = context.env.TURNSTILE_SECRET_KEY;
+    const turnstileSecret = import.meta.env.TURNSTILE_SECRET_KEY;
     if (turnstileSecret && data['cf-turnstile-response']) {
       const turnstileResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
         method: 'POST',
@@ -75,13 +76,13 @@ export async function onRequestPost(context: any) {
     }
 
     // Verstuur inschrijving via Postmark
-    const postmarkToken = context.env.POSTMARK_API_TOKEN;
+    const postmarkToken = import.meta.env.POSTMARK_API_TOKEN;
     if (postmarkToken) {
       const client = new ServerClient(postmarkToken);
       
       await client.sendEmail({
-        From: 'noreply@mellowbikers.nl', // Moet een geverifieerd adres zijn in Postmark
-        To: 'info@mellowbikers.nl', // Of specifiek secretaris email
+        From: 'noreply@mellowbikers.nl',
+        To: 'info@mellowbikers.nl',
         ReplyTo: data.email,
         Subject: `Nieuwe inschrijving: ${data.firstName} ${data.lastName}`,
         TextBody: `
@@ -146,4 +147,4 @@ ${data.experience || 'Niet opgegeven'}
       headers: { 'Content-Type': 'application/json' }
     });
   }
-}
+};

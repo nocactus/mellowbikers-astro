@@ -1,3 +1,4 @@
+import type { APIRoute } from 'astro';
 import { ServerClient } from 'postmark';
 
 interface ContactFormData {
@@ -7,9 +8,9 @@ interface ContactFormData {
   'cf-turnstile-response': string;
 }
 
-export async function onRequestPost(context: any) {
+export const POST: APIRoute = async ({ request }) => {
   try {
-    const formData = await context.request.formData();
+    const formData = await request.formData();
     const data: ContactFormData = {
       name: formData.get('name') as string,
       email: formData.get('email') as string,
@@ -35,7 +36,7 @@ export async function onRequestPost(context: any) {
     }
 
     // Turnstile verificatie
-    const turnstileSecret = context.env.TURNSTILE_SECRET_KEY;
+    const turnstileSecret = import.meta.env.TURNSTILE_SECRET_KEY;
     if (turnstileSecret && data['cf-turnstile-response']) {
       const turnstileResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
         method: 'POST',
@@ -56,12 +57,12 @@ export async function onRequestPost(context: any) {
     }
 
     // Verstuur email via Postmark
-    const postmarkToken = context.env.POSTMARK_API_TOKEN;
+    const postmarkToken = import.meta.env.POSTMARK_API_TOKEN;
     if (postmarkToken) {
       const client = new ServerClient(postmarkToken);
       
       await client.sendEmail({
-        From: 'noreply@mellowbikers.nl', // Moet een geverifieerd adres zijn in Postmark
+        From: 'noreply@mellowbikers.nl',
         To: 'info@mellowbikers.nl',
         ReplyTo: data.email,
         Subject: `Nieuw contactbericht van ${data.name}`,
@@ -99,4 +100,4 @@ ${data.message}
       headers: { 'Content-Type': 'application/json' }
     });
   }
-}
+};
