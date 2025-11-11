@@ -1,9 +1,10 @@
 ---
 import Default from "../layouts/Default.astro";
 import Hero from "../components/Hero.astro";
-import { agendaData } from "../data/agenda";
+import { getEntry } from 'astro:content';
 
-const { introText, leadText, items: agendaItems } = agendaData;
+const agendaEntry = await getEntry('agenda', 'data');
+const { introText, leadText, items: agendaItems } = agendaEntry.data;
 ---
 <Default title="agenda | Mellowbikers">
   
