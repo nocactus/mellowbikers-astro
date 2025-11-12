@@ -8,6 +8,7 @@ export default {
         mellow: {
           red: '#E52227',
           dark: '#1C0607',
+          groen: '#2affcc',
         },
       },
       fontFamily: {
