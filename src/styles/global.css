@@ -1,3 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  /* Custom colors */
+  --color-mellow-red: #E52227;
+  --color-mellow-dark: #1C0607;
+  --color-mellow-groen: #2affcc;
+  
+  /* Custom font family */
+  --font-family-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
 @font-face {
   font-family: "Inter";
   src: url("/fonts/InterVariable.woff2") format("woff2");
@@ -13,10 +25,6 @@
   font-style: italic;
   font-display: swap;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @layer base {
   html {

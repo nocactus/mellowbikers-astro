@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://astro.mellowbikers.nl', // <-- belangrijk voor sitemap
@@ -11,4 +12,7 @@ export default defineConfig({
     mdx(),
     sitemap(), // <-- voegt automatisch sitemap.xml toe
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

@@ -1,0 +1,25 @@
+{
+  "$ref": "#/definitions/agenda-settings",
+  "definitions": {
+    "agenda-settings": {
+      "type": "object",
+      "properties": {
+        "introText": {
+          "type": "string"
+        },
+        "leadText": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "introText",
+        "leadText"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

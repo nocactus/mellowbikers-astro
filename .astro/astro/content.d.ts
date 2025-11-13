@@ -151,11 +151,139 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		
+		"agenda-items": {
+"01-oliebollenrit.md": {
+	id: "01-oliebollenrit.md";
+  slug: "01-oliebollenrit";
+  body: string;
+  collection: "agenda-items";
+  data: InferEntrySchema<"agenda-items">
+} & { render(): Render[".md"] };
+"02-rondje-leeuw-vlaanderen.md": {
+	id: "02-rondje-leeuw-vlaanderen.md";
+  slug: "02-rondje-leeuw-vlaanderen";
+  body: string;
+  collection: "agenda-items";
+  data: InferEntrySchema<"agenda-items">
+} & { render(): Render[".md"] };
+"03-pascal-classic.md": {
+	id: "03-pascal-classic.md";
+  slug: "03-pascal-classic";
+  body: string;
+  collection: "agenda-items";
+  data: InferEntrySchema<"agenda-items">
+} & { render(): Render[".md"] };
+"04-westenschouwen.md": {
+	id: "04-westenschouwen.md";
+  slug: "04-westenschouwen";
+  body: string;
+  collection: "agenda-items";
+  data: InferEntrySchema<"agenda-items">
+} & { render(): Render[".md"] };
+"05-ek-single-speed.md": {
+	id: "05-ek-single-speed.md";
+  slug: "05-ek-single-speed";
+  body: string;
+  collection: "agenda-items";
+  data: InferEntrySchema<"agenda-items">
+} & { render(): Render[".md"] };
+"06-knakworstenrit.md": {
+	id: "06-knakworstenrit.md";
+  slug: "06-knakworstenrit";
+  body: string;
+  collection: "agenda-items";
+  data: InferEntrySchema<"agenda-items">
+} & { render(): Render[".md"] };
+"07-bbb-weekend.md": {
+	id: "07-bbb-weekend.md";
+  slug: "07-bbb-weekend";
+  body: string;
+  collection: "agenda-items";
+  data: InferEntrySchema<"agenda-items">
+} & { render(): Render[".md"] };
+"08-camping-weekend-duitsland.md": {
+	id: "08-camping-weekend-duitsland.md";
+  slug: "08-camping-weekend-duitsland";
+  body: string;
+  collection: "agenda-items";
+  data: InferEntrySchema<"agenda-items">
+} & { render(): Render[".md"] };
+"09-enduro-saalbach.md": {
+	id: "09-enduro-saalbach.md";
+  slug: "09-enduro-saalbach";
+  body: string;
+  collection: "agenda-items";
+  data: InferEntrySchema<"agenda-items">
+} & { render(): Render[".md"] };
+"10-sweet-surprise-ride.md": {
+	id: "10-sweet-surprise-ride.md";
+  slug: "10-sweet-surprise-ride";
+  body: string;
+  collection: "agenda-items";
+  data: InferEntrySchema<"agenda-items">
+} & { render(): Render[".md"] };
+"11-open-mellow-rit.md": {
+	id: "11-open-mellow-rit.md";
+  slug: "11-open-mellow-rit";
+  body: string;
+  collection: "agenda-items";
+  data: InferEntrySchema<"agenda-items">
+} & { render(): Render[".md"] };
+"12-bergse-torenrit.md": {
+	id: "12-bergse-torenrit.md";
+  slug: "12-bergse-torenrit";
+  body: string;
+  collection: "agenda-items";
+  data: InferEntrySchema<"agenda-items">
+} & { render(): Render[".md"] };
+"13-snertrit.md": {
+	id: "13-snertrit.md";
+  slug: "13-snertrit";
+  body: string;
+  collection: "agenda-items";
+  data: InferEntrySchema<"agenda-items">
+} & { render(): Render[".md"] };
+"14-oliebollenrit-2026.md": {
+	id: "14-oliebollenrit-2026.md";
+  slug: "14-oliebollenrit-2026";
+  body: string;
+  collection: "agenda-items";
+  data: InferEntrySchema<"agenda-items">
+} & { render(): Render[".md"] };
+"15-alv.md": {
+	id: "15-alv.md";
+  slug: "15-alv";
+  body: string;
+  collection: "agenda-items";
+  data: InferEntrySchema<"agenda-items">
+} & { render(): Render[".md"] };
+"16-mellow-weekend-luxemburg.md": {
+	id: "16-mellow-weekend-luxemburg.md";
+  slug: "16-mellow-weekend-luxemburg";
+  body: string;
+  collection: "agenda-items";
+  data: InferEntrySchema<"agenda-items">
+} & { render(): Render[".md"] };
+"17-bkss.md": {
+	id: "17-bkss.md";
+  slug: "17-bkss";
+  body: string;
+  collection: "agenda-items";
+  data: InferEntrySchema<"agenda-items">
+} & { render(): Render[".md"] };
+};
+
 	};
 
 	type DataEntryMap = {
-		"spotlight": Record<string, {
+		"agenda-settings": {
+"settings": {
+	id: "settings";
+  collection: "agenda-settings";
+  data: InferEntrySchema<"agenda-settings">
+};
+};
+"spotlight": Record<string, {
   id: string;
   collection: "spotlight";
   data: any;
@@ -165,5 +293,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = never;
+	export type ContentConfig = typeof import("../../src/content/config.js");
 }
