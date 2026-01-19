@@ -5,14 +5,17 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://astro.mellowbikers.nl', // <-- belangrijk voor sitemap
+  site: 'https://astro.mellowbikers.nl',
   output: 'server',
   adapter: cloudflare(),
   integrations: [
     mdx(),
-    sitemap(), // <-- voegt automatisch sitemap.xml toe
+    sitemap(),
   ],
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      assetsInlineLimit: 10240,
+    },
   },
 });
