@@ -2,9 +2,11 @@
 
 @theme {
   /* Custom colors */
-  --color-mellow-red: #E52227;
-  --color-mellow-dark: #1C0607;
+  --color-mellow-red: #d90b1e;
+  --color-mellow-dark: #000101;
   --color-mellow-groen: #2affcc;
+  --color-mellow-white: #f1ffff;
+  --color-mellow-blue: #004fff;
   
   /* Custom font family */
   --font-family-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -47,4 +49,11 @@
   max-width: 72rem;
   margin: 0 auto;
   padding: 0 1rem;
+}
+
+/* Mobile hero background size */
+@media (max-width: 768px) {
+  .hero-mobile-bg {
+    background-size: auto 100%;
+  }
 }

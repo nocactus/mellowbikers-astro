@@ -1,0 +1,33 @@
+globalThis.process ??= {}; globalThis.process.env ??= {};
+import { a as createComponent, f as renderComponent, r as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_D4FOeVpd.mjs';
+import { $ as $$Default } from '../chunks/Default_D9SsUnqT.mjs';
+export { renderers } from '../renderers.mjs';
+
+const $$MellowBrewery = createComponent(($$result, $$props, $$slots) => {
+  return renderTemplate`${renderComponent($$result, "Default", $$Default, { "title": "Mellow-brewery | Mellowbikers" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="w-full bg-[#0d0f19]"> <!-- Hero Image Section --> <section class="w-full px-4 pt-16 md:pt-24 pb-8"> <div class="max-w-7xl mx-auto"> <img src="/assets/uploads/mellowbrewery-lets-ride-label-bg-1536x768.png" alt="Mellow Brewery - Let's Ride" class="w-full h-auto rounded-lg"> </div> </section> <!-- Social Links --> <section class="w-full px-4 pb-8"> <div class="max-w-7xl mx-auto flex justify-end gap-4"> <a href="https://brouwerijsterck.nl/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-[#f1ffff] hover:text-[#2affcc] transition-colors text-sm"> <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 512 512"> <path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64H348.7c2.2 20.4 3.3 41.8 3.3 64zm28.8-64H503.9c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0H18.6C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192H131.2c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6H344.3c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352H135.3zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6H493.4z"></path> </svg>
+Brouwerij Sterck
+</a> <a href="https://www.instagram.com/mellowbeer.brewery/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-[#f1ffff] hover:text-[#2affcc] transition-colors text-sm"> <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"> <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path> </svg>
+Instagram
+</a> </div> </section> <!-- Content Section --> <section class="w-full px-4 py-12"> <div class="max-w-4xl mx-auto"> <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-[#faffff] mb-8" style="letter-spacing: -0.05em;"> <strong>Let's Ride</strong> is het eerste bier van de Mellow Brewery
+</h1> <p class="text-base md:text-lg text-[#f1ffff] mb-8 leading-relaxed">
+De <em>Mellow Brewery</em> is opgericht door de <a href="/" class="text-[#2affcc] hover:text-[#1fe6b8] underline">Mellowbikers</a>, de enige en gezelligste MTB club van de Brabantse Wal. Echte mountainbikers, net als jij. Epische ritjes, plezier maken met je maten, en genieten van de schoonheid van onze natuur. Dat is waarom wij steeds weer op onze fiets stappen.<br>
+Dit bier is gebrouwen voor dat dorstige moment na die toffe mountainbike avonturen. Om te relaxen en sterke verhalen te vertellen terwijl je nog wat op de bbq gooit. Want dit bier is heerlijk bij een burger of steak!
+</p> <p class="text-base md:text-lg text-[#f1ffff] text-center italic mb-8 leading-relaxed">
+We brouwen ons bier samen met Brouwerij Sterck uit Bergen op Zoom. <a href="https://brouwerijsterck.nl/" target="_blank" rel="noopener noreferrer" class="text-[#2affcc] hover:text-[#1fe6b8] underline">Mannen met een passie</a>, net als wij.
+<br><br>
+Ook proeven? Binnenkort lees je hier meer over de verkooppunten en andere nieuwe ontwikkelingen!<br> <a href="https://untappd.com/b/mellow-brewery-let-s-ride/5320134" target="_blank" rel="noopener noreferrer" class="text-[#2affcc] hover:text-[#1fe6b8] underline">Check intussen de reviews op Untapped!</a> </p> <div class="text-center"> <a href="https://untappd.com/MellowBrewery?ref=followbtn" target="_blank" rel="noopener noreferrer" class="inline-block hover:opacity-80 transition-opacity"> <img src="/assets/uploads/ut_follow_sm.png" alt="Follow on Untappd" class="h-auto"> </a> </div> </div> </section> </main> ` })}`;
+}, "/Users/timo/Library/Mobile Documents/com~apple~CloudDocs/Developer/mellowbikers-astro/src/pages/mellow-brewery.astro", void 0);
+
+const $$file = "/Users/timo/Library/Mobile Documents/com~apple~CloudDocs/Developer/mellowbikers-astro/src/pages/mellow-brewery.astro";
+const $$url = "/mellow-brewery";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: $$MellowBrewery,
+  file: $$file,
+  url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

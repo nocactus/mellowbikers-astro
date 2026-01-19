@@ -1,0 +1,1 @@
+(function(){let t=window.scrollY;const n=document.getElementById("site-header"),o=document.getElementById("header-bg");function l(e){o.style.opacity=e>100?"0.5":"0"}window.addEventListener("scroll",()=>{const e=window.scrollY;l(e),e>t&&e>50?n.style.transform="translateY(-100%)":n.style.transform="translateY(0)",t=e}),l(window.scrollY)})();

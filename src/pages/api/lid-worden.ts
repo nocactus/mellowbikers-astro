@@ -39,7 +39,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const missingFields = requiredFields.filter(field => !data[field as keyof LidWordenFormData]);
     
     if (missingFields.length > 0) {
-      return new Response(JSON.stringify({ error: 'Vul alle verplichte velden in' }), {
+      const errorMessage = `Vul alle verplichte velden in: ${missingFields.join(', ')}`;
+      return new Response(JSON.stringify({ error: errorMessage }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });

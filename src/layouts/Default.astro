@@ -10,6 +10,11 @@ const { title = "Mellowbikers", description = "Dé mountainbike vereniging van d
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="description" content={description} />
     <link rel="icon" href="/assets/favicon-32x32-1.png" />
+    <link rel="icon" href="/assets/favicon-32x32-1.png" sizes="32x32" />
+    <link rel="icon" href="/assets/favicon-32x32-1.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/assets/favicon-32x32-1.png" />
+    <meta name="msapplication-TileImage" content="/assets/favicon-32x32-1.png" />
+    
     <title>{title}</title>
 
     <link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
@@ -19,7 +24,7 @@ const { title = "Mellowbikers", description = "Dé mountainbike vereniging van d
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   </head>
 
-<body class="text-slate-100 bg-transparent">
+<body class="text-slate-100 bg-mellow-dark">
   <!-- HEADER -->
   <header id="site-header" class="fixed top-0 left-0 right-0 z-40 transition-transform duration-300 pt-2">
     <div id="header-bg"
@@ -32,12 +37,12 @@ const { title = "Mellowbikers", description = "Dé mountainbike vereniging van d
       </a>
 
       <nav class="ml-auto flex items-center gap-8 text-base font-medium">
-        <a href="/" class="hover:text-mellow-red transition-colors">Home</a>
+        <a href="/" class="hover:text-mellow-red text-shadow transition-colors">Home</a>
         <a href="/agenda" class="hover:text-mellow-red transition-colors">Agenda</a>
         <a href="/mellow-in-the-spotlight" class="hover:text-mellow-red transition-colors">Spotlight</a>
         <a href="/mellow-brewery" class="hover:text-mellow-red transition-colors">Bier</a>
         <a href="/lid-worden"
-           class="btn !py-2 !px-5 !text-base text-color-dark bg-mellow-groen drop-shadow transition-colors">
+           class="btn !py-2 !px-5 !text-base text-mellow-dark bg-mellow-groen hover:drop-shadow-lg transition-colors">
           Lid worden
         </a>
       </nav>
@@ -48,13 +53,6 @@ const { title = "Mellowbikers", description = "Dé mountainbike vereniging van d
 <main class="bg-transparent">
   <slot />
 </main>
-
-
-  <footer class="mt-16 border-t">
-    <div class="container py-8 text-xs font-light flex items-center justify-center bg-mellow-dark">
-      <p>© {new Date().getFullYear()} Mellowbikers</p>
-    </div>
-  </footer>
 
 <script>
   (function() {
