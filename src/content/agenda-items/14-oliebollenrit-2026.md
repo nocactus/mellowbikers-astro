@@ -1,7 +1,7 @@
 ---
 date: "Zo 11 Januari"
 title: "Oliebollenrit 🍪"
-completed: false
+completed: true
 order: 14
 ---
 

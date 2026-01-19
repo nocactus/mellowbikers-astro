@@ -1,7 +1,7 @@
 ---
 date: "Zo 14 December"
 title: "Snertrit met Fellows 👋"
-completed: false
+completed: true
 order: 13
 ---
 

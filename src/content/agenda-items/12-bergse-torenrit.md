@@ -1,7 +1,7 @@
 ---
 date: "Zo 16 November"
 title: "Bergse Torenrit 🗼"
-completed: false
+completed: true
 order: 12
 ---
 

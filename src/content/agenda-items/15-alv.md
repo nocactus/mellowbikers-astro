@@ -1,7 +1,7 @@
 ---
 date: "Wo 14 Januari"
 title: "ALV"
-completed: false
+completed: true
 order: 15
 ---
 
