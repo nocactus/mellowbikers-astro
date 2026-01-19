@@ -1,7 +1,7 @@
 globalThis.process ??= {}; globalThis.process.env ??= {};
 import { c as createAstro, a as createComponent, f as renderComponent, r as renderTemplate, m as maybeRenderHead, b as renderSlot } from '../../chunks/astro/server_D4FOeVpd.mjs';
 import { $ as $$Image } from '../../chunks/_astro_assets_D6SDLvoV.mjs';
-import { $ as $$Default } from '../../chunks/Default_D9SsUnqT.mjs';
+import { $ as $$Default } from '../../chunks/Default_BGQDnuE6.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const $$Astro$1 = createAstro("https://astro.mellowbikers.nl");

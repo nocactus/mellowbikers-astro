@@ -22,7 +22,8 @@ const POST = async ({ request, locals }) => {
     const requiredFields = ["firstName", "lastName", "email", "phone", "address", "zipCode", "city", "birthDate"];
     const missingFields = requiredFields.filter((field) => !data[field]);
     if (missingFields.length > 0) {
-      return new Response(JSON.stringify({ error: "Vul alle verplichte velden in" }), {
+      const errorMessage = `Vul alle verplichte velden in: ${missingFields.join(", ")}`;
+      return new Response(JSON.stringify({ error: errorMessage }), {
         status: 400,
         headers: { "Content-Type": "application/json" }
       });

@@ -1,6 +1,6 @@
 globalThis.process ??= {}; globalThis.process.env ??= {};
 import { c as createAstro, a as createComponent, f as renderComponent, r as renderTemplate, m as maybeRenderHead, e as addAttribute } from '../chunks/astro/server_D4FOeVpd.mjs';
-import { $ as $$Default } from '../chunks/Default_D9SsUnqT.mjs';
+import { $ as $$Default } from '../chunks/Default_BGQDnuE6.mjs';
 import { $ as $$Image } from '../chunks/_astro_assets_D6SDLvoV.mjs';
 export { renderers } from '../renderers.mjs';
 

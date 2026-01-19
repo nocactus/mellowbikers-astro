@@ -1,13 +1,13 @@
 globalThis.process ??= {}; globalThis.process.env ??= {};
 import { a as createComponent, m as maybeRenderHead, u as unescapeHTML, r as renderTemplate } from './astro/server_D4FOeVpd.mjs';
 
-const html = "<p>Onze jaarlijkse ledenvergadering, ergens in een kroeg in Bergen op Zoom…</p>";
+const html = "<p>De jaarlijkse traditie: start bij Hoeve Hildernisse, alle Fellows mogen mee dus spreek een Mellow aan als je erbij wil zijn! En na afloop natuurlijk huisgemaakte snert en een lekker biertje.</p>";
 
-				const frontmatter = {"date":"Wo 14 Januari","title":"ALV","completed":false,"order":15};
-				const file = "/Users/timo/Library/Mobile Documents/com~apple~CloudDocs/Developer/mellowbikers-astro/src/content/agenda-items/15-alv.md";
+				const frontmatter = {"date":"Zo 14 December","title":"Snertrit met Fellows 👋","completed":true,"order":13};
+				const file = "/Users/timo/Library/Mobile Documents/com~apple~CloudDocs/Developer/mellowbikers-astro/src/content/agenda-items/13-snertrit.md";
 				const url = undefined;
 				function rawContent() {
-					return "\nOnze jaarlijkse ledenvergadering, ergens in een kroeg in Bergen op Zoom...\n";
+					return "\nDe jaarlijkse traditie: start bij Hoeve Hildernisse, alle Fellows mogen mee dus spreek een Mellow aan als je erbij wil zijn! En na afloop natuurlijk huisgemaakte snert en een lekker biertje.\n";
 				}
 				function compiledContent() {
 					return html;

@@ -1,6 +1,6 @@
 globalThis.process ??= {}; globalThis.process.env ??= {};
 async function getMod() {
-						return import('./15-alv_BX_yjGZD.mjs');
+						return import('./14-oliebollenrit-2026_Vkwg9Pb6.mjs');
 					}
 					const collectedLinks = [];
 					const collectedStyles = [];

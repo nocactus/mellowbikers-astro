@@ -1,6 +1,6 @@
 globalThis.process ??= {}; globalThis.process.env ??= {};
 import { a as createComponent, f as renderComponent, r as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_D4FOeVpd.mjs';
-import { $ as $$Default } from '../chunks/Default_D9SsUnqT.mjs';
+import { $ as $$Default } from '../chunks/Default_BGQDnuE6.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Dankje = createComponent(($$result, $$props, $$slots) => {

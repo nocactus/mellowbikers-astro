@@ -1,6 +1,6 @@
 globalThis.process ??= {}; globalThis.process.env ??= {};
 async function getMod() {
-						return import('./13-snertrit_CEo8-p3Q.mjs');
+						return import('./12-bergse-torenrit_CBDJ5PKF.mjs');
 					}
 					const collectedLinks = [];
 					const collectedStyles = [];
