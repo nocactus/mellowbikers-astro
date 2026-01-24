@@ -5,4 +5,4 @@ completed: false
 order: 14
 ---
 
-Hacklberg, Panorama, Milka, X-Line, Bergstadl. Epische trails in Saalbach: lift omhoog, zwaartekracht naarbeneden. Knallen!
+Epische trails in een bikepark ergens in Europa: lift omhoog, zwaartekracht naar beneden. Knallen! 🔥🤘
