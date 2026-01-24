@@ -152,16 +152,16 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"agenda-items": {
-"01-oliebollenrit.md": {
-	id: "01-oliebollenrit.md";
-  slug: "01-oliebollenrit";
+"01-oliebollenrit-2026.md": {
+	id: "01-oliebollenrit-2026.md";
+  slug: "01-oliebollenrit-2026";
   body: string;
   collection: "agenda-items";
   data: InferEntrySchema<"agenda-items">
 } & { render(): Render[".md"] };
-"02-rondje-leeuw-vlaanderen.md": {
-	id: "02-rondje-leeuw-vlaanderen.md";
-  slug: "02-rondje-leeuw-vlaanderen";
+"02-lossenochtend Rit.md": {
+	id: "02-lossenochtend Rit.md";
+  slug: "02-lossenochtend-rit";
   body: string;
   collection: "agenda-items";
   data: InferEntrySchema<"agenda-items">
@@ -180,9 +180,9 @@ declare module 'astro:content' {
   collection: "agenda-items";
   data: InferEntrySchema<"agenda-items">
 } & { render(): Render[".md"] };
-"05-ek-single-speed.md": {
-	id: "05-ek-single-speed.md";
-  slug: "05-ek-single-speed";
+"05- Skills Ride.md": {
+	id: "05- Skills Ride.md";
+  slug: "05--skills-ride";
   body: string;
   collection: "agenda-items";
   data: InferEntrySchema<"agenda-items">
@@ -194,79 +194,58 @@ declare module 'astro:content' {
   collection: "agenda-items";
   data: InferEntrySchema<"agenda-items">
 } & { render(): Render[".md"] };
-"07-bbb-weekend.md": {
-	id: "07-bbb-weekend.md";
-  slug: "07-bbb-weekend";
+"07-NKSS.md": {
+	id: "07-NKSS.md";
+  slug: "07-nkss";
   body: string;
   collection: "agenda-items";
   data: InferEntrySchema<"agenda-items">
 } & { render(): Render[".md"] };
-"08-camping-weekend-duitsland.md": {
-	id: "08-camping-weekend-duitsland.md";
-  slug: "08-camping-weekend-duitsland";
+"08-mellow-weekend-luxemburg.md": {
+	id: "08-mellow-weekend-luxemburg.md";
+  slug: "08-mellow-weekend-luxemburg";
   body: string;
   collection: "agenda-items";
   data: InferEntrySchema<"agenda-items">
 } & { render(): Render[".md"] };
-"09-enduro-saalbach.md": {
-	id: "09-enduro-saalbach.md";
-  slug: "09-enduro-saalbach";
+"09-15 jaar Mellowbikers BBQ.md": {
+	id: "09-15 jaar Mellowbikers BBQ.md";
+  slug: "09-15-jaar-mellowbikers-bbq";
   body: string;
   collection: "agenda-items";
   data: InferEntrySchema<"agenda-items">
 } & { render(): Render[".md"] };
-"10-sweet-surprise-ride.md": {
-	id: "10-sweet-surprise-ride.md";
-  slug: "10-sweet-surprise-ride";
+"10-Lustrum Rit 15 jaar Mellows.md": {
+	id: "10-Lustrum Rit 15 jaar Mellows.md";
+  slug: "10-lustrum-rit-15-jaar-mellows";
   body: string;
   collection: "agenda-items";
   data: InferEntrySchema<"agenda-items">
 } & { render(): Render[".md"] };
-"11-open-mellow-rit.md": {
-	id: "11-open-mellow-rit.md";
-  slug: "11-open-mellow-rit";
+"11-Gele Anemoon.md": {
+	id: "11-Gele Anemoon.md";
+  slug: "11-gele-anemoon";
   body: string;
   collection: "agenda-items";
   data: InferEntrySchema<"agenda-items">
 } & { render(): Render[".md"] };
-"12-bergse-torenrit.md": {
-	id: "12-bergse-torenrit.md";
-  slug: "12-bergse-torenrit";
+"12-bkss.md": {
+	id: "12-bkss.md";
+  slug: "12-bkss";
   body: string;
   collection: "agenda-items";
   data: InferEntrySchema<"agenda-items">
 } & { render(): Render[".md"] };
-"13-snertrit.md": {
-	id: "13-snertrit.md";
-  slug: "13-snertrit";
+"13-Sweet Surprise Ride.md": {
+	id: "13-Sweet Surprise Ride.md";
+  slug: "13-sweet-surprise-ride";
   body: string;
   collection: "agenda-items";
   data: InferEntrySchema<"agenda-items">
 } & { render(): Render[".md"] };
-"14-oliebollenrit-2026.md": {
-	id: "14-oliebollenrit-2026.md";
-  slug: "14-oliebollenrit-2026";
-  body: string;
-  collection: "agenda-items";
-  data: InferEntrySchema<"agenda-items">
-} & { render(): Render[".md"] };
-"15-alv.md": {
-	id: "15-alv.md";
-  slug: "15-alv";
-  body: string;
-  collection: "agenda-items";
-  data: InferEntrySchema<"agenda-items">
-} & { render(): Render[".md"] };
-"16-mellow-weekend-luxemburg.md": {
-	id: "16-mellow-weekend-luxemburg.md";
-  slug: "16-mellow-weekend-luxemburg";
-  body: string;
-  collection: "agenda-items";
-  data: InferEntrySchema<"agenda-items">
-} & { render(): Render[".md"] };
-"17-bkss.md": {
-	id: "17-bkss.md";
-  slug: "17-bkss";
+"xx-enduro-saalbach.md": {
+	id: "xx-enduro-saalbach.md";
+  slug: "xx-enduro-saalbach";
   body: string;
   collection: "agenda-items";
   data: InferEntrySchema<"agenda-items">

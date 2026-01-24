@@ -36,7 +36,8 @@ const { title = "Mellowbikers", description = "Dé mountainbike vereniging van d
         <span class="sr-only">Mellowbikers</span>
       </a>
 
-      <nav class="ml-auto flex items-center gap-8 text-xl font-medium">
+      <!-- Desktop Navigation -->
+      <nav class="ml-auto hidden md:flex items-center gap-8 text-xl font-medium">
         <a href="/" class="hover:text-mellow-red text-shadow transition-colors">Home</a>
         <a href="/agenda" class="hover:text-mellow-red transition-colors">Agenda</a>
         <a href="/mellow-in-the-spotlight" class="hover:text-mellow-red transition-colors">Spotlight</a>
@@ -46,8 +47,29 @@ const { title = "Mellowbikers", description = "Dé mountainbike vereniging van d
           Lid worden
         </a>
       </nav>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-button" class="ml-auto md:hidden flex flex-col gap-1.5 w-8 h-8 justify-center items-center z-50" aria-label="Toggle menu">
+        <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+        <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+        <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+      </button>
     </div>
   </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 bg-black/95 z-30 md:hidden opacity-0 pointer-events-none transition-opacity duration-300">
+    <nav class="flex flex-col items-center justify-center h-full gap-8 text-2xl font-medium">
+      <a href="/" class="hover:text-mellow-red transition-colors">Home</a>
+      <a href="/agenda" class="hover:text-mellow-red transition-colors">Agenda</a>
+      <a href="/mellow-in-the-spotlight" class="hover:text-mellow-red transition-colors">Spotlight</a>
+      <a href="/mellow-brewery" class="hover:text-mellow-red transition-colors">Bier</a>
+      <a href="/lid-worden"
+         class="btn !py-3 !px-6 !text-xl text-mellow-dark bg-mellow-groen hover:drop-shadow-lg transition-colors">
+        Lid worden
+      </a>
+    </nav>
+  </div>
 
   <!-- MAIN CONTENT WRAPPER: bg pas NA hero -->
 <main class="bg-transparent">
@@ -78,6 +100,56 @@ const { title = "Mellowbikers", description = "Dé mountainbike vereniging van d
     });
 
     updateBackground(window.scrollY);
+
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    let isMenuOpen = false;
+
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        isMenuOpen = !isMenuOpen;
+        
+        // Toggle menu visibility
+        if (isMenuOpen) {
+          mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+          mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+          document.body.style.overflow = 'hidden';
+          
+          // Animate hamburger to X
+          const spans = mobileMenuButton.querySelectorAll('span');
+          spans[0].style.transform = 'rotate(45deg) translateY(8px)';
+          spans[1].style.opacity = '0';
+          spans[2].style.transform = 'rotate(-45deg) translateY(-8px)';
+        } else {
+          mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+          mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+          document.body.style.overflow = '';
+          
+          // Reset hamburger
+          const spans = mobileMenuButton.querySelectorAll('span');
+          spans[0].style.transform = '';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = '';
+        }
+      });
+
+      // Close menu when clicking a link
+      const menuLinks = mobileMenu.querySelectorAll('a');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          isMenuOpen = false;
+          mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+          mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+          document.body.style.overflow = '';
+          
+          const spans = mobileMenuButton.querySelectorAll('span');
+          spans[0].style.transform = '';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = '';
+        });
+      });
+    }
   })();
 </script>
 
