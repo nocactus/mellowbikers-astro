@@ -1,8 +1,8 @@
 ---
-date: "Zo 18 mei"
+date: "Zo 17 mei"
 title: "Knakworstenrit 🌭"
-completed: true
+completed: false
 order: 6
 ---
 
-Vette trails? Vette worsten! Rustiek rondje door de bossen met een worst en koffie stop ergens in het woud. 😎🌲
+Vette trails? Vette worsten! Rustiek rondje door de bossen met een worst- en koffie stop ergens in het woud. 😎🌲
