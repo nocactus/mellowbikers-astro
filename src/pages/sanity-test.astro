@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { client } from '../lib/sanity';
+
+// Voorbeeld query: haal alle 'post' types op
+// Let op: dit werkt pas nadat je een schema hebt gedefinieerd in Sanity
+const query = `*[_type == "post"]{title, slug, mainImage}`;
+const posts = await client.fetch(query);
+---
+
+<Layout title="Sanity Test">
+	<main class="container mx-auto p-8">
+		<h1 class="text-4xl font-bold mb-6">Sanity Content</h1>
+		
+		{posts.length > 0 ? (
+			<ul class="grid gap-4">
+				{posts.map((post: any) => (
+					<li class="p-4 border rounded shadow">
+						<h2 class="text-xl font-semibold">{post.title}</h2>
+						<p class="text-gray-600">{post.slug?.current}</p>
+					</li>
+				))}
+			</ul>
+		) : (
+			<div class="bg-yellow-100 border-l-4 border-yellow-500 p-4">
+				<p>Geen posts gevonden. Zorg dat je:</p>
+				<ul class="list-disc ml-5 mt-2">
+					<li>De <code>PUBLIC_SANITY_PROJECT_ID</code> hebt ingesteld in je <code>.env</code></li>
+					<li>Een <code>post</code> schema hebt gedefinieerd in Sanity Studio</li>
+					<li>Content hebt gepubliceerd in Sanity</li>
+				</ul>
+			</div>
+		)}
+	</main>
+</Layout>
