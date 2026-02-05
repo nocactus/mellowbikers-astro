@@ -1,31 +1,23 @@
 ---
 import Default from "../layouts/Default.astro";
-import Hero from "../components/Hero.astro";
+import PageHero from "../components/PageHero.astro";
+import { getEntry } from 'astro:content';
+
+// Haal page header op
+const pageHeader = await getEntry('page-headers', 'spotlight');
+const { backgroundImage, backgroundPosition, title: heroTitle, subtitle: heroSubtitle } = pageHeader.data;
 ---
 <Default title="Mellow in the spotlight | Mellowbikers">
-  
-  <main class="w-full bg-[#0d0f19]">
-    
-    <!-- Hero Section -->
-    <section class="relative w-full min-h-[90vh] flex items-end justify-center bg-cover bg-center bg-fixed bg-[#0d0f19] px-4 pb-24" style="background-image: url('/assets/uploads/spotlight-bg-1.jpg'); background-position: 51% 38%;">
 
-      <!-- Mountains separator at bottom - Layer 1 (full color) -->
-      <div class="absolute -bottom-1 left-0 right-0 h-24 bg-mellow-red" style="clip-path: polygon(0 100%, 0 60%, 10% 70%, 20% 50%, 30% 60%, 40% 40%, 50% 55%, 60% 35%, 70% 50%, 80% 40%, 90% 55%, 100% 45%, 100% 100%);"></div>
-      
-      <!-- Mountains separator at bottom - Layer 2 (50% transparent, offset pattern) -->
-      <div class="absolute bottom-0 left-0 right-0 h-28 bg-mellow-red/50" style="clip-path: polygon(0 100%, 0 50%, 10% 60%, 20% 40%, 30% 55%, 40% 30%, 50% 45%, 60% 25%, 70% 40%, 80% 30%, 90% 50%, 100% 35%, 100% 100%);"></div>
-      
-      <div class="relative z-10 text-center pb-8">
-        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-[#f1ffff] mt-o mb-4" style="letter-spacing: -0.05em; text-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);">
-          Mellow in the spotlight 🔦
-        </h1>
-        <div class="flex justify-center">
-          <svg class="w-8 h-8 text-[#f1ffff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </div>
-      </div>
-    </section>
+  <main class="w-full bg-[#0d0f19]">
+
+    <!-- Hero Section -->
+    <PageHero
+      backgroundImage={backgroundImage}
+      backgroundPosition={backgroundPosition}
+      title={heroTitle}
+      subtitle={heroSubtitle}
+    />
     <!-- Lead Text Section -->
     <section class="relative w-full bg-mellow-red px-4 py-12 lg:py-16">
       <!-- Mountains separator at top - Layer 1 (full color) -->

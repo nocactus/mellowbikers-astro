@@ -20,7 +20,19 @@ const agendaSettingsCollection = defineCollection({
   }),
 });
 
+// Collection voor page headers (background image, title, subtitle per page)
+const pageHeadersCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    backgroundImage: z.string(),
+    backgroundPosition: z.string().optional().default('50% 50%'),
+    title: z.string(),
+    subtitle: z.string().optional(),
+  }),
+});
+
 export const collections = {
   'agenda-items': agendaItemsCollection,
   'agenda-settings': agendaSettingsCollection,
+  'page-headers': pageHeadersCollection,
 };

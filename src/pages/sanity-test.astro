@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Default from '../layouts/Default.astro';
 import { client } from '../lib/sanity';
 
 // Voorbeeld query: haal alle 'post' types op
@@ -8,7 +8,7 @@ const query = `*[_type == "post"]{title, slug, mainImage}`;
 const posts = await client.fetch(query);
 ---
 
-<Layout title="Sanity Test">
+<Default title="Sanity Test">
 	<main class="container mx-auto p-8">
 		<h1 class="text-4xl font-bold mb-6">Sanity Content</h1>
 		
@@ -32,4 +32,4 @@ const posts = await client.fetch(query);
 			</div>
 		)}
 	</main>
-</Layout>
+</Default>

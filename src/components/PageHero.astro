@@ -1,0 +1,47 @@
+---
+interface Props {
+  backgroundImage: string;
+  backgroundPosition?: string;
+  title: string;
+  subtitle?: string;
+  mountainColor?: 'red' | 'dark';
+}
+
+const {
+  backgroundImage,
+  backgroundPosition = '50% 50%',
+  title,
+  subtitle,
+  mountainColor = 'red'
+} = Astro.props;
+
+const mountainBgClass = mountainColor === 'dark' ? 'bg-mellow-dark' : 'bg-mellow-red';
+const mountainBgHalfClass = mountainColor === 'dark' ? 'bg-mellow-dark/50' : 'bg-mellow-red/50';
+---
+
+<section
+  class="relative w-full min-h-[90vh] bg-[#0d0f19] bg-cover bg-center bg-fixed flex items-end pb-20 px-4"
+  style={`background-image: url('${backgroundImage}'); background-position: ${backgroundPosition};`}
+>
+  <!-- Mountains separator at bottom - Layer 1 (full color) -->
+  <div class={`absolute -bottom-1 left-0 right-0 h-24 ${mountainBgClass}`} style="clip-path: polygon(0 100%, 0 60%, 10% 70%, 20% 50%, 30% 60%, 40% 40%, 50% 55%, 60% 35%, 70% 50%, 80% 40%, 90% 55%, 100% 45%, 100% 100%);"></div>
+
+  <!-- Mountains separator at bottom - Layer 2 (50% transparent, offset pattern) -->
+  <div class={`absolute bottom-0 left-0 right-0 h-28 ${mountainBgHalfClass}`} style="clip-path: polygon(0 100%, 0 50%, 10% 60%, 20% 40%, 30% 55%, 40% 30%, 50% 45%, 60% 25%, 70% 40%, 80% 30%, 90% 50%, 100% 35%, 100% 100%);"></div>
+
+  <div class="relative z-10 w-full text-center">
+    <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#f1ffff] mb-6" style="text-shadow: 10px 10px 30px rgba(0,0,0,0.2); line-height: 1; letter-spacing: -0.05em;">
+      {title}
+    </h2>
+    {subtitle && (
+      <h3 class="text-xl md:text-2xl text-[#f1ffff] max-w-4xl mx-auto mb-8" style="text-shadow: 2px 2px 2px rgba(0,0,0,0.2);">
+        {subtitle}
+      </h3>
+    )}
+    <div class="text-[#f1ffff] text-4xl">
+      <svg class="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </div>
+</section>
