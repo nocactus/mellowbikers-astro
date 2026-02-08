@@ -1,6 +1,6 @@
 globalThis.process ??= {}; globalThis.process.env ??= {};
 import { a as createComponent, f as renderComponent, r as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_D4FOeVpd.mjs';
-import { $ as $$Default } from '../chunks/Default_BGQDnuE6.mjs';
+import { $ as $$Default } from '../chunks/Default_DOoU99q4.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Festival = createComponent(($$result, $$props, $$slots) => {
@@ -49,9 +49,9 @@ Live muziek? Check! Rock, Americana, pop, country, oud, nieuw. De <a href="https
 </p> <div class="text-right"> <a href="#tiles" class="text-[#2affcc] text-3xl hover:text-[#1fe6b8]">↗</a> </div> </section> <!-- Sponsors Section --> <section class="max-w-6xl mx-auto px-4 py-16 mb-16"> <p class="text-white text-opacity-50 text-center text-sm mb-8">
 Dit evenement was niet mogelijk geweest zonder deze sponsors, samenwerkingen & partners:
 </p> <div class="flex flex-wrap justify-around items-center gap-8"> <a href="https://brouwerijsterck.nl" target="_blank" class="grayscale hover:grayscale-0 transition-all"> <img src="/assets/uploads/Sterck_Krab_Logo_allwhite.webp" alt="Brouwerij Sterck" class="h-16 md:h-20"> </a> <a href="/mellow-brewery" target="_blank" class="grayscale hover:grayscale-0 transition-all"> <img src="/assets/uploads/mellowbeer-logo-2023.png" alt="Mellow Beer" class="h-12 md:h-14"> </a> <a href="https://mtbschool-noorderkempen.be/" target="_blank" class="hover:opacity-80 transition-all"> <img src="/assets/uploads/mtb-school.jpg" alt="MTB School" class="h-16 md:h-20 rounded"> </a> <a href="https://bikeaholic.be" target="_blank" class="hover:opacity-80 transition-all"> <img src="/assets/uploads/BikeAholic-logo.png" alt="BikeAholic" class="h-16 md:h-20 rounded"> </a> </div> </section> </main> ` })}`;
-}, "/Users/timo/Library/Mobile Documents/com~apple~CloudDocs/Developer/mellowbikers-astro/src/pages/festival.astro", void 0);
+}, "/Users/timo/Developer/mellowbikers.nl/mellowbikers-astro/src/pages/festival.astro", void 0);
 
-const $$file = "/Users/timo/Library/Mobile Documents/com~apple~CloudDocs/Developer/mellowbikers-astro/src/pages/festival.astro";
+const $$file = "/Users/timo/Developer/mellowbikers.nl/mellowbikers-astro/src/pages/festival.astro";
 const $$url = "/festival";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

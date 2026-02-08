@@ -1,6 +1,6 @@
 globalThis.process ??= {}; globalThis.process.env ??= {};
 import { a as createComponent, f as renderComponent, r as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_D4FOeVpd.mjs';
-import { $ as $$Default } from '../chunks/Default_BGQDnuE6.mjs';
+import { $ as $$Default } from '../chunks/Default_DOoU99q4.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$MellowBrewery = createComponent(($$result, $$props, $$slots) => {
@@ -16,9 +16,9 @@ Dit bier is gebrouwen voor dat dorstige moment na die toffe mountainbike avontur
 We brouwen ons bier samen met Brouwerij Sterck uit Bergen op Zoom. <a href="https://brouwerijsterck.nl/" target="_blank" rel="noopener noreferrer" class="text-[#2affcc] hover:text-[#1fe6b8] underline">Mannen met een passie</a>, net als wij.
 <br><br>
 Ook proeven? Binnenkort lees je hier meer over de verkooppunten en andere nieuwe ontwikkelingen!<br> <a href="https://untappd.com/b/mellow-brewery-let-s-ride/5320134" target="_blank" rel="noopener noreferrer" class="text-[#2affcc] hover:text-[#1fe6b8] underline">Check intussen de reviews op Untapped!</a> </p> <div class="text-center"> <a href="https://untappd.com/MellowBrewery?ref=followbtn" target="_blank" rel="noopener noreferrer" class="inline-block hover:opacity-80 transition-opacity"> <img src="/assets/uploads/ut_follow_sm.png" alt="Follow on Untappd" class="h-auto"> </a> </div> </div> </section> </main> ` })}`;
-}, "/Users/timo/Library/Mobile Documents/com~apple~CloudDocs/Developer/mellowbikers-astro/src/pages/mellow-brewery.astro", void 0);
+}, "/Users/timo/Developer/mellowbikers.nl/mellowbikers-astro/src/pages/mellow-brewery.astro", void 0);
 
-const $$file = "/Users/timo/Library/Mobile Documents/com~apple~CloudDocs/Developer/mellowbikers-astro/src/pages/mellow-brewery.astro";
+const $$file = "/Users/timo/Developer/mellowbikers.nl/mellowbikers-astro/src/pages/mellow-brewery.astro";
 const $$url = "/mellow-brewery";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

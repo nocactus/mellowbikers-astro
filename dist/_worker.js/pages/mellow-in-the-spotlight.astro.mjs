@@ -1,6 +1,6 @@
 globalThis.process ??= {}; globalThis.process.env ??= {};
 import { a as createComponent, f as renderComponent, r as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_D4FOeVpd.mjs';
-import { $ as $$Default } from '../chunks/Default_BGQDnuE6.mjs';
+import { $ as $$Default } from '../chunks/Default_DOoU99q4.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$MellowInTheSpotlight = createComponent(($$result, $$props, $$slots) => {
@@ -21,9 +21,9 @@ Ook lid worden van onze toffe club? <a href="/lid-worden" class="text-[#2affcc] 
 <a href="/mellow-in-the-spotlight" class="hover:text-[#2affcc] transition-colors">Spotlight</a> |
 <a href="/mellow-brewery" class="hover:text-[#2affcc] transition-colors">Bier</a> |
 <a href="/lid-worden" class="hover:text-[#2affcc] transition-colors">Lid worden</a> </p> </div> </section> </main> ` })}`;
-}, "/Users/timo/Library/Mobile Documents/com~apple~CloudDocs/Developer/mellowbikers-astro/src/pages/mellow-in-the-spotlight.astro", void 0);
+}, "/Users/timo/Developer/mellowbikers.nl/mellowbikers-astro/src/pages/mellow-in-the-spotlight.astro", void 0);
 
-const $$file = "/Users/timo/Library/Mobile Documents/com~apple~CloudDocs/Developer/mellowbikers-astro/src/pages/mellow-in-the-spotlight.astro";
+const $$file = "/Users/timo/Developer/mellowbikers.nl/mellowbikers-astro/src/pages/mellow-in-the-spotlight.astro";
 const $$url = "/mellow-in-the-spotlight";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

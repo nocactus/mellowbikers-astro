@@ -166,13 +166,6 @@ declare module 'astro:content' {
   collection: "agenda-items";
   data: InferEntrySchema<"agenda-items">
 } & { render(): Render[".md"] };
-"03-pascal-classic.md": {
-	id: "03-pascal-classic.md";
-  slug: "03-pascal-classic";
-  body: string;
-  collection: "agenda-items";
-  data: InferEntrySchema<"agenda-items">
-} & { render(): Render[".md"] };
 "04-westenschouwen.md": {
 	id: "04-westenschouwen.md";
   slug: "04-westenschouwen";
@@ -262,11 +255,6 @@ declare module 'astro:content' {
   data: InferEntrySchema<"agenda-settings">
 };
 };
-"spotlight": Record<string, {
-  id: string;
-  collection: "spotlight";
-  data: any;
-}>;
 
 	};
 

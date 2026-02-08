@@ -1,9 +1,9 @@
 globalThis.process ??= {}; globalThis.process.env ??= {};
-import { r as requestIs404Or500, n as notFound, a as redirectToFallback, b as redirectToDefaultLocale, c as requestHasLocale, d as normalizeTheLocale, e as defineMiddleware, R as RouteCache, s as sequence, f as findRouteToRewrite, m as matchRoute, g as RenderContext, h as getSetCookiesFromResponse } from './chunks/index_CZX6vHti.mjs';
+import { r as requestIs404Or500, n as notFound, a as redirectToFallback, b as redirectToDefaultLocale, c as requestHasLocale, d as normalizeTheLocale, e as defineMiddleware, R as RouteCache, s as sequence, f as findRouteToRewrite, m as matchRoute, g as RenderContext, h as getSetCookiesFromResponse } from './chunks/index_DqaiQdo-.mjs';
 import { t as ROUTE_TYPE_HEADER, R as REROUTE_DIRECTIVE_HEADER, I as decryptString, J as createSlotValueFromString, f as renderComponent, r as renderTemplate, D as DEFAULT_404_COMPONENT, K as bold, L as red, M as yellow, O as dim, P as blue, w as clientLocalsSymbol, x as clientAddressSymbol, Q as REROUTABLE_STATUS_CODES, y as responseSentSymbol } from './chunks/astro/server_D4FOeVpd.mjs';
 import { _ as fileExtension, j as joinPaths, $ as slash, p as prependForwardSlash, w as removeTrailingForwardSlash, g as appendForwardSlash, A as AstroError, L as LocalsNotAnObject } from './chunks/astro/assets-service_B3iZ_nSy.mjs';
 import { N as NOOP_MIDDLEWARE_FN } from './chunks/noop-middleware_CMapT20x.mjs';
-import { e as ensure404Route, D as DEFAULT_404_ROUTE, a as default404Instance } from './chunks/astro-designed-error-pages_DJApOoYT.mjs';
+import { e as ensure404Route, D as DEFAULT_404_ROUTE, a as default404Instance } from './chunks/astro-designed-error-pages_Dtcj_6RJ.mjs';
 
 function createI18nMiddleware(i18n, base, trailingSlash, format) {
   if (!i18n) return (_, next) => next();
