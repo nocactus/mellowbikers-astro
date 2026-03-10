@@ -1,6 +1,17 @@
 ---
 import "../styles/global.css";
-const { title = "Mellowbikers", description = "Dé mountainbike vereniging van de Brabantse Wal" } = Astro.props;
+import SEO from "../components/SEO.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  ogType?: string;
+  noIndex?: boolean;
+  jsonLd?: Record<string, any>;
+}
+
+const { title = "Mellowbikers", description, ogImage, ogType, noIndex, jsonLd } = Astro.props;
 ---
 
 <!doctype html>
@@ -8,26 +19,27 @@ const { title = "Mellowbikers", description = "Dé mountainbike vereniging van d
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="description" content={description} />
     <link rel="icon" href="/assets/favicon-32x32-1.png" />
     <link rel="icon" href="/assets/favicon-32x32-1.png" sizes="32x32" />
     <link rel="icon" href="/assets/favicon-32x32-1.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/assets/favicon-32x32-1.png" />
     <meta name="msapplication-TileImage" content="/assets/favicon-32x32-1.png" />
-    
+
     <!-- Plausible script -->
     <script defer data-domain="mellowbikers.nl" src="https://stats.nocactus.nl/js/script.file-downloads.js"></script>
-    
-    <title>{title}</title>
+
+    <SEO title={title} description={description} ogImage={ogImage} ogType={ogType} noIndex={noIndex} jsonLd={jsonLd} />
 
     <link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/InterVariable-Italic.woff2" as="font" type="font/woff2" crossorigin />
-    
+
     <!-- Cloudflare Turnstile -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   </head>
 
 <body class="text-slate-100 bg-mellow-dark">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:bg-mellow-groen focus:text-mellow-dark focus:px-4 focus:py-2 focus:rounded">Ga naar inhoud</a>
+
   <!-- HEADER -->
   <header id="site-header" class="fixed top-0 left-0 right-0 z-40 transition-transform duration-300 pt-2">
     <div id="header-bg"
@@ -52,7 +64,7 @@ const { title = "Mellowbikers", description = "Dé mountainbike vereniging van d
       </nav>
 
       <!-- Mobile Hamburger Button -->
-      <button id="mobile-menu-button" class="ml-auto md:hidden flex flex-col gap-1.5 w-8 h-8 justify-center items-center z-50" aria-label="Toggle menu">
+      <button id="mobile-menu-button" class="ml-auto md:hidden flex flex-col gap-1.5 w-8 h-8 justify-center items-center z-50" aria-label="Toggle menu" aria-expanded="false">
         <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
         <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
         <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
@@ -75,7 +87,7 @@ const { title = "Mellowbikers", description = "Dé mountainbike vereniging van d
   </div>
 
   <!-- MAIN CONTENT WRAPPER: bg pas NA hero -->
-<main class="bg-transparent">
+<main id="main-content" class="bg-transparent">
   <slot />
 </main>
 
@@ -112,13 +124,14 @@ const { title = "Mellowbikers", description = "Dé mountainbike vereniging van d
     if (mobileMenuButton && mobileMenu) {
       mobileMenuButton.addEventListener('click', () => {
         isMenuOpen = !isMenuOpen;
-        
+        mobileMenuButton.setAttribute('aria-expanded', isMenuOpen.toString());
+
         // Toggle menu visibility
         if (isMenuOpen) {
           mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
           mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
           document.body.style.overflow = 'hidden';
-          
+
           // Animate hamburger to X
           const spans = mobileMenuButton.querySelectorAll('span');
           spans[0].style.transform = 'rotate(45deg) translateY(8px)';
@@ -128,7 +141,7 @@ const { title = "Mellowbikers", description = "Dé mountainbike vereniging van d
           mobileMenu.classList.add('opacity-0', 'pointer-events-none');
           mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
           document.body.style.overflow = '';
-          
+
           // Reset hamburger
           const spans = mobileMenuButton.querySelectorAll('span');
           spans[0].style.transform = '';
@@ -142,10 +155,11 @@ const { title = "Mellowbikers", description = "Dé mountainbike vereniging van d
       menuLinks.forEach(link => {
         link.addEventListener('click', () => {
           isMenuOpen = false;
+          mobileMenuButton.setAttribute('aria-expanded', 'false');
           mobileMenu.classList.add('opacity-0', 'pointer-events-none');
           mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
           document.body.style.overflow = '';
-          
+
           const spans = mobileMenuButton.querySelectorAll('span');
           spans[0].style.transform = '';
           spans[1].style.opacity = '1';

@@ -1,0 +1,15 @@
+{
+  "seo": {
+    "title": "Lid worden",
+    "description": "Word lid van de Mellowbikers. Inschrijfformulier en informatie over lidmaatschap."
+  },
+  "hero": {
+    "title": "Lid worden van de Mellowbikers",
+    "backgroundImage": "/assets/uploads/mb-hero-lidworden-small-2048_3ap7pw77.jpg",
+    "backgroundPosition": "52% 68%"
+  },
+  "footer": {
+    "backgroundImage": "/assets/uploads/mb-scroll-liworden-2048_msnwbg7m.jpg",
+    "backgroundPosition": "44% 65%"
+  }
+}

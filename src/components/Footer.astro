@@ -1,0 +1,39 @@
+---
+import MountainSeparator from "./MountainSeparator.astro";
+
+interface Props {
+  backgroundImage?: string;
+  backgroundPosition?: string;
+  separatorColor?: string;
+}
+
+const {
+  backgroundImage,
+  backgroundPosition = "50% 50%",
+  separatorColor = "mellow-dark",
+} = Astro.props;
+
+const currentYear = new Date().getFullYear();
+
+const sectionStyle = backgroundImage
+  ? `background-image: url('${backgroundImage}'); background-position: ${backgroundPosition};`
+  : `background-position: ${backgroundPosition};`;
+---
+
+<section
+  class="relative w-full min-h-[50vh] bg-mellow-dark bg-cover bg-center md:bg-fixed flex items-end justify-center px-4 pb-8"
+  style={sectionStyle}
+>
+  <MountainSeparator position="top" color={separatorColor} />
+
+  <div class="relative z-10 text-center text-sm text-mellow-white/70">
+    <p class="text-shadow-lg">
+      &copy; {currentYear} Mellowbikers |{" "}
+      <a href="/" class="hover:text-mellow-groen transition-colors">Home</a> |{" "}
+      <a href="/agenda" class="hover:text-mellow-groen transition-colors">Agenda</a> |{" "}
+      <a href="/mellow-in-the-spotlight" class="hover:text-mellow-groen transition-colors">Spotlight</a> |{" "}
+      <a href="/mellow-brewery" class="hover:text-mellow-groen transition-colors">Bier</a> |{" "}
+      <a href="/lid-worden" class="hover:text-mellow-groen transition-colors">Lid worden</a>
+    </p>
+  </div>
+</section>

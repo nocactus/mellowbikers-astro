@@ -1,0 +1,20 @@
+{
+  "header": [
+    { "label": "Home", "href": "/" },
+    { "label": "Agenda", "href": "/agenda" },
+    { "label": "Spotlight", "href": "/mellow-in-the-spotlight" },
+    { "label": "Bier", "href": "/mellow-brewery" },
+    { "label": "Lid worden", "href": "/lid-worden", "isButton": true }
+  ],
+  "footer": [
+    { "label": "Home", "href": "/" },
+    { "label": "Agenda", "href": "/agenda" },
+    { "label": "Spotlight", "href": "/mellow-in-the-spotlight" },
+    { "label": "Bier", "href": "/mellow-brewery" },
+    { "label": "Lid worden", "href": "/lid-worden" }
+  ],
+  "socials": [
+    { "label": "Facebook", "url": "https://www.facebook.com/mellowbikersnl" },
+    { "label": "Instagram", "url": "https://www.instagram.com/mellowbikers/" }
+  ]
+}

@@ -1,0 +1,65 @@
+---
+interface Props {
+  position: "top" | "bottom";
+  color?: string;
+}
+
+const { position, color = "mellow-dark" } = Astro.props;
+
+// Determine whether to use inline styles (hex) or Tailwind classes
+const isHex = color.startsWith("#");
+
+// Build class strings or style strings for each layer
+const layer1Class = isHex ? "" : `bg-${color}`;
+const layer2Class = isHex ? "" : `bg-${color}/50`;
+const layer1Style = isHex ? `background-color: ${color};` : "";
+const layer2Style = isHex ? `background-color: ${color}80;` : ""; // 80 = 50% opacity in hex
+
+const bottomLayer1ClipPath =
+  "polygon(0 100%, 0 60%, 10% 70%, 20% 50%, 30% 60%, 40% 40%, 50% 55%, 60% 35%, 70% 50%, 80% 40%, 90% 55%, 100% 45%, 100% 100%)";
+const bottomLayer2ClipPath =
+  "polygon(0 100%, 0 50%, 10% 60%, 20% 40%, 30% 55%, 40% 30%, 50% 45%, 60% 25%, 70% 40%, 80% 30%, 90% 50%, 100% 35%, 100% 100%)";
+
+const topLayer1ClipPath =
+  "polygon(0 0, 0 40%, 10% 50%, 20% 30%, 30% 40%, 40% 20%, 50% 35%, 60% 15%, 70% 30%, 80% 20%, 90% 35%, 100% 25%, 100% 0)";
+const topLayer2ClipPath =
+  "polygon(0 0, 0 50%, 10% 60%, 20% 40%, 30% 55%, 40% 30%, 50% 45%, 60% 25%, 70% 40%, 80% 30%, 90% 50%, 100% 35%, 100% 0)";
+---
+
+{position === "bottom" && (
+  <>
+    <div
+      class:list={[
+        "absolute -bottom-1 left-0 right-0 h-24",
+        layer1Class,
+      ]}
+      style={`clip-path: ${bottomLayer1ClipPath};${layer1Style ? " " + layer1Style : ""}`}
+    ></div>
+    <div
+      class:list={[
+        "absolute bottom-0 left-0 right-0 h-28",
+        layer2Class,
+      ]}
+      style={`clip-path: ${bottomLayer2ClipPath};${layer2Style ? " " + layer2Style : ""}`}
+    ></div>
+  </>
+)}
+
+{position === "top" && (
+  <>
+    <div
+      class:list={[
+        "absolute -top-1 left-0 right-0 h-24",
+        layer1Class,
+      ]}
+      style={`clip-path: ${topLayer1ClipPath};${layer1Style ? " " + layer1Style : ""}`}
+    ></div>
+    <div
+      class:list={[
+        "absolute top-0 left-0 right-0 h-28",
+        layer2Class,
+      ]}
+      style={`clip-path: ${topLayer2ClipPath};${layer2Style ? " " + layer2Style : ""}`}
+    ></div>
+  </>
+)}

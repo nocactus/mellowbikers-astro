@@ -1,0 +1,15 @@
+{
+  "seo": {
+    "title": "Agenda 2026",
+    "description": "Bekijk alle geplande activiteiten, clubritten en weekenden van de Mellowbikers."
+  },
+  "hero": {
+    "title": "Activiteiten 2026",
+    "backgroundImage": "/assets/uploads/mellows-berg.jpeg",
+    "backgroundPosition": "50% 100%"
+  },
+  "footer": {
+    "backgroundImage": "/assets/uploads/mb-scroll-agenda-2048.jpg",
+    "backgroundPosition": "36% 64%"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "hero": {
+    "title": "Wij zijn de\nMellowbikers",
+    "subtitle": "Dé mountainbike vereniging van de Brabantse Wal",
+    "backgroundImage": "/assets/uploads/mb-hero-1-c20-2048.jpg"
+  },
+  "lead": {
+    "greeting": "Hi👋",
+    "title": "Ook fan van biken, bikken en bier?",
+    "body": "Dan zou het best kunnen dat je de Mellowbikers een toffe club vindt. Wij zijn een relaxte groep mountainbikers uit de regio Bergen op Zoom. Een keer meerijden? Dat kan natuurlijk! We maken in elk geval elke zondag een rit. Maar we organiseren ook tripjes, weekendjes of weekjes naar andere mooie plekken om te biken. Check <a href=\"/agenda\" class=\"underline text-mellow-groen hover:text-mellow-groen/80\">onze activiteiten voor dit jaar</a> maar eens."
+  },
+  "nextRide": {
+    "title": "Mellowbikers: Next Ride",
+    "body": "Regelmatig organiseren we club-rides voor onze leden. Check de agenda om ze te bekijken. Op <strong>zondag 16 november stond bijvoorbeeld de eerste Torenrit</strong> op het programma, kris-kras door de regio om de mooiste torens te bezoeken. ✌️🔥",
+    "ctaText": "Ook een keer meerijden? Neem contact met ons op.",
+    "image": "/assets/uploads/torenrit-2025-web-800.webp"
+  },
+  "values": [
+    {
+      "title": "Mellow",
+      "body": "We houden van een rondje biken. Gewoon omdat dat leuk is. Dus niet voor Strava. Maar voor onszelf en voor de lol. Dat noemen we Mellow."
+    },
+    {
+      "title": "Respect",
+      "body": "Respect voor de natuur, andere fietsers, wandelaars en ruiters vinden we heel erg belangrijk.<br />Mellow = Positief"
+    },
+    {
+      "title": "Gezelligheid",
+      "body": "Naast het biken zijn we ook gek op af en toe een biertje. En op lekker eten. Voor de gezelligheid, niets moet – spontaan of georganiseerd. Altijd Mellow natuurlijk."
+    }
+  ],
+  "beer": {
+    "title": "Mellowbikers presents: Let's Ride",
+    "body": "Ons eigen bier is gebrouwen voor dat dorstige moment na die toffe mountainbike avonturen. Om te relaxen en sterke verhalen te vertellen terwijl je nog wat op de bbq gooit. Want dit bier is heerlijk bij een burger of steak!",
+    "ctaText": "Lees meer over ons bier",
+    "ctaLink": "/mellow-brewery",
+    "image": "/assets/uploads/lets-ride-bas.jpg"
+  },
+  "quote": {
+    "text": "Een fully én een single speed én een stalen trailbike én een dikke fatbike? Nee joh, één fiets – meer heb je niet nodig om lid te worden van de Mellowbikers. En te genieten van de meest relaxte sport, in de mooiste omgeving...",
+    "author": "Timo (voorzitter)"
+  },
+  "contact": {
+    "title": "Laat wat van je horen",
+    "body": "Een keer met ons meerijden? Iets anders te melden? Dan kan je dat hier doen. En volg ons ook op de socials..."
+  },
+  "buttons": {
+    "spotlightText": "Spotlight: leer de Mellows kennen 🔦",
+    "spotlightLink": "/mellow-in-the-spotlight",
+    "contactText": "Stuur ons een bericht",
+    "contactLink": "#socials",
+    "memberText": "Lid worden van onze club",
+    "memberLink": "/lid-worden"
+  },
+  "video": {
+    "src": "https://player.mux.com/CEJ5BA88jl01o0102dMx0173XgWk8ytc402fHxIeNW1Kjios?metadata-video-title=mellow-train-limburg&video-title=mellow-train-limburg",
+    "title": "Mellow train Limburg"
+  },
+  "seo": {
+    "title": "Home",
+    "description": "Dé mountainbike vereniging van de Brabantse Wal. Relaxt biken, gezellige ritten en eigen bier."
+  }
+}

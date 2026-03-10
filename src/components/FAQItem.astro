@@ -1,0 +1,16 @@
+---
+interface Props {
+  question: string;
+}
+
+const { question } = Astro.props;
+---
+
+<details class="mb-4 bg-mellow-dark border-b border-mellow-white">
+  <summary class="cursor-pointer py-4 text-mellow-white font-medium hover:text-mellow-groen transition-colors">
+    {question}
+  </summary>
+  <div class="pb-4 text-mellow-white">
+    <slot />
+  </div>
+</details>

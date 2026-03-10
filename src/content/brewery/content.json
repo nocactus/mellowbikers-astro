@@ -1,0 +1,24 @@
+{
+  "title": "Let's Ride is het eerste bier van de Mellow Brewery",
+  "headerImage": "/assets/uploads/mellowbrewery-lets-ride-label-bg-1536x768.png",
+  "body": "De <em>Mellow Brewery</em> is opgericht door de <a href=\"/\" class=\"text-mellow-groen hover:text-mellow-groen/80 underline\">Mellowbikers</a>, de enige en gezelligste MTB club van de Brabantse Wal. Echte mountainbikers, net als jij. Epische ritjes, plezier maken met je maten, en genieten van de schoonheid van onze natuur. Dat is waarom wij steeds weer op onze fiets stappen.<br/>Dit bier is gebrouwen voor dat dorstige moment na die toffe mountainbike avonturen. Om te relaxen en sterke verhalen te vertellen terwijl je nog wat op de bbq gooit. Want dit bier is heerlijk bij een burger of steak!",
+  "partnerText": "We brouwen ons bier samen met Brouwerij Sterck uit Bergen op Zoom. <a href=\"https://brouwerijsterck.nl/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-mellow-groen hover:text-mellow-groen/80 underline\">Mannen met een passie</a>, net als wij.<br/><br/>Ook proeven? Binnenkort lees je hier meer over de verkooppunten en andere nieuwe ontwikkelingen!<br/><a href=\"https://untappd.com/b/mellow-brewery-let-s-ride/5320134\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-mellow-groen hover:text-mellow-groen/80 underline\">Check intussen de reviews op Untapped!</a>",
+  "untappdLink": "https://untappd.com/MellowBrewery?ref=followbtn",
+  "untappdImage": "/assets/uploads/ut_follow_sm.png",
+  "socialLinks": [
+    {
+      "label": "Brouwerij Sterck",
+      "url": "https://brouwerijsterck.nl/",
+      "icon": "globe"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/mellowbeer.brewery/",
+      "icon": "instagram"
+    }
+  ],
+  "seo": {
+    "title": "Mellow Brewery",
+    "description": "Let's Ride - het eigen bier van de Mellowbikers, gebrouwen bij Brouwerij Sterck."
+  }
+}

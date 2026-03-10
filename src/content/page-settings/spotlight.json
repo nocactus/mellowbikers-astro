@@ -1,0 +1,15 @@
+{
+  "seo": {
+    "title": "Mellow in the Spotlight",
+    "description": "Leer de Mellowbikers kennen. Portretten van onze leden en hun mountainbike verhalen."
+  },
+  "hero": {
+    "title": "Mellow in the spotlight 🔦",
+    "backgroundImage": "/assets/uploads/spotlight-bg-1.jpg",
+    "backgroundPosition": "51% 38%"
+  },
+  "footer": {
+    "backgroundImage": "/assets/uploads/spotlight-bg-footer_nfsom4yj.jpg",
+    "backgroundPosition": "54% 83%"
+  }
+}

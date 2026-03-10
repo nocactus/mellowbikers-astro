@@ -1,0 +1,62 @@
+{
+  "year": 2025,
+  "title": "Mellow Bike Festival",
+  "dates": "20 tm 22 juni 2025",
+  "location": "Rommeshoef Essen",
+  "description": "Een weekend vol superveel MTB-fun: een toffe <strong>6-uursrace</strong> op een technisch MTB-parcours, <strong>schitterende tochten</strong> met gids over de Brabantse Wal, <strong>live muziek</strong>, lekker <strong>eten</strong>, <strong>lokaal bier</strong> en natuurlijk een gezellige <strong>campingovernachting</strong> voor de liefhebbers.",
+  "tickets": [
+    {
+      "emoji": "🏆",
+      "title": "1-dag ticket",
+      "price": "€57",
+      "description": "Doe mee met de 6-uursrace + Afterparty met live-muziek + All-You-Can-Eat-Foodtruck",
+      "link": "https://docs.google.com/forms/d/e/1FAIpQLSfImN20I1rt3ZnFvT1QE5dF6WS58l3TtApviplIeZhqi3oL9w/viewform"
+    },
+    {
+      "emoji": "📅",
+      "title": "Campingweekend",
+      "price": "€87",
+      "description": "6-uursrace + Afterparty met live-muziek + All-You-Can-Eat-Foodtruck + twee nachten camping",
+      "link": "https://docs.google.com/forms/d/e/1FAIpQLSfImN20I1rt3ZnFvT1QE5dF6WS58l3TtApviplIeZhqi3oL9w/viewform"
+    },
+    {
+      "emoji": "📣",
+      "title": "Supporter",
+      "price": "€25 (€10 6 t/m 12 jr)",
+      "description": "Afterparty met live-muziek + All-You-Can-Eat-Foodtruck",
+      "link": "https://docs.google.com/forms/d/e/1FAIpQLSfImN20I1rt3ZnFvT1QE5dF6WS58l3TtApviplIeZhqi3oL9w/viewform"
+    }
+  ],
+  "program": [
+    { "emoji": "📣", "text": "Vrijdag: camping open, georganiseerde rit, pre-party en kwalificaties" },
+    { "emoji": "📣", "text": "Zaterdag: 6-uursrace, alternatieve routes voor niet-deelnemers met gids of gpx, food-truck & afterparty met de <strong>Daltons Unleashed!</strong>" },
+    { "emoji": "📣", "text": "Zondag: camping sluit rond de middag, vrij rijden in de regio met gids of op gpx" }
+  ],
+  "sections": [
+    {
+      "id": "camping",
+      "title": "<span class=\"text-mellow-groen\">De</span> festival camping",
+      "body": "<p class=\"text-mellow-white mb-6 leading-relaxed\">De Rommeshoef is een zorgboederij en een kleinschalig landbouwbedrijf. Doordat we hier ons kamp opslaan steunen we de organisatie die veel goed werk doet voor mensen die speciale zorg nodig hebben. <a href=\"https://www.rommeshoef.be/\" target=\"_blank\" class=\"text-mellow-groen hover:text-mellow-groen/80 underline\">De Rommeshoef</a> is ook een kampeerboerderij met voldoende ruimte om binnen een feestje te bouwen en waar je de <em>Mellow-bar</em> met die lekkere lokale biertjes vindt. Daarnaast beschikken we hier over een groot buitenterein dat wordt ingericht als basic-camping. Genoeg plek voor iedere tent, caravan of camper! ⛺️🚐</p><p class=\"text-mellow-white mb-6 leading-relaxed\">De Rommeshoef ligt in Essen, vlak over de grens en is uitstekend bereikbaar. Er is ruim voldoende gratis parkeergelegenheid.</p>"
+    },
+    {
+      "id": "race",
+      "title": "<span class=\"text-mellow-groen\">6-uurs</span> race",
+      "body": "<p class=\"text-mellow-white mb-6 leading-relaxed\">Doe met een team mee met de 6-uursrace op een technisch MTB-parcours. Het vindt plaats op de prachtige route van de <a href=\"https://www.routeyou.com/nl-be/route/view/8860575\" class=\"text-mellow-groen hover:text-mellow-groen/80 underline\">Wildertse Duintjes</a>, aangelegd en onderhouden door de lokale <a href=\"https://mtbschool-noorderkempen.be/\" target=\"_blank\" class=\"text-mellow-groen hover:text-mellow-groen/80 underline\">MTB-school Noorderkempen</a>. Tijdens de inschrijving kun je zelf een team van 2, 3 of 4 personen aanmelden voor de 6-uursrace. Ben je met minder of alleen? Dan delen wij je in bij een team. Als single rider meedoen kan natuurlijk ook.</p><p class=\"text-mellow-white mb-6 leading-relaxed\">Stel je team samen en ga de uitdaging aan: de 6-uursrace op het Mellow Bike Festival! Verover het technische parcours en strijd om de prijzen – ter beschikking gesteld door <a href=\"https://bikeaholic.be\" target=\"_blank\" class=\"text-mellow-groen hover:text-mellow-groen/80 underline\">BikeAholic</a> 🙏 – met als hoofdprijs: een fantastisch fiets-gooedies-pakket voor elk teamlid! Solo-winnaars gaan naar huis met een waardebon van €100 + prijzenmand! 💰</p>"
+    },
+    {
+      "id": "muziek",
+      "title": "<span class=\"text-mellow-groen\">Live:</span> Daltons Unleashed",
+      "body": "<p class=\"text-mellow-white mb-6 leading-relaxed\">Live muziek? Check! Rock, Americana, pop, country, oud, nieuw. De <a href=\"https://www.daltonsunleashed.nl/\" target=\"_blank\" class=\"text-mellow-groen hover:text-mellow-groen/80 underline\">Daltons Unleashed</a> kan het allemaal en is altijd in voor een feestje. En de zanger is een Mellowbiker, dat maakt het extra leuk natuurlijk 😁🤘</p>"
+    }
+  ],
+  "sponsors": [
+    { "name": "Brouwerij Sterck", "logo": "/assets/uploads/Sterck_Krab_Logo_allwhite.webp", "link": "https://brouwerijsterck.nl" },
+    { "name": "Mellow Beer", "logo": "/assets/uploads/mellowbeer-logo-2023.png", "link": "/mellow-brewery" },
+    { "name": "MTB School Noorderkempen", "logo": "/assets/uploads/mtb-school.jpg", "link": "https://mtbschool-noorderkempen.be/" },
+    { "name": "BikeAholic", "logo": "/assets/uploads/BikeAholic-logo.png", "link": "https://bikeaholic.be" }
+  ],
+  "seo": {
+    "title": "Mellow Bike Festival 2025",
+    "description": "MTB-festival met 6-uursrace, camping, live muziek en foodtruck. 20-22 juni 2025 op de Rommeshoef in Essen."
+  }
+}

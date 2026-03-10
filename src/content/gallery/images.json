@@ -1,0 +1,13 @@
+{
+  "images": [
+    { "src": "/assets/uploads/saalbach-teamfoto_qm5bpu5o.jpg", "alt": "Teamfoto in Saalbach" },
+    { "src": "/assets/uploads/richard-selfie_2ijreaoo.jpg", "alt": "Selfie onderweg" },
+    { "src": "/assets/uploads/onderweg-lachen_3conekvb.jpg", "alt": "Lachend onderweg op de trail" },
+    { "src": "/assets/uploads/luxemburg-plateau_dsrwxp56.jpg", "alt": "Op het plateau in Luxemburg" },
+    { "src": "/assets/uploads/kragge-kombocht_9a3pzn0b.jpg", "alt": "Kombocht op de Kragge" },
+    { "src": "/assets/uploads/kombocht-fullface_qvxq6vo6.jpg", "alt": "Fullface helm in de kombocht" },
+    { "src": "/assets/uploads/biertje_kof7c6xg.jpg", "alt": "Biertje na de rit" },
+    { "src": "/assets/uploads/spotlight-bg-footer.jpg", "alt": "Mellowbikers op pad" },
+    { "src": "/assets/uploads/mellowbikers-long-ride.jpg", "alt": "Mellowbikers long ride" }
+  ]
+}

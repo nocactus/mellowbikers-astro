@@ -1,7 +1,11 @@
 ---
 import Default from "../layouts/Default.astro";
-import Hero from "../components/Hero.astro";
+import MountainSeparator from "../components/MountainSeparator.astro";
+import Footer from "../components/Footer.astro";
 import { getEntry, getCollection } from 'astro:content';
+
+// Haal page settings op
+const pageSettings = await getEntry('page-settings', 'agenda');
 
 // Haal settings op
 const settings = await getEntry('agenda-settings', 'settings');
@@ -18,47 +22,43 @@ const agendaItems = allAgendaItems
     completed: item.data.completed,
   }));
 ---
-<Default title="agenda | Mellowbikers">
-  
+<Default title={pageSettings.data.seo.title} description={pageSettings.data.seo.description}>
+
   <main>
     <!-- Hero Section -->
-    <section class="relative w-full min-h-[90vh] bg-[#0d0f19] bg-cover bg-center bg-fixed flex items-end pb-20 px-4" style="background-image: url('/assets/uploads/mellows-berg.jpeg'); background-position: 50% 100%;">
-      <!-- Mountains separator at bottom - Layer 1 (full color) -->
-      <div class="absolute -bottom-1 left-0 right-0 h-24 bg-mellow-red" style="clip-path: polygon(0 100%, 0 60%, 10% 70%, 20% 50%, 30% 60%, 40% 40%, 50% 55%, 60% 35%, 70% 50%, 80% 40%, 90% 55%, 100% 45%, 100% 100%);"></div>
-      
-      <!-- Mountains separator at bottom - Layer 2 (50% transparent, offset pattern) -->
-      <div class="absolute bottom-0 left-0 right-0 h-28 bg-mellow-red/50" style="clip-path: polygon(0 100%, 0 50%, 10% 60%, 20% 40%, 30% 55%, 40% 30%, 50% 45%, 60% 25%, 70% 40%, 80% 30%, 90% 50%, 100% 35%, 100% 100%);"></div>
-      
+    <section
+      class="relative w-full min-h-[90vh] bg-mellow-dark bg-cover bg-center bg-fixed flex items-end pb-20 px-4"
+      style={`background-image: url('${pageSettings.data.hero.backgroundImage}'); background-position: ${pageSettings.data.hero.backgroundPosition ?? '50% 50%'};`}
+    >
+      <MountainSeparator position="bottom" color="mellow-red" />
+
       <div class="relative z-10 w-full text-center">
-        <h2 class="text-6xl font-bold text-[#f1ffff] mb-6" style="text-shadow: 10px 10px 30px rgba(0,0,0,0.2); line-height: 1; letter-spacing: -0.05em;">
-          Activiteiten 2026
+        <h2 class="text-6xl font-bold text-mellow-white mb-6" style="text-shadow: 10px 10px 30px rgba(0,0,0,0.2); line-height: 1; letter-spacing: -0.05em;">
+          {pageSettings.data.hero.title}
         </h2>
-        <h2 class="text-2xl text-[#f1ffff] max-w-4xl mx-auto mb-8" style="text-shadow: 2px 2px 2px rgba(0,0,0,0.2);">
+        <h2 class="text-2xl text-mellow-white max-w-4xl mx-auto mb-8" style="text-shadow: 2px 2px 2px rgba(0,0,0,0.2);">
           {introText}
         </h2>
-        <div class="text-[#f1ffff] text-4xl">
+        <div class="text-mellow-white text-4xl">
           <svg class="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </div>
       </div>
     </section>
+
     <!-- Agenda Content Section -->
-    <section class="relative w-full bg-[#d90b1e] py-12 md:py-20 px-4">
-      <!-- Mountains separator at top - Layer 1 (full color) -->
-      <div class="absolute -top-1 left-0 right-0 h-24 bg-[#d90b1e]" style="clip-path: polygon(0 0, 0 40%, 10% 50%, 20% 30%, 30% 40%, 40% 20%, 50% 35%, 60% 15%, 70% 30%, 80% 20%, 90% 35%, 100% 25%, 100% 0);"></div>
-      
-      <!-- Mountains separator at top - Layer 2 (50% transparent, offset pattern) -->
-      <div class="absolute top-0 left-0 right-0 h-28 bg-[#d90b1e]/50" style="clip-path: polygon(0 0, 0 50%, 10% 60%, 20% 40%, 30% 55%, 40% 30%, 50% 45%, 60% 25%, 70% 40%, 80% 30%, 90% 50%, 100% 35%, 100% 0);"></div>
-      
+    <section class="relative w-full bg-mellow-red py-12 md:py-20 px-4">
+      <MountainSeparator position="top" color="mellow-red" />
+
       <div class="relative z-10 max-w-7xl mx-auto">
-        <div class="bg-[#0d0f19] rounded-lg p-6 md:p-12">
-          <h4 class="text-lg md:text-xl text-[#2affcc] font-bold mb-4">Agenda clubritten & weekenden</h4>
-          <p class="text-base text-[#f1ffff] mb-8">
+        <div class="bg-mellow-dark rounded-lg p-6 md:p-12">
+          <h4 class="text-lg md:text-xl text-mellow-groen font-bold mb-4">Agenda clubritten & weekenden</h4>
+          <p class="text-base text-mellow-white mb-8">
             {leadText}
           </p>
 
-          <ul class="space-y-4 text-[#f1ffff] mb-8">
+          <ul class="space-y-4 text-mellow-white mb-8">
             {agendaItems.map(item => (
               <li class="flex gap-3">
                 <svg class="w-5 h-5 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
@@ -80,38 +80,22 @@ const agendaItems = allAgendaItems
           </ul>
 
           <div class="mt-8">
-            <a href="/lid-worden" class="inline-block px-6 py-3 rounded-lg bg-[#004fff] hover:bg-[#003acc] text-[#f1ffff] font-medium transition-colors border-2 border-[#004fff] hover:border-[#85afff]">
+            <a href="/lid-worden" class="inline-block px-6 py-3 rounded-lg bg-mellow-blue hover:bg-mellow-blue/80 text-mellow-white font-medium transition-colors border-2 border-mellow-blue hover:border-mellow-blue/50">
               Ook meerijden? Word lid!
             </a>
           </div>
 
-          <p class="text-sm text-[#f1ffff] text-center mt-8">
-            Nog geen zin om lid te worden? Benieuwd of wij wel bij jou passen? Je kunt gewoon een keer meerijden! <a href="/#socials" class="underline text-[#2affcc] hover:text-[#1fe6b8]">Laat het ons hier even weten</a>.
+          <p class="text-sm text-mellow-white text-center mt-8">
+            Nog geen zin om lid te worden? Benieuwd of wij wel bij jou passen? Je kunt gewoon een keer meerijden! <a href="/#socials" class="underline text-mellow-groen hover:text-mellow-groen/80">Laat het ons hier even weten</a>.
           </p>
         </div>
       </div>
-      </div>
     </section>
 
-    <!-- Bottom Hero Section -->
-    <section class="relative w-full min-h-[50vh] bg-[#0d0f19] bg-cover bg-center bg-fixed flex items-end justify-center px-4 pb-8" style="background-image: url('/assets/uploads/mb-scroll-agenda-2048.jpg'); background-position: 36% 64%;">
-      <!-- Mountains separator at top - Layer 1 (full color) -->
-      <div class="absolute -top-1 left-0 right-0 h-24 bg-[#0d0f19]" style="clip-path: polygon(0 0, 0 40%, 10% 50%, 20% 30%, 30% 40%, 40% 20%, 50% 35%, 60% 15%, 70% 30%, 80% 20%, 90% 35%, 100% 25%, 100% 0);"></div>
-      
-      <!-- Mountains separator at top - Layer 2 (50% transparent, offset pattern) -->
-      <div class="absolute top-0 left-0 right-0 h-28 bg-[#0d0f19]/50" style="clip-path: polygon(0 0, 0 50%, 10% 60%, 20% 40%, 30% 55%, 40% 30%, 50% 45%, 60% 25%, 70% 40%, 80% 30%, 90% 50%, 100% 35%, 100% 0);"></div>
-      
-      <div class="relative z-10 text-center text-sm text-[#f1ffff]/70">
-        <p class="text-shadow-lg">
-          © {new Date().getFullYear()} Mellowbikers | 
-          <a href="/" class="hover:text-[#2affcc] transition-colors">Home</a> | 
-          <a href="/agenda" class="hover:text-[#2affcc] transition-colors">Agenda</a> | 
-          <a href="/mellow-in-the-spotlight" class="hover:text-[#2affcc] transition-colors">Spotlight</a> | 
-          <a href="/mellow-brewery" class="hover:text-[#2affcc] transition-colors">Bier</a> | 
-          <a href="/lid-worden" class="hover:text-[#2affcc] transition-colors">Lid worden</a>
-        </p>
-      </div>
-    </section>
+    <Footer
+      backgroundImage={pageSettings.data.footer.backgroundImage}
+      backgroundPosition={pageSettings.data.footer.backgroundPosition}
+    />
 
   </main>
 </Default>
