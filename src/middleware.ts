@@ -1,24 +1,13 @@
 import { defineMiddleware } from 'astro:middleware';
 
-const PROTECTED_PREFIXES = ['/keystatic', '/api/keystatic'];
-
-// Alle GitHub OAuth routes vrijlaten (startsWith, niet exact match)
-const ALWAYS_ALLOW_PREFIXES = [
-  '/keystatic-login',
-  '/api/keystatic/github/', // OAuth flow: callback + eventuele subroutes
-];
-
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname } = context.url;
 
-  // Alleen beschermde routes checken
-  const isProtected = PROTECTED_PREFIXES.some(prefix => pathname.startsWith(prefix));
-  if (!isProtected) {
-    return next();
-  }
+  // Alleen de Keystatic UI beschermen — /api/keystatic/* heeft z'n eigen GitHub OAuth auth
+  const isProtectedUI = pathname.startsWith('/keystatic')
+    && !pathname.startsWith('/keystatic-login');
 
-  // Uitzonderingen: login pagina en alle GitHub OAuth routes
-  if (ALWAYS_ALLOW_PREFIXES.some(prefix => pathname.startsWith(prefix))) {
+  if (!isProtectedUI) {
     return next();
   }
 
@@ -35,12 +24,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return next();
   }
 
-  // API requests: 401 teruggeven (geen redirect)
-  if (pathname.startsWith('/api/keystatic')) {
-    return new Response('Unauthorized', { status: 401 });
-  }
-
-  // UI requests: redirect naar login
+  // Redirect naar login
   return context.redirect(`/keystatic-login?redirect=${encodeURIComponent(pathname)}`);
 });
 
