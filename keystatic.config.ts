@@ -19,9 +19,12 @@ const pageSettingsSchema = {
 };
 
 export default config({
-  storage: {
-    kind: 'local',
-  },
+  storage: import.meta.env.DEV
+    ? { kind: 'local' }
+    : {
+        kind: 'github',
+        repo: 'nocactus/mellowbikers-astro',
+      },
 
   singletons: {
     // Homepage content

@@ -2,6 +2,12 @@ import { defineMiddleware } from 'astro:middleware';
 
 const PROTECTED_PREFIXES = ['/keystatic', '/api/keystatic'];
 
+// GitHub OAuth callback mag nooit geblokkeerd worden (anders werkt de login-flow niet)
+const ALWAYS_ALLOW = [
+  '/keystatic-login',
+  '/api/keystatic/github/oauth/callback',
+];
+
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname } = context.url;
 
@@ -11,8 +17,8 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return next();
   }
 
-  // Login pagina zelf niet beschermen
-  if (pathname === '/keystatic-login') {
+  // Uitzonderingen: login pagina en OAuth callback
+  if (ALWAYS_ALLOW.includes(pathname)) {
     return next();
   }
 
