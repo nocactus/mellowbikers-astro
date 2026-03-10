@@ -2,10 +2,10 @@ import { defineMiddleware } from 'astro:middleware';
 
 const PROTECTED_PREFIXES = ['/keystatic', '/api/keystatic'];
 
-// GitHub OAuth callback mag nooit geblokkeerd worden (anders werkt de login-flow niet)
-const ALWAYS_ALLOW = [
+// Alle GitHub OAuth routes vrijlaten (startsWith, niet exact match)
+const ALWAYS_ALLOW_PREFIXES = [
   '/keystatic-login',
-  '/api/keystatic/github/oauth/callback',
+  '/api/keystatic/github/', // OAuth flow: callback + eventuele subroutes
 ];
 
 export const onRequest = defineMiddleware(async (context, next) => {
@@ -17,8 +17,8 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return next();
   }
 
-  // Uitzonderingen: login pagina en OAuth callback
-  if (ALWAYS_ALLOW.includes(pathname)) {
+  // Uitzonderingen: login pagina en alle GitHub OAuth routes
+  if (ALWAYS_ALLOW_PREFIXES.some(prefix => pathname.startsWith(prefix))) {
     return next();
   }
 
