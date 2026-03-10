@@ -12,7 +12,9 @@ export default defineConfig({
   adapter: cloudflare(),
   integrations: [
     mdx(),
-    sitemap(),
+    sitemap({
+      filter: (page) => !page.includes('/keystatic') && !page.includes('/dankje'),
+    }),
     react(),
     keystatic(),
   ],
