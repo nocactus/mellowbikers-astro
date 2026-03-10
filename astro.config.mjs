@@ -3,6 +3,8 @@ import cloudflare from '@astrojs/cloudflare';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import keystatic from '@keystatic/astro';
+import react from '@astrojs/react';
 
 export default defineConfig({
   site: 'https://astro.mellowbikers.nl',
@@ -11,6 +13,8 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap(),
+    react(),
+    keystatic(),
   ],
   vite: {
     plugins: [tailwindcss()],
