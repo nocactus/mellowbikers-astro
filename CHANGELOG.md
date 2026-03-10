@@ -8,6 +8,13 @@ Alle noemenswaardige wijzigingen aan de Mellowbikers website worden hier bijgeho
 
 ---
 
+## 2026-03-10 (2)
+
+### Bugfix
+- **Keystatic OAuth 401** — GitHub client credentials nu direct meegegeven in `keystatic.config.ts` storage config (`clientId`, `clientSecret`, `secret` via `import.meta.env`). Dit gebruikt priority-1 credential resolution in Keystatic zodat Cloudflare Workers env var lookup omzeild wordt.
+
+---
+
 ## 2026-03-10
 
 ### Toegevoegd

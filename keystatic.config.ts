@@ -24,6 +24,9 @@ export default config({
     : {
         kind: 'github',
         repo: 'nocactus/mellowbikers-astro',
+        clientId: import.meta.env.KEYSTATIC_GITHUB_CLIENT_ID,
+        clientSecret: import.meta.env.KEYSTATIC_GITHUB_CLIENT_SECRET,
+        secret: import.meta.env.KEYSTATIC_SECRET,
       },
 
   singletons: {
