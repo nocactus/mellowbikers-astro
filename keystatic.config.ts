@@ -19,12 +19,8 @@ const pageSettingsSchema = {
 };
 
 export default config({
-  storage: import.meta.env.DEV
-    ? { kind: 'local' }
-    : {
-        kind: 'github',
-        repo: 'nocactus/mellowbikers-astro',
-      },
+  // Alleen lokaal gebruikt — content bewerken via `npm run dev`, dan committen & pushen
+  storage: { kind: 'local' },
 
   singletons: {
     // Homepage content

@@ -3,8 +3,15 @@ import cloudflare from '@astrojs/cloudflare';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
-import keystatic from '@keystatic/astro';
 import react from '@astrojs/react';
+
+// Keystatic alleen in dev modus laden (lokaal content bewerken, dan committen)
+const isDev = process.argv.includes('dev');
+const extraIntegrations = [];
+if (isDev) {
+  const { default: keystatic } = await import('@keystatic/astro');
+  extraIntegrations.push(keystatic());
+}
 
 export default defineConfig({
   site: 'https://astro.mellowbikers.nl',
@@ -16,20 +23,10 @@ export default defineConfig({
       filter: (page) => !page.includes('/keystatic') && !page.includes('/dankje'),
     }),
     react(),
-    keystatic(),
+    ...extraIntegrations,
   ],
   vite: {
     plugins: [tailwindcss()],
-    // Keystatic GitHub auth vars expliciet in de bundle bakken.
-    // In Cloudflare Pages: zet deze als "Environment variable" (niet Encrypted secret)
-    // zodat ze beschikbaar zijn tijdens de build als process.env.*
-    define: {
-      ...(process.env.KEYSTATIC_GITHUB_CLIENT_ID && {
-        'import.meta.env.KEYSTATIC_GITHUB_CLIENT_ID': JSON.stringify(process.env.KEYSTATIC_GITHUB_CLIENT_ID),
-        'import.meta.env.KEYSTATIC_GITHUB_CLIENT_SECRET': JSON.stringify(process.env.KEYSTATIC_GITHUB_CLIENT_SECRET),
-        'import.meta.env.KEYSTATIC_SECRET': JSON.stringify(process.env.KEYSTATIC_SECRET),
-      }),
-    },
     build: {
       assetsInlineLimit: 30000,
     },
