@@ -11,7 +11,7 @@ Alle noemenswaardige wijzigingen aan de Mellowbikers website worden hier bijgeho
 ## 2026-03-10 (2)
 
 ### Bugfix
-- **Keystatic OAuth 401** — GitHub client credentials nu direct meegegeven in `keystatic.config.ts` storage config (`clientId`, `clientSecret`, `secret` via `import.meta.env`). Dit gebruikt priority-1 credential resolution in Keystatic zodat Cloudflare Workers env var lookup omzeild wordt.
+- **Keystatic OAuth 401** — Custom Astro API route `src/pages/api/keystatic/[...params].ts` aangemaakt die Keystatic's injected route overridet. Hiermee worden `clientId`, `clientSecret` en `secret` direct op `_config` (priority 1 in `makeHandler`) gezet via `import.meta.env`, zodat de GitHub token exchange altijd de correcte credentials ontvangt. Root cause: de standaard Keystatic injected route roept `makeHandler({ config })` aan zónder credentials, wat alleen werkt als `context.locals.runtime.env` of `import.meta.env` de waarden kunnen leveren.
 
 ---
 
