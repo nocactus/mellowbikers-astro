@@ -38,7 +38,7 @@ export const SplitContent: Block = {
     },
     { name: 'eyebrow', type: 'text', label: 'Bovenkopje' },
     { name: 'content', type: 'richText', label: 'Tekst', required: true },
-    { name: 'button', type: 'group', label: 'Knop', fields: [linkField()] },
+    { name: 'button', type: 'group', label: 'Knop', fields: [linkField({ optional: true })] },
     {
       name: 'mediaPosition',
       type: 'select',

@@ -16,7 +16,9 @@ export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL ?? 'http://localhost:3000'),
-  title: { default: 'Mellowbikers', template: '%s | Mellowbikers' },
+  // Geen template: buildMetadata levert al een complete titel. Zie
+  // lib/pages.ts voor waarom.
+  title: 'Mellowbikers',
   description: 'Dé mountainbike vereniging van de Brabantse Wal',
   icons: { icon: '/favicon.png', apple: '/favicon.png' },
 }

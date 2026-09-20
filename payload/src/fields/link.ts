@@ -4,6 +4,12 @@ type LinkOptions = {
   name?: string
   label?: string
   withStyle?: boolean
+  /**
+   * Bij een optionele knop mag alles leeg blijven. Zodra er wel een
+   * knoptekst staat, is een bestemming verplicht — anders zou een half
+   * ingevulde knop stilzwijgend van de pagina verdwijnen.
+   */
+  optional?: boolean
 }
 
 /**
@@ -11,7 +17,20 @@ type LinkOptions = {
  * (relationship), zodat een slug-wijziging niet stilletjes een dode link
  * oplevert. Externe links zijn vrije URL's.
  */
-export const linkField = ({ name = 'link', label = 'Link', withStyle = true }: LinkOptions = {}): Field => ({
+export const linkField = ({
+  name = 'link',
+  label = 'Link',
+  withStyle = true,
+  optional = false,
+}: LinkOptions = {}): Field => {
+  /** Verplicht zodra er een knoptekst is ingevuld. */
+  const requiredWithLabel = (value: unknown, siblingData: { label?: unknown }) => {
+    if (!optional) return value ? true : 'Dit veld is verplicht.'
+    if (!siblingData?.label) return true
+    return value ? true : 'Vul een bestemming in, of maak de knoptekst leeg.'
+  }
+
+  return ({
   name,
   type: 'group',
   label,
@@ -20,7 +39,8 @@ export const linkField = ({ name = 'link', label = 'Link', withStyle = true }: L
       name: 'label',
       type: 'text',
       label: 'Knoptekst',
-      required: true,
+      required: !optional,
+      ...(optional ? { admin: { description: 'Leeg laten als je hier geen knop wilt.' } } : {}),
     },
     {
       name: 'type',
@@ -39,21 +59,27 @@ export const linkField = ({ name = 'link', label = 'Link', withStyle = true }: L
       type: 'relationship',
       relationTo: 'pages',
       label: 'Pagina',
-      required: true,
+      required: !optional,
+      validate: (value: unknown, { siblingData }: { siblingData: { type?: string; label?: unknown } }) =>
+        siblingData?.type === 'internal' ? requiredWithLabel(value, siblingData) : true,
       admin: { condition: (_, siblingData) => siblingData?.type === 'internal' },
     },
     {
       name: 'url',
       type: 'text',
       label: 'URL',
-      required: true,
+      required: !optional,
+      validate: (value: unknown, { siblingData }: { siblingData: { type?: string; label?: unknown } }) =>
+        siblingData?.type === 'external' ? requiredWithLabel(value, siblingData) : true,
       admin: { condition: (_, siblingData) => siblingData?.type === 'external' },
     },
     {
       name: 'anchor',
       type: 'text',
       label: 'Anker (zonder #)',
-      required: true,
+      required: !optional,
+      validate: (value: unknown, { siblingData }: { siblingData: { type?: string; label?: unknown } }) =>
+        siblingData?.type === 'anchor' ? requiredWithLabel(value, siblingData) : true,
       admin: {
         condition: (_, siblingData) => siblingData?.type === 'anchor',
         description: 'Bijvoorbeeld: contact',
@@ -83,3 +109,4 @@ export const linkField = ({ name = 'link', label = 'Link', withStyle = true }: L
       : []),
   ],
 })
+}

@@ -39,7 +39,7 @@ export const CardGrid: Block = {
         { name: 'price', type: 'text', label: 'Prijs', admin: { description: 'Alleen invullen bij tickets.' } },
         { name: 'image', type: 'upload', relationTo: 'media', label: 'Afbeelding' },
         { name: 'body', type: 'textarea', label: 'Tekst' },
-        { name: 'button', type: 'group', label: 'Knop', fields: [linkField()] },
+        { name: 'button', type: 'group', label: 'Knop', fields: [linkField({ optional: true })] },
       ],
     },
     sectionAppearance,

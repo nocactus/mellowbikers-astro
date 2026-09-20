@@ -17,7 +17,7 @@ export const LogoStrip: Block = {
       admin: { initCollapsed: true },
       fields: [
         { name: 'logo', type: 'upload', relationTo: 'media', label: 'Logo', required: true },
-        linkField({ name: 'link', label: 'Link', withStyle: false }),
+        linkField({ name: 'link', label: 'Link', withStyle: false, optional: true }),
       ],
     },
     sectionAppearance,

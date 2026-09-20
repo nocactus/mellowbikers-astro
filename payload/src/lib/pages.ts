@@ -31,11 +31,16 @@ export async function buildMetadata(slug: string): Promise<Metadata> {
 
   const meta = page.meta ?? {}
   const image = typeof meta.image === 'object' && meta.image?.url ? meta.image.url : undefined
-  const title = meta.title ?? page.title
+  const rawTitle = meta.title ?? page.title
+  // Next past title.template niet toe op de pagina die in dezelfde
+  // segment zit als de layout — de homepage zou dan "Home" heten en de
+  // rest "... | Mellowbikers". Daarom hier een absolute titel, met
+  // dezelfde regel als de oude Astro-site: geen dubbel achtervoegsel.
+  const title = rawTitle.includes('Mellowbikers') ? rawTitle : `${rawTitle} | Mellowbikers`
   const description = meta.description ?? undefined
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: { canonical: pathForSlug(slug) },
     openGraph: {

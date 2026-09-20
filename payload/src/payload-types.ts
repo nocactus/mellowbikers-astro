@@ -324,9 +324,12 @@ export interface SplitContentBlock {
     };
     [k: string]: unknown;
   };
-  button: {
-    link: {
-      label: string;
+  button?: {
+    link?: {
+      /**
+       * Leeg laten als je hier geen knop wilt.
+       */
+      label?: string | null;
       type?: ('internal' | 'external' | 'anchor') | null;
       page?: (number | null) | Page;
       url?: string | null;
@@ -405,9 +408,12 @@ export interface CardGridBlock {
     price?: string | null;
     image?: (number | null) | Media;
     body?: string | null;
-    button: {
-      link: {
-        label: string;
+    button?: {
+      link?: {
+        /**
+         * Leeg laten als je hier geen knop wilt.
+         */
+        label?: string | null;
         type?: ('internal' | 'external' | 'anchor') | null;
         page?: (number | null) | Page;
         url?: string | null;
@@ -827,8 +833,11 @@ export interface LogoStripBlock {
   title?: string | null;
   logos: {
     logo: number | Media;
-    link: {
-      label: string;
+    link?: {
+      /**
+       * Leeg laten als je hier geen knop wilt.
+       */
+      label?: string | null;
       type?: ('internal' | 'external' | 'anchor') | null;
       page?: (number | null) | Page;
       url?: string | null;

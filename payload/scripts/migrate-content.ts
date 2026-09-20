@@ -17,11 +17,13 @@ import config from '../src/payload.config.js'
 import { htmlToLexical, textToLexical } from './lib/html.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { parseDutchDate } from './lib/parseDutchDate.js'
+import { ensureForms } from './lib/forms.js'
+import { migratePages } from './lib/pages.js'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 const ASTRO = path.resolve(dirname, '../..')
 const CONTENT = path.join(ASTRO, 'src/content')
-const UPLOADS = path.join(ASTRO, 'public/assets/uploads')
+const PUBLIC = path.join(ASTRO, 'public')
 
 const SEASON_YEAR = 2026
 
@@ -38,11 +40,24 @@ const readJson = async <T>(relative: string): Promise<T> =>
 
 const mediaCache = new Map<string, number>()
 
-/** Uploadt een afbeelding uit public/assets/uploads en geeft het id terug. */
+/**
+ * Zet een backgroundPosition uit de oude page-settings ("36% 64%") om
+ * naar de focusX/focusY velden. Zonder dit verliezen de hero- en
+ * footerafbeeldingen hun uitsnede en zie je bij een brede foto alleen
+ * het midden.
+ */
+function parseBackgroundPosition(value?: string): { focusX: number; focusY: number } | undefined {
+  const match = value?.match(/^\s*(\d{1,3})%\s+(\d{1,3})%\s*$/)
+  if (!match) return undefined
+  return { focusX: Number(match[1]), focusY: Number(match[2]) }
+}
+
+/** Uploadt een afbeelding uit public/ en geeft het id terug. */
 async function uploadMedia(
   payload: Payload,
   publicPath: string | undefined,
   alt: string,
+  backgroundPosition?: string,
 ): Promise<number | undefined> {
   if (!publicPath) return undefined
 
@@ -50,7 +65,7 @@ async function uploadMedia(
   if (!filename) return undefined
   if (mediaCache.has(filename)) return mediaCache.get(filename)
 
-  const filePath = path.join(UPLOADS, decodeURIComponent(filename))
+  const filePath = path.join(PUBLIC, decodeURIComponent(publicPath.replace(/^\//, '')))
   if (!existsSync(filePath)) {
     warn(`afbeelding ontbreekt op schijf: ${publicPath}`)
     return undefined
@@ -73,7 +88,10 @@ async function uploadMedia(
   const created = await payload.create({
     collection: 'media',
     filePath,
-    data: { alt: alt.trim() || `Mellowbikers — ${filename}` },
+    data: {
+      alt: alt.trim() || `Mellowbikers — ${filename}`,
+      ...(parseBackgroundPosition(backgroundPosition) ?? {}),
+    },
   })
 
   mediaCache.set(filename, created.id)
@@ -236,6 +254,7 @@ async function migrateGlobals(payload: Payload) {
         platform: social.label.toLowerCase() as 'facebook' | 'instagram',
         url: social.url,
       })),
+      logo: await uploadMedia(payload, '/assets/mellowbikers-logo-2023.svg', 'Mellowbikers'),
       defaultOgImage: await uploadMedia(
         payload,
         '/assets/uploads/mb-hero-1-c20-2048.jpg',
@@ -258,6 +277,23 @@ await migrateMembers(payload)
 await migrateEvents(payload)
 console.log('\nGlobals:')
 await migrateGlobals(payload)
+
+console.log('\nFormulieren:')
+const forms = await ensureForms(payload, (value) => htmlToLexical(payload, value))
+console.log('  contact en lid-worden klaar (met verplichte toestemmingscheckbox)')
+
+console.log('\nPaginas:')
+const pages = await migratePages({
+  payload,
+  readJson,
+  media: (publicPath, alt, backgroundPosition) =>
+    uploadMedia(payload, publicPath, alt, backgroundPosition),
+  html: (value) => htmlToLexical(payload, value),
+  forms,
+})
+console.log(pages.length > 0 ? `  aangemaakt: ${pages.join(', ')}` : '  alle paginas bestonden al')
+
+warn('festivalpagina niet gemigreerd — de content is van juni 2025 en verlopen. Maak een nieuwe editie aan in de admin.')
 
 console.log(`\nKlaar. ${mediaCache.size} afbeeldingen in de mediabibliotheek.`)
 
