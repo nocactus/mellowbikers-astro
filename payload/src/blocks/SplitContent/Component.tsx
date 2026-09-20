@@ -5,8 +5,15 @@ import { CfImage } from '@/components/CfImage'
 import { LinkButton } from '@/components/LinkButton'
 import { CONTAINER } from '@/lib/theme'
 
-export const SplitContentComponent = ({ block }: { block: SplitContentBlock }) => {
+export const SplitContentComponent = ({
+  block,
+  isPageTitle = false,
+}: {
+  block: SplitContentBlock
+  isPageTitle?: boolean
+}) => {
   const mediaFirst = block.mediaPosition === 'left'
+  const Heading = isPageTitle ? 'h1' : 'h2'
 
   return (
     <Section appearance={block.appearance}>
@@ -15,9 +22,9 @@ export const SplitContentComponent = ({ block }: { block: SplitContentBlock }) =
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className={mediaFirst ? 'md:order-2' : 'md:order-1'}>
               {block.eyebrow && (
-                <h2 className="text-2xl md:text-3xl font-bold text-mellow-groen mb-4 leading-tight">
+                <Heading className="text-2xl md:text-3xl font-bold text-mellow-groen mb-4 leading-tight">
                   {block.eyebrow}
-                </h2>
+                </Heading>
               )}
               <div className="prose-mellow text-xl md:text-2xl leading-relaxed">
                 <RichText data={block.content} />

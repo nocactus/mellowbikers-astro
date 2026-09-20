@@ -24,14 +24,14 @@ type LayoutBlock = NonNullable<Page['layout']>[number]
  * zonder casts. Een nieuw blok toevoegen zonder case geeft meteen een
  * compilerfout.
  */
-const renderBlock = (block: LayoutBlock, isFirst: boolean) => {
+const renderBlock = (block: LayoutBlock, isPageTitle: boolean) => {
   switch (block.blockType) {
     case 'hero':
-      return <HeroComponent block={block} isFirst={isFirst} />
+      return <HeroComponent block={block} isPageTitle={isPageTitle} />
     case 'richText':
-      return <RichTextComponent block={block} />
+      return <RichTextComponent block={block} isPageTitle={isPageTitle} />
     case 'splitContent':
-      return <SplitContentComponent block={block} />
+      return <SplitContentComponent block={block} isPageTitle={isPageTitle} />
     case 'ctaBanner':
       return <CtaBannerComponent block={block} />
     case 'cardGrid':
@@ -59,13 +59,34 @@ const renderBlock = (block: LayoutBlock, isFirst: boolean) => {
   }
 }
 
+/**
+ * Welk blok levert de h1?
+ *
+ * Een hero wint altijd. Heeft de pagina er geen — de bierpagina
+ * bijvoorbeeld begint met een afbeelding — dan pakt het eerste blok met
+ * een bovenkopje de titel. Zonder deze regel had zo'n pagina helemaal
+ * geen h1, precies het probleem dat de Astro-versie op drie pagina's had.
+ */
+const pageTitleIndex = (blocks: NonNullable<Page['layout']>): number => {
+  const hero = blocks.findIndex((block) => block.blockType === 'hero')
+  if (hero !== -1) return hero
+
+  return blocks.findIndex(
+    (block) =>
+      (block.blockType === 'richText' || block.blockType === 'splitContent') &&
+      Boolean(block.eyebrow),
+  )
+}
+
 export const RenderBlocks = ({ blocks }: { blocks?: Page['layout'] | null }) => {
   if (!blocks || blocks.length === 0) return null
+
+  const titleIndex = pageTitleIndex(blocks)
 
   return (
     <>
       {blocks.map((block, i) => (
-        <Fragment key={block.id ?? i}>{renderBlock(block, i === 0)}</Fragment>
+        <Fragment key={block.id ?? i}>{renderBlock(block, i === titleIndex)}</Fragment>
       ))}
     </>
   )

@@ -9,15 +9,15 @@ import { LinkButton } from '@/components/LinkButton'
  * /lid-worden; dat kan hier niet meer gebeuren omdat de renderer
  * altijd precies één h1 per pagina afdwingt.
  */
-export const HeroComponent = ({ block, isFirst }: { block: HeroBlock; isFirst: boolean }) => {
-  const Heading = isFirst ? 'h1' : 'h2'
+export const HeroComponent = ({ block, isPageTitle }: { block: HeroBlock; isPageTitle: boolean }) => {
+  const Heading = isPageTitle ? 'h1' : 'h2'
   const height = block.variant === 'compact' ? 'min-h-[55vh] md:min-h-[65vh]' : 'min-h-[90vh]'
 
   return (
     <section className={`relative w-full ${height} bg-mellow-dark flex flex-col justify-end overflow-hidden`}>
       <CfImage
         media={block.image}
-        priority={isFirst}
+        priority={isPageTitle}
         sizes="100vw"
         className="absolute inset-0 w-full h-full object-cover"
       />
