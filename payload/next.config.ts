@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
   // verkeerde map — inclusief bestanden die hier niet horen.
   turbopack: { root: fileURLToPath(new URL('.', import.meta.url)) },
 
+  // Next schrijft anders ongevraagd AGENTS.md en CLAUDE.md in de repo.
+  agentRules: false,
+
   // Beeldformaten komen van Cloudflare Image Transformations, niet van
   // next/image. Zie src/lib/cfImage.ts voor het waarom.
   images: { unoptimized: true },
