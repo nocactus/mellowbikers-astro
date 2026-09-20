@@ -178,6 +178,32 @@ export async function migratePages(ctx: Ctx): Promise<string[]> {
         limit: 0,
         appearance: { background: 'red', padding: 'lg', separatorTop: true },
       },
+      {
+        // Stond in de Astro-versie onderin de agendakaart. Hier een eigen
+        // blok, zodat de oproep los van de agenda te verplaatsen is.
+        blockType: 'ctaBanner',
+        body: 'Nog geen zin om lid te worden? Benieuwd of wij wel bij jou passen? Je kunt gewoon een keer meerijden.',
+        layout: 'center',
+        buttons: [
+          {
+            link: {
+              label: 'Ook meerijden? Word lid!',
+              type: 'external',
+              url: '/lid-worden',
+              style: 'primary',
+            },
+          },
+          {
+            link: {
+              label: 'Laat het ons even weten',
+              type: 'external',
+              url: '/#socials',
+              style: 'ghost',
+            },
+          },
+        ],
+        appearance: { background: 'red', padding: 'md' },
+      },
     ],
     await media(
       agendaSettings.footer?.backgroundImage,
