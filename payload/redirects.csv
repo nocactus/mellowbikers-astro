@@ -1,0 +1,25 @@
+# Redirects van oude WordPress-URL's naar de nieuwe site.
+#
+# Eén per regel:   /oud-pad, /nieuw-pad
+# Regels met # ervoor worden overgeslagen.
+#
+# Draai na het aanvullen:  npm run migrate:content
+# Het script slaat regels over die al bestaan, dus je kunt het gerust
+# opnieuw draaien.
+#
+# Let op:
+# - Een slash aan het eind hoef je niet apart op te nemen. Next stuurt
+#   /pad/ eerst zelf door naar /pad voordat de lookup draait.
+# - Wijst het doel naar een bestaande pagina, dan wordt de redirect aan
+#   die pagina gekoppeld en beweegt hij mee als de slug later verandert.
+# - Neem alleen paden op die echt bestonden. Een redirect naar de
+#   verkeerde pagina is slechter dan een nette 404.
+#
+# Waar haal je de linkerkant vandaan:
+# - Search Console > Prestaties > Pagina's, gesorteerd op vertoningen
+# - De sitemap van de WordPress-site (meestal /sitemap_index.xml)
+# - WordPress-beheer: Pagina's en Berichten, kolom met de permalink
+#
+# Voorbeeld:
+# /over-ons, /
+# /nieuws/eerste-rit-van-het-jaar, /agenda

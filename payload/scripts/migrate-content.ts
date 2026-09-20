@@ -19,6 +19,7 @@ import { parseFrontmatter } from './lib/frontmatter.js'
 import { parseDutchDate } from './lib/parseDutchDate.js'
 import { ensureForms } from './lib/forms.js'
 import { migratePages } from './lib/pages.js'
+import { seedRedirects, IMPORT_FILE } from './lib/redirects.js'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 const ASTRO = path.resolve(dirname, '../..')
@@ -292,6 +293,10 @@ const pages = await migratePages({
   forms,
 })
 console.log(pages.length > 0 ? `  aangemaakt: ${pages.join(', ')}` : '  alle paginas bestonden al')
+
+console.log('\nRedirects:')
+const redirectCount = await seedRedirects(payload, path.join(dirname, '..', IMPORT_FILE))
+if (redirectCount === 0) console.log('  alle redirects bestonden al')
 
 
 console.log(`\nKlaar. ${mediaCache.size} afbeeldingen in de mediabibliotheek.`)

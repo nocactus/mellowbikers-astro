@@ -188,7 +188,11 @@ de secret ontbreekt, in plaats van door te lopen.
       `privacyNote`-veld, maar de pagina zelf moet je nog schrijven.
 - [ ] **Consent-checkbox** op het lid-worden-formulier (Form Builder,
       checkbox-veld, required).
-- [ ] **Redirects** vanuit de WordPress-URL's, via de Redirects-plugin.
+- [ ] **Redirects aanvullen.** Het mechanisme staat er en werkt; alleen
+      `/festival` is gevuld, want dat is het enige oude pad dat in de repo
+      terug te vinden was. Zet de rest in `redirects.csv` en draai
+      `npm run migrate:content` opnieuw. In dat bestand staat waar je de
+      lijst vandaan haalt.
 - [ ] **Domein rechttrekken.** De Astro-config zet `site` op
       `astro.mellowbikers.nl` terwijl de JSON-LD `mellowbikers.nl` zegt. Kies er
       een en zet `NEXT_PUBLIC_SERVER_URL` daarop.

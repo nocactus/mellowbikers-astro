@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { RenderBlocks } from '@/components/RenderBlocks'
 import { SiteFooter } from '@/components/SiteFooter'
 import { buildMetadata, getPage } from '@/lib/pages'
+import { redirectIfConfigured } from '@/lib/redirects'
 
 /**
  * Bewust geen generateStaticParams. Dat zou tijdens de build D1 moeten
@@ -24,7 +25,11 @@ export default async function Page({ params }: Args) {
   const { slug } = await params
   const page = await getPage(slug)
 
-  if (!page) notFound()
+  if (!page) {
+    // Eerst kijken of er een redirect voor dit pad bestaat; pas daarna 404.
+    await redirectIfConfigured(`/${slug}`)
+    notFound()
+  }
 
   return (
     <>
