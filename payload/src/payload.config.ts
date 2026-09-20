@@ -1,4 +1,3 @@
-import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -22,18 +21,24 @@ import { Header } from './globals/Header'
 import { Footer } from './globals/Footer'
 import { SiteSettings } from './globals/SiteSettings'
 import { verifyTurnstile } from './lib/turnstile'
+import { postmarkAdapter } from './lib/postmarkEmail'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-const realpath = (value: string) => (fs.existsSync(value) ? fs.realpathSync(value) : undefined)
 
-const isCLI = process.argv.some((value) => realpath(value)?.endsWith(path.join('payload', 'bin.js')))
 const isProduction = process.env.NODE_ENV === 'production'
 
-const cloudflare =
-  isCLI || !isProduction
-    ? await getCloudflareContextFromWrangler()
-    : await getCloudflareContext({ async: true })
+/**
+ * Alleen binnen de Worker zelf bestaat er een echte Cloudflare-context.
+ * Overal anders — next dev, next build, de payload CLI — draaien we op
+ * Node en leveren we de bindings via wrangler's platform proxy.
+ */
+const inWorkerRuntime =
+  typeof navigator !== 'undefined' && navigator.userAgent === 'Cloudflare-Workers'
+
+const cloudflare = inWorkerRuntime
+  ? await getCloudflareContext({ async: true })
+  : await getCloudflareContextFromWrangler()
 
 export default buildConfig({
   admin: {
@@ -46,6 +51,11 @@ export default buildConfig({
   globals: [Header, Footer, SiteSettings],
 
   editor: lexicalEditor(),
+
+  email: postmarkAdapter({
+    defaultFromAddress: process.env.EMAIL_FROM ?? 'info@mellowbikers.nl',
+    defaultFromName: 'Mellowbikers',
+  }),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: { outputFile: path.resolve(dirname, 'payload-types.ts') },
 
@@ -64,14 +74,16 @@ export default buildConfig({
     blocksAsJSON: true,
   }),
 
-  storage: [
+  plugins: [
+    // r2Storage geeft een Plugin terug. De officiele Cloudflare-template
+    // zet dit onder een top-level "storage"-sleutel, maar die bestaat
+    // niet in de Config van Payload 3.90 — daar werd R2 dus stilzwijgend
+    // niet gebruikt en belandden uploads op de lokale schijf.
     r2Storage({
       bucket: cloudflare.env.R2,
       collections: { media: true },
     }),
-  ],
 
-  plugins: [
     seoPlugin({
       collections: ['pages'],
       uploadsCollection: 'media',
@@ -150,7 +162,11 @@ function getCloudflareContextFromWrangler(): Promise<CloudflareContext> {
     ({ getPlatformProxy }) =>
       getPlatformProxy({
         environment: process.env.CLOUDFLARE_ENV,
-        remoteBindings: isProduction,
+        // Remote bindings vereisen een CLOUDFLARE_API_TOKEN. Zonder token
+        // vallen we terug op lokale bindings, zodat een build of
+        // typecheck ook draait op een machine zonder Cloudflare-toegang
+        // (CI, een nieuwe laptop, een collega die alleen content doet).
+        remoteBindings: Boolean(process.env.CLOUDFLARE_API_TOKEN),
       } satisfies GetPlatformProxyOptions),
   )
 }

@@ -12,7 +12,7 @@ export const Members: CollectionConfig = {
   defaultSort: 'order',
   fields: [
     { name: 'name', type: 'text', label: 'Naam', required: true },
-    { ...slugField(), admin: { position: 'sidebar', description: 'Wordt het anker op de spotlightpagina.' } },
+    slugField({ description: 'Wordt het anker op de spotlightpagina.' }),
     {
       name: 'images',
       type: 'upload',

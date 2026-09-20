@@ -16,7 +16,7 @@ const formatSlug: FieldHook = ({ data, operation, value }) => {
   return value
 }
 
-export const slugField = (): Field => ({
+export const slugField = (options?: { description?: string }): Field => ({
   name: 'slug',
   type: 'text',
   required: true,
@@ -25,7 +25,8 @@ export const slugField = (): Field => ({
   label: 'URL-pad',
   admin: {
     position: 'sidebar',
-    description: 'Wijzig je dit na publicatie? Maak dan een redirect aan.',
+    description:
+      options?.description ?? 'Wijzig je dit na publicatie? Maak dan een redirect aan.',
   },
   hooks: { beforeValidate: [formatSlug] },
 })

@@ -1,0 +1,10 @@
+node_modules/
+.next/
+.open-next/
+.wrangler/
+.env
+.env.local
+.env.production
+next-env.d.ts
+*.tsbuildinfo
+.DS_Store

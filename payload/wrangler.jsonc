@@ -1,0 +1,34 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mellowbikers",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-08-15",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+
+  // Vul database_id in nadat je de database hebt aangemaakt:
+  //   npx wrangler d1 create mellowbikers
+  "d1_databases": [
+    {
+      "binding": "D1",
+      "database_name": "mellowbikers",
+      "database_id": "VUL_IN_NA_WRANGLER_D1_CREATE",
+      "remote": true
+    }
+  ],
+
+  // Maak de bucket aan met:
+  //   npx wrangler r2 bucket create mellowbikers-media
+  // Hang er daarna een custom domain aan binnen dezelfde zone, anders
+  // weigert /cdn-cgi/image/ de bron. Zie src/lib/cfImage.ts.
+  "r2_buckets": [
+    {
+      "binding": "R2",
+      "bucket_name": "mellowbikers-media"
+    }
+  ]
+}

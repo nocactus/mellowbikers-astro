@@ -1,39 +1,61 @@
-# Payload-kit voor Mellowbikers
+# Mellowbikers op Payload
 
-Drop-in bestanden voor de herbouw van mellowbikers.nl op Payload 3 + Next.js 16,
-draaiend op Cloudflare Workers met D1 en R2.
+De herbouw van mellowbikers.nl op Payload 3.90 + Next.js 16, draaiend op
+Cloudflare Workers met D1 en R2.
 
-Deze map hoort **niet** bij de Astro-site. Het is een bouwpakket dat je in het
-nieuwe project kopieert. De mapstructuur spiegelt de doelstructuur, dus je kunt
-`payload-spec/src/*` rechtstreeks over `src/` van het nieuwe project zetten.
+Dit is een werkend project, geen bouwpakket. Het bouwt, de typecheck is schoon
+en de content van de Astro-site is er al in gemigreerd.
 
----
+## Wat is aantoonbaar getest
+
+| Stap | Resultaat |
+|---|---|
+| `npm run build` | exit 0 — alle routes dynamisch, alleen de 404 statisch |
+| `npm run typecheck` | 0 fouten |
+| `payload generate:types` | 65 interfaces uit de config |
+| `payload migrate` | 28 tabellen, `pages.layout` als **één** tekstkolom |
+| `npm run test:dates` | 12/12 agendadatums correct, vage datum terecht geweigerd |
+| `npm run migrate:content` | 4 FAQ, 3 leden, 12 ritten, 12 afbeeldingen, globals |
+
+Nog niet getest, want daarvoor is een Cloudflare-account nodig: de daadwerkelijke
+deploy, remote D1/R2, en `/cdn-cgi/image/` (dat bestaat alleen op de edge).
 
 ## Zo begin je
 
 ```bash
-# 1. Scaffold vanaf de officiele Cloudflare-template
-npx create-payload-app@latest mellowbikers --template with-cloudflare-d1
-cd mellowbikers
+cd payload
+npm install
+cp .env.example .env        # vul PAYLOAD_SECRET in
+npm run dev                 # admin op http://localhost:3000/admin
+```
 
-# 2. Meteen naar de actuele versies — de template pint 3.82.1
-pnpm add payload@3.90.1 @payloadcms/next@3.90.1 @payloadcms/db-d1-sqlite@3.90.1 \
-  @payloadcms/richtext-lexical@3.90.1 @payloadcms/storage-r2@3.90.1 @payloadcms/ui@3.90.1 \
-  @payloadcms/plugin-form-builder@3.90.1 @payloadcms/plugin-seo@3.90.1 \
-  @payloadcms/plugin-redirects@3.90.1
-pnpm add next@16.3.5
+Eerste keer een schone database opzetten:
 
-# 3. Kopieer dit bouwpakket erover
-cp -r ../mellowbikers-astro/payload-spec/src/* ./src/
-
-# 4. Types genereren en starten
-pnpm generate:types
-pnpm dev
+```bash
+npm run payload -- migrate   # maakt de tabellen aan
+npm run migrate:content      # haalt de content uit de Astro-site
 ```
 
 > **Pin `next`.** Payload's peer-range is `>=16.3.3 <17.0.0` (plus enkele
 > specifieke 15.x-vensters). Een blinde `next@latest` breekt de boel op een dag
 > dat je er geen tijd voor hebt. Upgrade `next` alleen samen met Payload.
+
+## Naar Cloudflare (jouw deel)
+
+```bash
+npx wrangler d1 create mellowbikers          # database_id in wrangler.jsonc zetten
+npx wrangler r2 bucket create mellowbikers-media
+npx wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts
+
+npx wrangler secret put PAYLOAD_SECRET
+npx wrangler secret put TURNSTILE_SECRET_KEY
+npx wrangler secret put POSTMARK_API_TOKEN
+
+npm run deploy
+```
+
+Hang daarna een custom domain binnen dezelfde zone aan de R2-bucket en zet Image
+Transformations aan, anders weigert `/cdn-cgi/image/` de bron.
 
 ### Benodigde omgevingsvariabelen
 

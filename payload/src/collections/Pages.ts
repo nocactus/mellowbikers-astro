@@ -2,9 +2,17 @@ import type { CollectionConfig } from 'payload'
 import { pageBlocks } from '@/blocks'
 import { slugField } from '@/fields/slug'
 
-const previewPath = (slug?: string | null) => {
+const base = () => process.env.NEXT_PUBLIC_SERVER_URL ?? ''
+
+/** Rechtstreeks naar de pagina — voor live preview in de admin. */
+const livePreviewUrl = (slug?: string | null) =>
+  `${base()}${slug === 'home' ? '/' : `/${slug ?? ''}`}`
+
+/** Via /next/preview, zodat draft mode aan gaat en ook ongepubliceerde
+ *  versies zichtbaar zijn. Die route controleert of je ingelogd bent. */
+const draftPreviewUrl = (slug?: string | null) => {
   const path = slug === 'home' ? '/' : `/${slug ?? ''}`
-  return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`
+  return `${base()}/next/preview?path=${encodeURIComponent(path)}`
 }
 
 export const Pages: CollectionConfig = {
@@ -21,8 +29,8 @@ export const Pages: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', '_status', 'updatedAt'],
-    livePreview: { url: ({ data }) => previewPath(data?.slug) },
-    preview: (doc) => previewPath(doc?.slug as string),
+    livePreview: { url: ({ data }) => livePreviewUrl(data?.slug) },
+    preview: (doc) => draftPreviewUrl(doc?.slug as string),
   },
   versions: {
     drafts: { autosave: { interval: 400 } },
