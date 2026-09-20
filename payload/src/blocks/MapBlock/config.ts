@@ -5,7 +5,7 @@ import { sectionAppearance } from '@/fields/sectionAppearance'
  * De Astro-versie plakte een Google Maps embed-URL met placeholder-
  * waarden erin (!1d2478.123456789, plaats-ID 0x0:0x0), waardoor de kaart
  * niet de juiste locatie toonde. Hier voer je coordinaten in en bouwen
- * we de embed-URL zelf op, zodat er niets meer handmatig te knoeien valt.
+ * we de embed-URL zelf op, zodat er niets handmatig te knoeien valt.
  */
 export const MapBlock: Block = {
   slug: 'mapBlock',

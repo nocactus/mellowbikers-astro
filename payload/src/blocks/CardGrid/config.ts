@@ -3,10 +3,10 @@ import { sectionAppearance } from '@/fields/sectionAppearance'
 import { linkField } from '@/fields/link'
 
 /**
- * Eén blok voor drie dingen die in de Astro-versie drie keer apart
- * waren uitgeschreven: de waarden op de homepage, het festivalprogramma
- * en de ticketkaarten. Het verschil zat alleen in wat er getoond werd,
- * niet in de structuur.
+ * Eén blok voor wat in de Astro-versie meerdere keren apart was
+ * uitgeschreven: de waarden op de homepage, programma-onderdelen,
+ * ticketkaarten. Het verschil zat alleen in wat er getoond werd, niet
+ * in de structuur.
  */
 export const CardGrid: Block = {
   slug: 'cardGrid',

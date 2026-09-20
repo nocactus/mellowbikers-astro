@@ -5,9 +5,9 @@ import { LinkButton } from '@/components/LinkButton'
 
 /**
  * `isFirst` bepaalt of dit de LCP-afbeelding is en of de titel een <h1>
- * krijgt. In de Astro-versie ontbrak een h1 volledig op /agenda,
- * /festival en /lid-worden; dat kan hier niet meer gebeuren omdat de
- * renderer altijd precies één h1 per pagina afdwingt.
+ * krijgt. In de Astro-versie ontbrak een h1 volledig op /agenda en
+ * /lid-worden; dat kan hier niet meer gebeuren omdat de renderer
+ * altijd precies één h1 per pagina afdwingt.
  */
 export const HeroComponent = ({ block, isFirst }: { block: HeroBlock; isFirst: boolean }) => {
   const Heading = isFirst ? 'h1' : 'h2'

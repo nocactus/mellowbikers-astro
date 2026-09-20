@@ -111,15 +111,15 @@ toch cachen, zet dan de OpenNext incremental cache op R2 aan.
 | Tekst | `richText` | Lead-secties, losse tekstblokken |
 | Tekst naast beeld | `splitContent` | Homepage-lead, bier-banner, next-ride kaart |
 | Knoppenblok | `ctaBanner` | De knoppensectie op de homepage |
-| Kaartenblok | `cardGrid` | Waarden-sectie, festivalprogramma, tickets |
+| Kaartenblok | `cardGrid` | Waarden-sectie, programma-onderdelen, tickets |
 | Afbeelding/video | `mediaBlock` | Mux-videobanner, brewery-afbeeldingen |
 | Galerij | `gallery` | De horizontale fotostrip |
 | Veelgestelde vragen | `faqBlock` | FAQ-sectie |
 | Agenda | `eventList` | De hele agendapagina |
 | Leden in de spotlight | `memberGrid` | De spotlightpagina |
 | Formulier | `formBlock` | `api/contact.ts` en `api/lid-worden.ts` |
-| Logobalk | `logoStrip` | Sponsors op de festivalpagina |
-| Kaart | `mapBlock` | De Google Maps-embed |
+| Logobalk | `logoStrip` | Sponsorlogo's |
+| Kaart | `mapBlock` | Een locatie op de kaart |
 | Bergrand | `separator` | Losse `MountainSeparator` |
 
 ### Pagina's opnieuw opbouwen
@@ -131,7 +131,6 @@ toch cachen, zet dan de OpenNext incremental cache op R2 aan.
 | `/mellow-in-the-spotlight` | hero (compact), memberGrid |
 | `/mellow-brewery` | hero (compact), mediaBlock, richText, ctaBanner |
 | `/lid-worden` | hero (compact), richText, formBlock |
-| `/festival` | hero, richText, cardGrid (tickets), cardGrid (programma), gallery, mapBlock, logoStrip |
 | `/privacy` | hero (compact), richText — **nieuw, verplicht** |
 
 ---
@@ -193,11 +192,6 @@ de secret ontbreekt, in plaats van door te lopen.
 - [ ] **Domein rechttrekken.** De Astro-config zet `site` op
       `astro.mellowbikers.nl` terwijl de JSON-LD `mellowbikers.nl` zegt. Kies er
       een en zet `NEXT_PUBLIC_SERVER_URL` daarop.
-- [ ] **Content actualiseren tijdens de migratie.** De festivalpagina toont nog
-      juni 2025 en de agenda heeft tien verlopen ritten als "aankomend" staan.
 - [ ] **Oude media opruimen.** 659 van de 697 bestanden in
       `public/assets/uploads` worden nergens gebruikt (~87 MB, waaronder 146
       `.bk.*` backups). Alleen de 38 gebruikte hoeven naar R2.
-- [ ] **De 8 WordPress-hotlinks** op de festivalpagina downloaden en uploaden;
-      die wijzen nu naar `mellowbikers.nl/wp-content/` en breken zodra WP uit
-      gaat.

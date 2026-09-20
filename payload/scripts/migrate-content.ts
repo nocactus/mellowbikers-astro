@@ -293,7 +293,6 @@ const pages = await migratePages({
 })
 console.log(pages.length > 0 ? `  aangemaakt: ${pages.join(', ')}` : '  alle paginas bestonden al')
 
-warn('festivalpagina niet gemigreerd — de content is van juni 2025 en verlopen. Maak een nieuwe editie aan in de admin.')
 
 console.log(`\nKlaar. ${mediaCache.size} afbeeldingen in de mediabibliotheek.`)
 

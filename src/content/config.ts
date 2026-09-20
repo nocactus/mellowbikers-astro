@@ -113,43 +113,6 @@ const membersCollection = defineCollection({
   }),
 });
 
-// Festival singleton (data/JSON)
-const festivalCollection = defineCollection({
-  type: 'data',
-  schema: z.object({
-    year: z.number(),
-    title: z.string(),
-    dates: z.string(),
-    location: z.string(),
-    description: z.string(),
-    tickets: z.array(z.object({
-      emoji: z.string(),
-      title: z.string(),
-      price: z.string(),
-      description: z.string(),
-      link: z.string(),
-    })),
-    program: z.array(z.object({
-      emoji: z.string(),
-      text: z.string(),
-    })),
-    sections: z.array(z.object({
-      id: z.string(),
-      title: z.string(),
-      body: z.string(),
-    })),
-    sponsors: z.array(z.object({
-      name: z.string(),
-      logo: z.string(),
-      link: z.string(),
-    })),
-    seo: z.object({
-      title: z.string(),
-      description: z.string(),
-    }),
-  }),
-});
-
 // Brewery singleton (data/JSON)
 const breweryCollection = defineCollection({
   type: 'data',
@@ -220,7 +183,6 @@ export const collections = {
   'faq': faqCollection,
   'gallery': galleryCollection,
   'members': membersCollection,
-  'festival': festivalCollection,
   'brewery': breweryCollection,
   'page-settings': pageSettingsCollection,
   'navigation': navigationCollection,

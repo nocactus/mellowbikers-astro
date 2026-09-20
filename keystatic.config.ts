@@ -220,26 +220,6 @@ export default config({
       format: { data: 'json' },
       schema: { ...pageSettingsSchema },
     }),
-
-    // Festival
-    festival: singleton({
-      label: 'Festival',
-      path: 'src/content/festival/festival-2025',
-      format: { data: 'json' },
-      schema: {
-        year: fields.integer({ label: 'Jaar' }),
-        title: fields.text({ label: 'Titel' }),
-        dates: fields.text({ label: 'Data' }),
-        location: fields.text({ label: 'Locatie' }),
-        description: fields.text({ label: 'Beschrijving', multiline: true }),
-        tickets: fields.array(
-          fields.object({
-            emoji: fields.text({ label: 'Emoji' }),
-            title: fields.text({ label: 'Titel' }),
-            price: fields.text({ label: 'Prijs' }),
-            description: fields.text({ label: 'Beschrijving' }),
-            link: fields.url({ label: 'Ticket link' }),
-          }),
           {
             label: 'Tickets',
             itemLabel: (props) => props.fields.title.value || 'Nieuw ticket',
