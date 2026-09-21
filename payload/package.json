@@ -9,7 +9,7 @@
     "devsafe": "rm -rf .next && rm -rf .open-next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "deploy": "npm run deploy:database && npm run deploy:app",
     "deploy:app": "npm run build:worker && opennextjs-cloudflare deploy --env=$CLOUDFLARE_ENV",
-    "deploy:database": "cross-env NODE_ENV=production PAYLOAD_SECRET=ignore payload migrate",
+    "deploy:database": "node scripts/require-remote.mjs && cross-env NODE_ENV=production PAYLOAD_SECRET=ignore payload migrate",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
@@ -17,7 +17,8 @@
     "typecheck": "tsc --noEmit",
     "migrate:content": "cross-env NODE_OPTIONS=--no-deprecation tsx --env-file=.env scripts/migrate-content.ts",
     "test:dates": "tsx scripts/lib/parseDutchDate.test.mjs",
-    "build:worker": "npm run build && opennextjs-cloudflare build"
+    "build:worker": "npm run build && opennextjs-cloudflare build",
+    "migrate:content:remote": "node scripts/require-remote.mjs && npm run migrate:content"
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.11.0",

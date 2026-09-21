@@ -65,8 +65,19 @@ npx wrangler secret put PAYLOAD_SECRET
 npx wrangler secret put TURNSTILE_SECRET_KEY
 npx wrangler secret put POSTMARK_API_TOKEN
 
+# Tabellen aanmaken op de echte D1, daarna deployen.
+# De token is nodig: zonder token draaien deze commando's tegen de
+# lokale database in .wrangler/ in plaats van tegen Cloudflare. Er zit
+# een controle op die daarop stopt.
+CLOUDFLARE_API_TOKEN=<token> npm run deploy:database
 npm run deploy
+
+# Content in de remote database zetten:
+CLOUDFLARE_API_TOKEN=<token> npm run migrate:content:remote
 ```
+
+Lokaal werken gaat zonder token: `npm run payload -- migrate` en
+`npm run migrate:content` gebruiken dan de kopie in `.wrangler/`.
 
 De Worker-bundle bouwen zonder te deployen kan met `npm run build:worker`.
 
