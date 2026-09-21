@@ -1,4 +1,10 @@
-# Redirects van oude WordPress-URL's naar de nieuwe site.
+# Extra redirects, bovenop de twee die het script zelf al zet
+# (/festival en /dankje).
+#
+# Waarschijnlijk heb je dit bestand niet nodig. De paginaslugs zijn bij de
+# overstap van Astro naar Payload ongewijzigd gebleven, dus bestaande links
+# blijven werken. Vul dit alleen als Search Console na livegang 404's laat
+# zien op paden die je wilt opvangen.
 #
 # Eén per regel:   /oud-pad, /nieuw-pad
 # Regels met # ervoor worden overgeslagen.
@@ -16,9 +22,8 @@
 #   verkeerde pagina is slechter dan een nette 404.
 #
 # Waar haal je de linkerkant vandaan:
+# - Search Console > Indexering > Pagina's > Niet gevonden (404)
 # - Search Console > Prestaties > Pagina's, gesorteerd op vertoningen
-# - De sitemap van de WordPress-site (meestal /sitemap_index.xml)
-# - WordPress-beheer: Pagina's en Berichten, kolom met de permalink
 #
 # Voorbeeld:
 # /over-ons, /

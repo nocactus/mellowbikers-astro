@@ -3,19 +3,24 @@ import { existsSync } from 'fs'
 import fs from 'fs/promises'
 
 /**
- * Redirects voor de overstap van WordPress naar de nieuwe site.
+ * Redirects voor de overstap van de Astro-site naar Payload.
  *
- * Alleen paden waarvan in de repo terug te vinden is dat ze bestonden
- * staan hieronder. De rest van de oude WordPress-URL's is hier niet te
- * achterhalen — en gokken levert redirects op die naar de verkeerde
- * pagina wijzen, wat erger is dan een 404. Zie de README voor hoe je de
- * echte lijst aanlevert; het importbestand hieronder vult de rest aan.
+ * De WordPress-migratie ligt achter ons: mellowbikers.nl draait al op
+ * Astro. Wat nu verhuist is Astro -> Payload, en die slugs zijn gelijk
+ * (/agenda, /lid-worden, /mellow-brewery, /mellow-in-the-spotlight).
+ * Alleen paden die verdwijnen hebben dus een redirect nodig, en dat zijn
+ * deze twee.
  */
 const KNOWN: { from: string; to: string; why: string }[] = [
   {
     from: '/festival',
     to: '/',
-    why: 'pagina bestond, is verwijderd (editie juni 2025)',
+    why: 'bestond op de Astro-site, verwijderd (editie juni 2025)',
+  },
+  {
+    from: '/dankje',
+    to: '/',
+    why: 'bedankpagina van het oude formulier; Payload toont de bevestiging inline',
   },
 ]
 
