@@ -54,6 +54,30 @@ ruim boven 10 ms. Op Workers Paid is dat 30 seconden.
 
 Kort: Workers Paid blijft nodig, maar om de rekentijd, niet om de omvang.
 
+## Automatisch deployen
+
+De Astro-site hangt aan de Git-integratie van Cloudflare Pages: elke push naar
+de productiebranch rolt uit. Die pipeline bouwt de repo-root en doet dus niets
+met `payload/`.
+
+Voor de Payload-app gebruik je
+[Workers Builds](https://developers.cloudflare.com/workers/ci-cd/builds/git-integration/),
+de Git-integratie voor Workers. Koppel dezelfde repository en zet:
+
+| Instelling | Waarde |
+|---|---|
+| Root directory | `payload` |
+| Build command | `npm run build:worker` |
+| Deploy command | `npx wrangler deploy` |
+| Production branch | `main` |
+
+Zet je "non-production branch builds" aan, dan krijg je ook preview-URL's per
+pull request, net als bij Pages nu.
+
+**Migraties lopen hier bewust niet in mee.** `npm run deploy` rolt alleen de
+app uit. Verandert het schema, dan draai je `deploy:database` zelf, op een
+moment dat je het kunt zien misgaan.
+
 ## Naar Cloudflare (jouw deel)
 
 ```bash
@@ -65,11 +89,13 @@ npx wrangler secret put PAYLOAD_SECRET
 npx wrangler secret put TURNSTILE_SECRET_KEY
 npx wrangler secret put POSTMARK_API_TOKEN
 
-# Tabellen aanmaken op de echte D1, daarna deployen.
-# De token is nodig: zonder token draaien deze commando's tegen de
-# lokale database in .wrangler/ in plaats van tegen Cloudflare. Er zit
-# een controle op die daarop stopt.
+# Tabellen aanmaken op de echte D1. Dit is een bewuste, losse stap:
+# migraties horen niet mee te liften op elke push. De token is nodig,
+# anders draait het commando tegen de lokale database in .wrangler/ —
+# er zit een controle op die daarop stopt.
 CLOUDFLARE_API_TOKEN=<token> npm run deploy:database
+
+# De app uitrollen. Deze stap is veilig te automatiseren.
 npm run deploy
 
 # Content in de remote database zetten:
