@@ -1,22 +1,14 @@
 import type { MediaBlockType } from '@/payload-types'
 import { Section } from '@/components/Section'
 import { CfImage } from '@/components/CfImage'
+import { LazyVideo } from './LazyVideo'
 import { CONTAINER } from '@/lib/theme'
 
 export const MediaBlockComponent = ({ block }: { block: MediaBlockType }) => (
   <Section appearance={block.appearance}>
     <div className={block.fullBleed ? 'w-full' : CONTAINER}>
       {block.kind === 'video' ? (
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: '128 / 61' }}>
-          <iframe
-            src={block.videoUrl ?? ''}
-            title={block.videoTitle ?? 'Video'}
-            loading="lazy"
-            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-            allowFullScreen
-            className="absolute inset-0 w-full h-full border-0"
-          />
-        </div>
+        <LazyVideo src={block.videoUrl ?? ''} title={block.videoTitle ?? 'Video'} />
       ) : (
         <CfImage
           media={block.image}
