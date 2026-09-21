@@ -25,7 +25,12 @@
   "r2_buckets": [
     {
       "binding": "R2",
-      "bucket_name": "mellowbikers"
+      "bucket_name": "mellowbikers",
+      // Net als bij D1: zonder deze vlag schrijft een migratie met
+      // CLOUDFLARE_API_TOKEN de databaserecords naar de echte D1, maar
+      // de bestanden naar de lokale miniflare-R2 in .wrangler/. Je houdt
+      // dan een mediabibliotheek over waarin elke afbeelding 404 geeft.
+      "remote": true
     }
   ]
 }
