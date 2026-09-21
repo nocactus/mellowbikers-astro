@@ -29,7 +29,7 @@ export const SiteHeader = ({ header, logoUrl }: { header: HeaderGlobal; logoUrl?
       }}
     >
       <div className="max-w-7xl mx-auto px-4 flex items-center gap-8 py-6">
-        <Link href="/" className="flex items-center gap-4" onClick={close}>
+        <Link prefetch={false} href="/" className="flex items-center gap-4" onClick={close}>
           {logoUrl ? (
             <img src={mediaUrl(logoUrl)} alt="Mellowbikers" className="h-20 w-auto" width={160} height={80} />
           ) : (
@@ -37,9 +37,20 @@ export const SiteHeader = ({ header, logoUrl }: { header: HeaderGlobal; logoUrl?
           )}
         </Link>
 
+        {/* prefetch={false} op elke navigatielink.
+
+            Elke pagina rendert per request en bevraagt D1, dus een
+            prefetch is geen goedkoop bestandje maar een volledige
+            server-render. Next haalde bij ieder homepagebezoek alle vijf
+            de pagina's voor — vijf renders voor pagina's die de bezoeker
+            misschien nooit opent. Worker-CPU is precies waarvoor dit
+            project een betaald plan nodig heeft.
+
+            De bezoeker merkt het verschil niet: een klik rendert de
+            pagina alsnog in enkele honderden milliseconden. */}
         <nav className="ml-auto hidden md:flex items-center gap-8 text-xl font-medium">
           {items.map((row, i) => (
-            <Link
+            <Link prefetch={false}
               key={i}
               href={resolveHref(row.link)}
               className="text-mellow-white hover:text-mellow-red transition-colors"
@@ -48,7 +59,7 @@ export const SiteHeader = ({ header, logoUrl }: { header: HeaderGlobal; logoUrl?
             </Link>
           ))}
           {header.cta?.link?.label && (
-            <Link
+            <Link prefetch={false}
               href={resolveHref(header.cta.link)}
               className="px-5 py-2 rounded-xl font-semibold text-mellow-dark bg-mellow-groen hover:drop-shadow-lg transition-all"
             >
@@ -86,7 +97,7 @@ export const SiteHeader = ({ header, logoUrl }: { header: HeaderGlobal; logoUrl?
       >
         <nav className="flex flex-col items-center justify-center h-full gap-8 text-2xl font-medium">
           {items.map((row, i) => (
-            <Link
+            <Link prefetch={false}
               key={i}
               href={resolveHref(row.link)}
               onClick={close}
@@ -96,7 +107,7 @@ export const SiteHeader = ({ header, logoUrl }: { header: HeaderGlobal; logoUrl?
             </Link>
           ))}
           {header.cta?.link?.label && (
-            <Link
+            <Link prefetch={false}
               href={resolveHref(header.cta.link)}
               onClick={close}
               className="px-6 py-3 rounded-xl font-semibold text-mellow-dark bg-mellow-groen"

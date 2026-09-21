@@ -31,7 +31,7 @@ export const SiteFooter = async ({ image }: { image?: Media | number | null }) =
           {(footer.items ?? []).map((row, i) => (
             <span key={i}>
               {' | '}
-              <Link href={resolveHref(row.link)} className="hover:text-mellow-groen transition-colors">
+              <Link href={resolveHref(row.link)} prefetch={false} className="hover:text-mellow-groen transition-colors">
                 {row.link?.label}
               </Link>
             </span>
@@ -43,7 +43,7 @@ export const SiteFooter = async ({ image }: { image?: Media | number | null }) =
             {footer.legalItems.map((row, i) => (
               <span key={i}>
                 {i > 0 && ' | '}
-                <Link href={resolveHref(row.link)} className="hover:text-mellow-groen transition-colors">
+                <Link href={resolveHref(row.link)} prefetch={false} className="hover:text-mellow-groen transition-colors">
                   {row.link?.label}
                 </Link>
               </span>

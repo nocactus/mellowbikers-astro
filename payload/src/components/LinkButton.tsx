@@ -41,7 +41,10 @@ export const LinkButton = ({ link, className = '' }: { link?: LinkValue | null; 
   }
 
   return (
-    <Link href={href} className={classes}>
+    // prefetch={false}: elke pagina rendert per request met een D1-query,
+    // dus een prefetch is een volledige server-render en geen bestandje.
+    // Zie SiteHeader voor de afweging.
+    <Link href={href} prefetch={false} className={classes}>
       {link.label}
     </Link>
   )

@@ -19,10 +19,10 @@ export default function NotFound() {
         Deze pagina bestaat niet (meer). Terug naar de gebaande paden?
       </p>
       <div className="mt-8 flex flex-wrap gap-4 justify-center">
-        <Link href="/" className={BUTTON.primary}>
+        <Link href="/" prefetch={false} className={BUTTON.primary}>
           Naar de homepage
         </Link>
-        <Link href="/agenda" className={BUTTON.secondary}>
+        <Link href="/agenda" prefetch={false} className={BUTTON.secondary}>
           Bekijk de agenda
         </Link>
       </div>
