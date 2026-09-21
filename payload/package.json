@@ -4,11 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8000\" next build",
+    "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8000\" next build --webpack",
     "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
     "devsafe": "rm -rf .next && rm -rf .open-next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "deploy": "npm run deploy:database && npm run deploy:app",
-    "deploy:app": "opennextjs-cloudflare build --env=$CLOUDFLARE_ENV && opennextjs-cloudflare deploy --env=$CLOUDFLARE_ENV",
+    "deploy:app": "npm run build:worker && opennextjs-cloudflare deploy --env=$CLOUDFLARE_ENV",
     "deploy:database": "cross-env NODE_ENV=production PAYLOAD_SECRET=ignore payload migrate",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
@@ -16,7 +16,8 @@
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "typecheck": "tsc --noEmit",
     "migrate:content": "cross-env NODE_OPTIONS=--no-deprecation tsx --env-file=.env scripts/migrate-content.ts",
-    "test:dates": "tsx scripts/lib/parseDutchDate.test.mjs"
+    "test:dates": "tsx scripts/lib/parseDutchDate.test.mjs",
+    "build:worker": "npm run build && opennextjs-cloudflare build"
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.11.0",
@@ -43,8 +44,8 @@
     "@types/react-dom": "^19.2.0",
     "jsdom": "^30.1.0",
     "tailwindcss": "^4.3.3",
+    "tsx": "^4.19.0",
     "typescript": "^5.7.0",
-    "wrangler": "^4.0.0",
-    "tsx": "^4.19.0"
+    "wrangler": "^4.0.0"
   }
 }

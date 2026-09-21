@@ -40,6 +40,20 @@ npm run migrate:content      # haalt de content uit de Astro-site
 > specifieke 15.x-vensters). Een blinde `next@latest` breekt de boel op een dag
 > dat je er geen tijd voor hebt. Upgrade `next` alleen samen met Payload.
 
+## Welk Workers-plan
+
+De bundle-limiet is geen reden meer voor een betaald plan: Cloudflare heeft op
+4 september 2026 de gecomprimeerde limieten (3 MB gratis / 10 MB betaald)
+vervangen door 64 MiB ongecomprimeerd op **beide** plannen. Deze build komt uit
+op circa 49 MB voor wrangler er zelf nog overheen gaat, dus dat past.
+
+Wat wel bepalend is: het gratis plan staat **10 ms CPU per request** toe. Een
+server-gerenderde Payload-pagina haalt dat niet — lokaal, op Node met SQLite,
+ligt de TTFB rond 120-150 ms, en ook al is maar een deel daarvan CPU, het zit
+ruim boven 10 ms. Op Workers Paid is dat 30 seconden.
+
+Kort: Workers Paid blijft nodig, maar om de rekentijd, niet om de omvang.
+
 ## Naar Cloudflare (jouw deel)
 
 ```bash
@@ -53,6 +67,8 @@ npx wrangler secret put POSTMARK_API_TOKEN
 
 npm run deploy
 ```
+
+De Worker-bundle bouwen zonder te deployen kan met `npm run build:worker`.
 
 Hang daarna een custom domain binnen dezelfde zone aan de R2-bucket en zet Image
 Transformations aan, anders weigert `/cdn-cgi/image/` de bron.
