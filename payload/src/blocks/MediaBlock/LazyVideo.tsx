@@ -18,12 +18,23 @@ import { useEffect, useRef, useState } from 'react'
  * met een playknop in plaats van beeld dat vanzelf begint te bewegen.
  */
 
-/** Zet autoplay aan zonder bestaande query-parameters te verliezen. */
+/**
+ * Zet autoplay aan zonder bestaande query-parameters te verliezen.
+ *
+ * `autoplay=1` werkt niet. Gemeten op de player zelf: dan staat er geen
+ * autoplay-attribuut op het mux-player-element en blijft `autoplay`
+ * false. Mux accepteert `true`, `muted` of `any`; met `autoplay=muted`
+ * komt het attribuut er wel op te staan en is de player gedempt. Die ene
+ * waarde dekt beide, dus een losse `muted` is niet nodig.
+ *
+ * Of de browser hem daarna daadwerkelijk laat spelen is zijn eigen
+ * autoplaypolicy — gedempt mag doorgaans, maar niet in een verborgen
+ * venster.
+ */
 function metAutoplay(src: string): string {
   try {
     const url = new URL(src)
-    url.searchParams.set('autoplay', '1')
-    url.searchParams.set('muted', '1')
+    url.searchParams.set('autoplay', 'muted')
     return url.toString()
   } catch {
     // Geen geldige absolute URL: dan laten we hem zoals hij is, want een
