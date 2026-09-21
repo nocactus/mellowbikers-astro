@@ -112,14 +112,18 @@ export default buildConfig({
         admin: { group: 'Formulieren' },
         hooks: {
           beforeValidate: [
-            async ({ data, operation }) => {
+            async ({ data, operation, req }) => {
               if (operation !== 'create') return data
 
               // Fail-closed: ontbreekt de secret, dan wordt er niets
-              // opgeslagen en niets gemaild.
+              // opgeslagen en niets gemaild. De logger gaat mee zodat de
+              // foutcodes van Cloudflare in het Worker-log belanden; zonder
+              // die codes is een geweigerd token niet te onderscheiden van
+              // een verkeerde secret.
               await verifyTurnstile(
                 (data as { turnstileToken?: unknown })?.turnstileToken,
                 process.env.TURNSTILE_SECRET_KEY,
+                req?.payload?.logger,
               )
 
               // Het token hoort niet in de database.
@@ -138,10 +142,29 @@ export default buildConfig({
   logger: isProduction ? cloudflareLogger() : undefined,
 })
 
+/**
+ * Een Error heeft geen enumerable eigen properties, dus `{...err}` levert
+ * `{}` op. Daardoor logde deze app elke serverfout als
+ * `{"level":"error","err":{}}` — precies niets. Deze replacer zet Errors om
+ * in iets leesbaars, op elk niveau van het object.
+ */
+function serialiseErrors(_key: string, value: unknown) {
+  if (value instanceof Error) {
+    return { name: value.name, message: value.message, stack: value.stack }
+  }
+  return value
+}
+
 function cloudflareLogger() {
   const write = (level: string, fn: typeof console.log) => (objOrMsg: object | string, msg?: string) => {
-    if (typeof objOrMsg === 'string') fn(JSON.stringify({ level, msg: objOrMsg }))
-    else fn(JSON.stringify({ level, ...objOrMsg, msg: msg ?? (objOrMsg as { msg?: string }).msg }))
+    if (typeof objOrMsg === 'string') fn(JSON.stringify({ level, msg: objOrMsg }, serialiseErrors))
+    else
+      fn(
+        JSON.stringify(
+          { level, ...objOrMsg, msg: msg ?? (objOrMsg as { msg?: string }).msg },
+          serialiseErrors,
+        ),
+      )
   }
 
   return {
