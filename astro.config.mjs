@@ -14,7 +14,7 @@ if (isDev) {
 }
 
 export default defineConfig({
-  site: 'https://astro.mellowbikers.nl',
+  site: 'https://mellowbikers.nl',
   output: 'server',
   adapter: cloudflare(),
   integrations: [

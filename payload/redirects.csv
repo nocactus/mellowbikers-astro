@@ -1,0 +1,30 @@
+# Extra redirects, bovenop de twee die het script zelf al zet
+# (/festival en /dankje).
+#
+# Waarschijnlijk heb je dit bestand niet nodig. De paginaslugs zijn bij de
+# overstap van Astro naar Payload ongewijzigd gebleven, dus bestaande links
+# blijven werken. Vul dit alleen als Search Console na livegang 404's laat
+# zien op paden die je wilt opvangen.
+#
+# Eén per regel:   /oud-pad, /nieuw-pad
+# Regels met # ervoor worden overgeslagen.
+#
+# Draai na het aanvullen:  npm run migrate:content
+# Het script slaat regels over die al bestaan, dus je kunt het gerust
+# opnieuw draaien.
+#
+# Let op:
+# - Een slash aan het eind hoef je niet apart op te nemen. Next stuurt
+#   /pad/ eerst zelf door naar /pad voordat de lookup draait.
+# - Wijst het doel naar een bestaande pagina, dan wordt de redirect aan
+#   die pagina gekoppeld en beweegt hij mee als de slug later verandert.
+# - Neem alleen paden op die echt bestonden. Een redirect naar de
+#   verkeerde pagina is slechter dan een nette 404.
+#
+# Waar haal je de linkerkant vandaan:
+# - Search Console > Indexering > Pagina's > Niet gevonden (404)
+# - Search Console > Prestaties > Pagina's, gesorteerd op vertoningen
+#
+# Voorbeeld:
+# /over-ons, /
+# /nieuws/eerste-rit-van-het-jaar, /agenda

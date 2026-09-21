@@ -1,0 +1,31 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mellowbikers",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-08-15",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+
+  "d1_databases": [
+    {
+      "binding": "D1",
+      "database_name": "mellowbikers",
+      "database_id": "3cd47c77-c061-4ba4-ba53-6560cf2ec0ed",
+      "remote": true
+    }
+  ],
+
+  // Hang aan deze bucket een custom domain binnen dezelfde Cloudflare-zone
+  // en zet Image Transformations aan; anders weigert /cdn-cgi/image/ de
+  // bron en laden de afbeeldingen op volle grootte. Zie src/lib/cfImage.ts.
+  "r2_buckets": [
+    {
+      "binding": "R2",
+      "bucket_name": "mellowbikers"
+    }
+  ]
+}

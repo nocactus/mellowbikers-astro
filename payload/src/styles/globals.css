@@ -1,0 +1,76 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-mellow-red: #d90b1e;
+  --color-mellow-dark: #0d0f19;
+  --color-mellow-groen: #2affcc;
+  --color-mellow-white: #f1ffff;
+  --color-mellow-blue: #004fff;
+
+  /* In de Astro-versie stond hier --font-family-sans. Dat is geen
+     geldige Tailwind 4 namespace, waardoor de font-sans utility niet
+     naar Inter verwees. De juiste naam is --font-sans. */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/InterVariable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/InterVariable-Italic.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    font-synthesis: none;
+    font-optical-sizing: auto;
+  }
+
+  body {
+    @apply bg-mellow-dark text-mellow-white;
+  }
+}
+
+/**
+ * Opmaak voor rich text uit Lexical. De redacteur bepaalt alleen de
+ * structuur; de styling zit hier zodat elke pagina er hetzelfde uitziet.
+ */
+@layer components {
+  .prose-mellow :where(p):not(:last-child) {
+    @apply mb-4;
+  }
+
+  .prose-mellow :where(a) {
+    @apply text-mellow-groen underline hover:text-mellow-groen/80 transition-colors;
+  }
+
+  .prose-mellow :where(strong) {
+    @apply font-bold;
+  }
+
+  .prose-mellow :where(ul) {
+    @apply list-disc pl-6 mb-4;
+  }
+
+  .prose-mellow :where(ol) {
+    @apply list-decimal pl-6 mb-4;
+  }
+
+  .prose-mellow :where(h2) {
+    @apply text-2xl md:text-3xl font-bold text-mellow-groen mb-4;
+  }
+
+  .prose-mellow :where(h3) {
+    @apply text-xl md:text-2xl font-bold text-mellow-groen mb-3;
+  }
+}
