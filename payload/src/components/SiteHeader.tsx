@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import type { Header as HeaderGlobal } from '@/payload-types'
 import { resolveHref } from './LinkButton'
+import { mediaUrl } from '@/lib/cfImage'
 
 /**
  * De enige plek in de site die nog echt client-side JavaScript nodig
@@ -30,7 +31,7 @@ export const SiteHeader = ({ header, logoUrl }: { header: HeaderGlobal; logoUrl?
       <div className="max-w-7xl mx-auto px-4 flex items-center gap-8 py-6">
         <Link href="/" className="flex items-center gap-4" onClick={close}>
           {logoUrl ? (
-            <img src={logoUrl} alt="Mellowbikers" className="h-20 w-auto" width={160} height={80} />
+            <img src={mediaUrl(logoUrl)} alt="Mellowbikers" className="h-20 w-auto" width={160} height={80} />
           ) : (
             <span className="text-2xl font-black text-mellow-white">Mellowbikers</span>
           )}

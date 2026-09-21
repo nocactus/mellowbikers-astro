@@ -30,9 +30,18 @@ const MEDIA_BASE_URL = process.env.NEXT_PUBLIC_MEDIA_BASE_URL?.replace(/\/$/, ''
 const IS_VECTOR = /\.svgz?$/i
 
 /** Payload levert '/api/media/file/<naam>'; de R2-sleutel is die naam. */
-function mediaUrl(src: string): string {
+function r2Key(src: string): string {
+  return src.split('/').pop() ?? src
+}
+
+/**
+ * De URL waarop een mediabestand zonder transformatie te halen is. Met
+ * een custom domain komt dat rechtstreeks uit R2; zonder valt het terug
+ * op de /api/media/file/-route van de Worker.
+ */
+export function mediaUrl(src: string): string {
   if (!MEDIA_BASE_URL) return src
-  return `${MEDIA_BASE_URL}/${src.split('/').pop() ?? src}`
+  return `${MEDIA_BASE_URL}/${r2Key(src)}`
 }
 
 /** Breedtes die we aanbieden. Elke unieke combinatie telt 1x per maand
@@ -79,7 +88,11 @@ export function cfImageUrl(src: string, opts: TransformOptions = {}): string {
 
   // Exact één slash tussen opties en bron. Met twee ziet Cloudflare een
   // protocol-relatieve URL ('//api/media/...' -> host 'api') en geeft 404.
-  const source = MEDIA_BASE_URL ? mediaUrl(src) : src.replace(/^\/+/, '')
+  //
+  // Staat de transformatie al op de CDN-hostname, dan is de bron gewoon de
+  // R2-sleutel; die hostname er nog eens absoluut achter plakken werkt wel,
+  // maar verdubbelt hem in elke URL in de HTML.
+  const source = MEDIA_BASE_URL ? r2Key(src) : src.replace(/^\/+/, '')
   const prefix = MEDIA_BASE_URL ? `${MEDIA_BASE_URL}/cdn-cgi/image` : '/cdn-cgi/image'
 
   return `${prefix}/${params}/${source}`
