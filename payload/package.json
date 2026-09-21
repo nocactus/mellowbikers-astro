@@ -17,7 +17,8 @@
     "migrate:content": "cross-env NODE_OPTIONS=--no-deprecation tsx --env-file=.env scripts/migrate-content.ts",
     "test:dates": "tsx scripts/lib/parseDutchDate.test.mjs",
     "build:worker": "npm run build && opennextjs-cloudflare build",
-    "migrate:content:remote": "node scripts/require-remote.mjs && npm run migrate:content"
+    "migrate:content:remote": "node scripts/require-remote.mjs && npm run migrate:content",
+    "postinstall": "node scripts/patch-payload-pbkdf2.mjs"
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.11.0",
