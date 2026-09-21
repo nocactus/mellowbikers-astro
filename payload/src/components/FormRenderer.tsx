@@ -16,6 +16,15 @@ const widthClass = (width?: number | null) => (width && width <= 50 ? 'sm:col-sp
 export const FormRenderer = ({ form }: { form: Form }) => {
   const [status, setStatus] = useState<Status>({ state: 'idle' })
 
+  /**
+   * Turnstile kost 535 KiB, en dat werd op de homepage geladen bij ieder
+   * bezoek — ook bij de overgrote meerderheid die het formulier nooit
+   * aanraakt. Nu laadt het script pas zodra iemand het formulier ingaat.
+   * Tussen die eerste focus en een verzending zitten seconden, ruim
+   * genoeg voor een widget die zich daarna zelf rendert.
+   */
+  const [turnstileNodig, setTurnstileNodig] = useState(false)
+
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setStatus({ state: 'sending' })
@@ -26,6 +35,16 @@ export const FormRenderer = ({ form }: { form: Form }) => {
     const formData = new FormData(formElement)
     const turnstileToken = formData.get('cf-turnstile-response')
     formData.delete('cf-turnstile-response')
+
+    // Nog geen token: de widget is niet klaar of niet afgerond. Dat
+    // hoeft de server niet te beslissen — zeg het meteen.
+    if (typeof turnstileToken !== 'string' || turnstileToken.length === 0) {
+      setStatus({
+        state: 'error',
+        message: 'De beveiligingscheck is nog niet klaar. Wacht een tel en probeer opnieuw.',
+      })
+      return
+    }
 
     const submissionData = Array.from(formData.entries()).map(([field, value]) => ({
       field,
@@ -65,9 +84,19 @@ export const FormRenderer = ({ form }: { form: Form }) => {
 
   return (
     <>
-      <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="lazyOnload" />
+      {turnstileNodig && (
+        <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="afterInteractive" />
+      )}
 
-      <form onSubmit={onSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <form
+        onSubmit={onSubmit}
+        // Capture, zodat focus op een veld het ook op het formulier
+        // triggert. Beide gebeurtenissen, want tikken op mobiel geeft
+        // niet altijd eerst focus.
+        onFocusCapture={() => setTurnstileNodig(true)}
+        onPointerDownCapture={() => setTurnstileNodig(true)}
+        className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+      >
         {(form.fields ?? []).map((field, i) => {
           if (field.blockType === 'message') {
             return (
