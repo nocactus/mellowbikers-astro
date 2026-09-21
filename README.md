@@ -1,4 +1,4 @@
-# mellowbikers-astro
+# mellowbikers.nl
 
 De site van Mellowbikers. Twee projecten:
 
