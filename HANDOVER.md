@@ -27,24 +27,17 @@ afgeleverd.
 
 ## Wat er nog ligt
 
-- [ ] **Privacyverklaring juridisch nalopen.** Er staat een opzet,
-      expliciet als concept gemarkeerd. Het lid-worden-formulier verzamelt
-      naam, adres, postcode, geboortedatum, telefoon en noodcontact, dus
-      dit moet kloppen.
-- [ ] **De rit "Enduro Weekend Saalbach" handmatig aanmaken.** De datum
-      stond als "1e week September" in de oude agenda; te vaag om te
-      gokken, dus bewust overgeslagen door het migratiescript.
-- [ ] **Workers Builds opzetten.** Er is nu geen CI: deployen is
-      handmatig. Instellingen staan in `payload/README.md`.
 - [ ] **Cloudflare Access voor `/admin`.** De adminomgeving bevat
       persoonsgegevens van leden, en de beveiliging hangt nu aan één
       wachtwoordhash op 100.000 iteraties — het platformmaximum, en onder
-      wat voor dit soort data hoort te gelden.
-- [ ] **PBKDF2-issue melden bij payloadcms/payload.** Niet gerapporteerd;
-      reproductie en analyse staan in de commit van
-      `scripts/patch-payload-pbkdf2.mjs`.
-- [ ] **Search Console.** Nieuwe sitemap indienen en na een week of twee
-      kijken of er geen 404-golf is.
+      wat voor dit soort data hoort te gelden. Gratis tot 50 gebruikers.
+- [ ] **Vier lege debug-commits** staan nog op `main` (`25225d1`,
+      `038ed20`, `60bf09a` en de eerste trigger). Weg te rebasen, maar dat
+      herschrijft gepushte geschiedenis.
+
+Afgerond op 21 september: privacyverklaring nagelopen, de rit "Enduro
+Weekend Saalbach" aangemaakt (9 t/m 13 september), sitemap ingediend bij
+Search Console, het PBKDF2-issue gemeld, en Workers Builds gekoppeld.
 
 ## Openstaande keuze
 

@@ -14,12 +14,34 @@ Cloudflare Pages draaide en bij elke push naar `main` uitrolde. Die is
 verwijderd; het Pages-project is opgeheven. Heb je de oude bron nodig, dan
 staat hij in de geschiedenis: `git checkout d56b8b8 -- src public`.
 
-**Er is op dit moment geen CI.** Deployen gaat handmatig met
-`npx opennextjs-cloudflare deploy` vanuit `payload/`. Workers Builds is de
-bedoelde vervanger; zie `payload/README.md` voor de instellingen, en let
-op dat de `NEXT_PUBLIC_*`-variabelen daar als **build**-variabelen moeten
-staan — Next bakt ze tijdens `next build` in, dus runtime toevoegen helpt
-niet.
+**Een push naar `main` bouwt en deployt**, via Workers Builds. De
+`NEXT_PUBLIC_*`-variabelen staan daar als **build**-variabelen, niet als
+runtime: Next bakt ze in tijdens `next build`, dus runtime toevoegen doet
+niets. `PAYLOAD_SECRET` staat er óók als buildwaarde, omdat
+`payload.init()` weigert te starten met een lege secret terwijl Next de
+routes inventariseert; die waarde is wegwerp, want de Worker-secret
+overschrijft hem.
+
+**Het build command begint met `cd payload &&`, en dat moet zo blijven.**
+
+```
+Build command:   cd payload && npm ci && npm run build:worker
+Deploy command:  cd payload && npx wrangler deploy
+Root directory:  leeg
+```
+
+Dat ziet eruit als iets dat je opruimt door de root directory op `payload`
+te zetten en die `cd` weg te halen. Dat is geprobeerd, drie keer, ook met
+verse commits in plaats van "Retry build": de instelling werd niet
+toegepast en elke build faalde op
+`ENOENT: /opt/buildhome/repo/package.json`. Zolang dat zo is, is het build
+command de enige plek waar de map te sturen valt.
+
+`npm ci` staat er expliciet omdat Cloudflare's autodetectie een lockfile in
+de repo-root zoekt en die er niet is; zonder deze regel wordt de install
+volledig overgeslagen en draait `postinstall` niet — en dan deployt er een
+build waarop niemand kan inloggen. Deployen kan altijd nog handmatig met
+`npx opennextjs-cloudflare deploy` vanuit `payload/`.
 
 ## Niet zomaar veranderen
 
