@@ -25,29 +25,50 @@ const EDGE_TRANSFORMS_AVAILABLE = process.env.NODE_ENV === 'production'
  */
 const MEDIA_BASE_URL = process.env.NEXT_PUBLIC_MEDIA_BASE_URL?.replace(/\/$/, '')
 
+/** Vectorbeeld schaalt zichzelf. Cloudflare geeft een SVG onveranderd
+ *  terug, dus een transformatie kost alleen een tik op het maandquotum. */
+const IS_VECTOR = /\.svgz?$/i
+
 /** Payload levert '/api/media/file/<naam>'; de R2-sleutel is die naam. */
-function toSource(src: string): string {
-  if (!MEDIA_BASE_URL) return src.replace(/^\/+/, '')
-  const filename = src.split('/').pop() ?? src
-  return `${MEDIA_BASE_URL}/${filename}`
+function mediaUrl(src: string): string {
+  if (!MEDIA_BASE_URL) return src
+  return `${MEDIA_BASE_URL}/${src.split('/').pop() ?? src}`
 }
 
 /** Breedtes die we aanbieden. Elke unieke combinatie telt 1x per maand
- *  richting de gratis 5.000 transformaties — 4 breedtes x ~40 images = 160. */
+ *  richting de gratis 5.000 transformaties. */
 export const IMAGE_WIDTHS = [480, 768, 1280, 1920] as const
+
+/**
+ * Nooit opschalen. 25 van de 33 gemigreerde afbeeldingen zijn smaller dan
+ * 1920px en drie zelfs smaller dan 768px; bood je die breedtes toch aan,
+ * dan koos een desktopbrowser de grootste en haalde een wazig opgeblazen
+ * bestand op dat gróter is dan het origineel (bart-1.jpg: 481px bron,
+ * 63 kB, maar 437 kB op width=1920).
+ */
+function widthsFor(sourceWidth?: number | null): readonly number[] {
+  if (!sourceWidth) return IMAGE_WIDTHS
+  const fitting = IMAGE_WIDTHS.filter((w) => w <= sourceWidth)
+  return fitting.length > 0 ? fitting : [sourceWidth]
+}
 
 type TransformOptions = {
   width?: number
   height?: number
   fit?: 'scale-down' | 'contain' | 'cover' | 'crop' | 'pad'
   quality?: number
+  /** Intrinsieke breedte uit de upload-metadata. Begrenst de uitvoer. */
+  sourceWidth?: number | null
 }
 
 export function cfImageUrl(src: string, opts: TransformOptions = {}): string {
-  if (!EDGE_TRANSFORMS_AVAILABLE) return src
+  if (!EDGE_TRANSFORMS_AVAILABLE || IS_VECTOR.test(src)) return mediaUrl(src)
+
+  const requested = opts.width ?? 1280
+  const width = opts.sourceWidth ? Math.min(requested, opts.sourceWidth) : requested
 
   const params = [
-    `width=${opts.width ?? 1280}`,
+    `width=${width}`,
     opts.height ? `height=${opts.height}` : null,
     `fit=${opts.fit ?? 'cover'}`,
     `quality=${opts.quality ?? 80}`,
@@ -58,16 +79,22 @@ export function cfImageUrl(src: string, opts: TransformOptions = {}): string {
 
   // Exact één slash tussen opties en bron. Met twee ziet Cloudflare een
   // protocol-relatieve URL ('//api/media/...' -> host 'api') en geeft 404.
-  const source = toSource(src)
+  const source = MEDIA_BASE_URL ? mediaUrl(src) : src.replace(/^\/+/, '')
   const prefix = MEDIA_BASE_URL ? `${MEDIA_BASE_URL}/cdn-cgi/image` : '/cdn-cgi/image'
 
   return `${prefix}/${params}/${source}`
 }
 
-export function cfSrcSet(src: string, opts: Omit<TransformOptions, 'width'> = {}): string | undefined {
-  if (!EDGE_TRANSFORMS_AVAILABLE) return undefined
+export function cfSrcSet(
+  src: string,
+  opts: Omit<TransformOptions, 'width'> = {},
+): string | undefined {
+  if (!EDGE_TRANSFORMS_AVAILABLE || IS_VECTOR.test(src)) return undefined
 
-  return IMAGE_WIDTHS.map((w) => `${cfImageUrl(src, { ...opts, width: w })} ${w}w`).join(', ')
+  const widths = widthsFor(opts.sourceWidth)
+  if (widths.length < 2) return undefined
+
+  return widths.map((w) => `${cfImageUrl(src, { ...opts, width: w })} ${w}w`).join(', ')
 }
 
 /**

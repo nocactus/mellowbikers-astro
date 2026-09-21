@@ -21,11 +21,14 @@ export const CfImage = ({ media, className = '', sizes = '100vw', priority = fal
   if (!media || typeof media === 'number' || !media.url) return null
 
   const src = media.url
-  const srcSet = cfSrcSet(src)
+  // media.width begrenst de uitvoer: geen enkele variant mag breder zijn
+  // dan de bron, anders serveren we opgeblazen beeld. Zie lib/cfImage.
+  const sourceWidth = media.width
+  const srcSet = cfSrcSet(src, { sourceWidth })
 
   return (
     <img
-      src={cfImageUrl(src, { width: 1280 })}
+      src={cfImageUrl(src, { width: 1280, sourceWidth })}
       srcSet={srcSet}
       sizes={sizes}
       alt={media.alt ?? ''}
