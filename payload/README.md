@@ -54,6 +54,37 @@ ruim boven 10 ms. Op Workers Paid is dat 30 seconden.
 
 Kort: Workers Paid blijft nodig, maar om de rekentijd, niet om de omvang.
 
+## Werkwijze: code hier, content in Payload
+
+Code en content lopen langs gescheiden paden. Dat is de hele opzet:
+
+| Wat | Waar | Gevolg |
+|---|---|---|
+| Nieuw block, gewijzigde component, bugfix | hier -> GitHub | push naar de productiebranch rolt automatisch uit |
+| Teksten, foto's, ritten, leden, pagina's samenstellen | Payload-admin | direct live, geen deploy nodig |
+
+**Een nieuw block kost geen databasemigratie.** Dat is geverifieerd: een blok met
+vier velden (waaronder een upload en een getal) aan de bibliotheek toevoegen en
+`payload migrate:create` draaien levert geen migratiebestand op. Dankzij
+`blocksAsJSON: true` staat alle blokdata in de ene kolom `pages.layout`, dus een
+nieuw bloktype verandert het schema niet. Blokken toevoegen is dus puur: code,
+push, klaar.
+
+Wél een migratie nodig bij:
+
+- een nieuwe collection of global
+- een nieuw veld op een bestaande collection (bijvoorbeeld een extra veld op
+  `events` of `members`)
+- een veld van type wijzigen of hernoemen
+
+Dan draai je `npm run payload -- migrate:create <naam>`, bekijk je het gegenereerde
+bestand, commit je het mee, en draai je na de deploy
+`CLOUDFLARE_API_TOKEN=<token> npm run deploy:database`.
+
+`migrate:content` is een eenmalig bootstrap-script om de content uit de oude
+Astro-site over te zetten. Na livegang beheer je alles in de admin; het script
+slaat bestaande records over, dus per ongeluk draaien overschrijft niets.
+
 ## Automatisch deployen
 
 De Astro-site hangt aan de Git-integratie van Cloudflare Pages: elke push naar
