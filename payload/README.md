@@ -17,8 +17,10 @@ en de content van de Astro-site is er al in gemigreerd.
 | `npm run test:dates` | 12/12 agendadatums correct, vage datum terecht geweigerd |
 | `npm run migrate:content` | 4 FAQ, 3 leden, 12 ritten, 12 afbeeldingen, globals |
 
-Nog niet getest, want daarvoor is een Cloudflare-account nodig: de daadwerkelijke
-deploy, remote D1/R2, en `/cdn-cgi/image/` (dat bestaat alleen op de edge).
+Sinds 21 september 2026 draait dit live op `mellowbikers.nl`, inclusief remote
+D1 en R2 en de beeldtransformaties via `cdn.mellowbikers.nl`. Wat toen pas
+zichtbaar werd — zes fouten die alleen op de edge of op een schone checkout
+bestonden — staat in `CLAUDE.md` onder "Niet zomaar veranderen".
 
 ## Zo begin je
 
@@ -45,7 +47,7 @@ npm run migrate:content      # haalt de content uit de Astro-site
 De bundle-limiet is geen reden meer voor een betaald plan: Cloudflare heeft op
 4 september 2026 de gecomprimeerde limieten (3 MB gratis / 10 MB betaald)
 vervangen door 64 MiB ongecomprimeerd op **beide** plannen. Deze build komt uit
-op circa 49 MB voor wrangler er zelf nog overheen gaat, dus dat past.
+op circa 58 MB voor wrangler er zelf nog overheen gaat, dus dat past.
 
 Wat wel bepalend is: het gratis plan staat **10 ms CPU per request** toe. Een
 server-gerenderde Payload-pagina haalt dat niet — lokaal, op Node met SQLite,
@@ -82,14 +84,16 @@ bestand, commit je het mee, en draai je na de deploy
 `CLOUDFLARE_API_TOKEN=<token> npm run deploy:database`.
 
 `migrate:content` is een eenmalig bootstrap-script om de content uit de oude
-Astro-site over te zetten. Na livegang beheer je alles in de admin; het script
+Astro-site over te zetten. Die bron is bij het opruimen uit de repo-root
+gehaald, dus het script stopt nu met een melding; terughalen kan met
+`git checkout d56b8b8 -- src public`. Na livegang beheer je alles in de admin; het script
 slaat bestaande records over, dus per ongeluk draaien overschrijft niets.
 
 ## Automatisch deployen
 
-De Astro-site hangt aan de Git-integratie van Cloudflare Pages: elke push naar
-de productiebranch rolt uit. Die pipeline bouwt de repo-root en doet dus niets
-met `payload/`.
+**Dit is nog niet opgezet.** Deployen gaat op dit moment handmatig met
+`npx opennextjs-cloudflare deploy`. Het Pages-project van de oude Astro-site is
+opgeheven, dus een push naar `main` rolt niets meer uit.
 
 Voor de Payload-app gebruik je
 [Workers Builds](https://developers.cloudflare.com/workers/ci-cd/builds/git-integration/),
@@ -102,6 +106,15 @@ de Git-integratie voor Workers. Koppel dezelfde repository en zet:
 | Deploy command | `npx wrangler deploy` |
 | Production branch | `main` |
 
+Zet daar ook de omgevingsvariabelen. Let op het verschil: `PAYLOAD_SECRET`,
+`TURNSTILE_SECRET_KEY` en `POSTMARK_API_TOKEN` zijn Worker-secrets voor de
+runtime, maar de drie `NEXT_PUBLIC_*`-variabelen moeten als **build**-variabelen
+staan — Next bakt ze in tijdens `next build`, dus runtime toevoegen doet niets.
+`PAYLOAD_SECRET` heb je bovendien óók bij de build nodig: `payload.init()`
+weigert te starten met een lege secret terwijl Next de routes inventariseert.
+Die buildwaarde mag een wegwerpwaarde zijn, want de Worker-secret overschrijft
+hem.
+
 Zet je "non-production branch builds" aan, dan krijg je ook preview-URL's per
 pull request, net als bij Pages nu.
 
@@ -113,7 +126,7 @@ moment dat je het kunt zien misgaan.
 
 ```bash
 npx wrangler d1 create mellowbikers          # database_id in wrangler.jsonc zetten
-npx wrangler r2 bucket create mellowbikers-media
+npx wrangler r2 bucket create mellowbikers
 npx wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts
 
 npx wrangler secret put PAYLOAD_SECRET
@@ -147,6 +160,7 @@ Transformations aan, anders weigert `/cdn-cgi/image/` de bron.
 |---|---|
 | `PAYLOAD_SECRET` | Worker secret |
 | `NEXT_PUBLIC_SERVER_URL` | Publieke site-URL, gebruikt voor canonicals en live preview |
+| `NEXT_PUBLIC_MEDIA_BASE_URL` | Custom domain op de R2-bucket (`https://cdn.mellowbikers.nl`) |
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Publiek, mag in de build |
 | `TURNSTILE_SECRET_KEY` | Worker secret — **ontbreekt die, dan weigert elk formulier** |
 

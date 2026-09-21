@@ -26,6 +26,36 @@ const ASTRO = path.resolve(dirname, '../..')
 const CONTENT = path.join(ASTRO, 'src/content')
 const PUBLIC = path.join(ASTRO, 'public')
 
+/**
+ * Dit script is een eenmalige bootstrap en heeft de Astro-bron nodig, die
+ * na de overstap uit de repo-root verwijderd is. Hij staat nog in de
+ * geschiedenis; terughalen kan met:
+ *
+ *   git checkout d56b8b8 -- src public
+ *
+ * Zonder deze controle klapt het script verderop op een ENOENT waar je
+ * niets aan hebt.
+ */
+if (!existsSync(CONTENT) || !existsSync(PUBLIC)) {
+  console.error(
+    [
+      '',
+      'De Astro-bron ontbreekt.',
+      '',
+      `  verwacht: ${CONTENT}`,
+      `        en: ${PUBLIC}`,
+      '',
+      'Dit script migreert content van de oude Astro-site naar Payload en is',
+      'al gedraaid. De bron is bij het opruimen uit de repo-root gehaald.',
+      'Heb je hem toch nodig, haal hem dan terug uit de geschiedenis:',
+      '',
+      '  git checkout d56b8b8 -- src public',
+      '',
+    ].join('\n'),
+  )
+  process.exit(1)
+}
+
 const SEASON_YEAR = 2026
 
 const warnings: string[] = []

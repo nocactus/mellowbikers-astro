@@ -8,6 +8,35 @@ Alle noemenswaardige wijzigingen aan de Mellowbikers website worden hier bijgeho
 
 ---
 
+## 2026-09-21
+
+### Gewijzigd
+- **Site verhuisd van Astro naar Payload CMS.** `mellowbikers.nl` draait nu
+  op Payload 3.90 + Next.js 16 op Cloudflare Workers, met D1 voor data en
+  R2 voor media. Het Cloudflare Pages-project is opgeheven en de Astro-bron
+  is uit de repo-root verwijderd; hij staat nog in de geschiedenis
+  (`git checkout d56b8b8 -- src public`).
+- **Content wordt voortaan in de admin beheerd**, niet meer in Keystatic en
+  niet meer via een deploy. Code en content lopen langs gescheiden paden;
+  zie `payload/README.md`.
+
+### Toegevoegd
+- Sitemap op `/sitemap.xml` en een eigen `robots.txt`, die zichzelf
+  afsluit op elke hostname die niet het canonieke domein is.
+- Privacypagina (concept — juridisch nog na te lopen).
+- Een 404-pagina, die de oude site volledig miste.
+
+### Bugfix
+- Zes fouten die pas op de Cloudflare-edge of op een schone checkout
+  bestonden: een build die vastliep op parallelle miniflare-instanties, een
+  R2-binding die niet remote stond waardoor elke afbeelding 404 gaf, een
+  dubbele slash in elke beeld-URL, een srcset die bronnen opschaalde,
+  PBKDF2-iteraties boven de Workers-limiet waardoor niemand kon inloggen,
+  en een logger die elke serverfout als `{}` wegschreef. De redenering
+  staat per geval in het commit-bericht.
+
+---
+
 ## 2026-03-10 (2)
 
 ### Bugfix

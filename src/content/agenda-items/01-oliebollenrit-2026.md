@@ -1,8 +1,0 @@
----
-date: "Zo 11 Januari"
-title: "Oliebollenrit 🍪"
-completed: true
-order: 1
----
-
-We luiden het nieuwe jaar in met de beste ballen die je ooit hebt gehad van de beste bakker die we kennen.

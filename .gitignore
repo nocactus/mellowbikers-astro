@@ -1,10 +1,6 @@
 # dependencies
 node_modules/
 
-# build artifacts
-dist/
-.astro/
-
 # environment variables
 .env
 .env.production
