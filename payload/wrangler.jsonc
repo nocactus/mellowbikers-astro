@@ -10,21 +10,18 @@
     "binding": "ASSETS"
   },
 
-  // Vul database_id in nadat je de database hebt aangemaakt:
-  //   npx wrangler d1 create mellowbikers
   "d1_databases": [
     {
       "binding": "D1",
       "database_name": "mellowbikers",
-      "database_id": "VUL_IN_NA_WRANGLER_D1_CREATE",
+      "database_id": "3cd47c77-c061-4ba4-ba53-6560cf2ec0ed",
       "remote": true
     }
   ],
 
-  // Maak de bucket aan met:
-  //   npx wrangler r2 bucket create mellowbikers-media
-  // Hang er daarna een custom domain aan binnen dezelfde zone, anders
-  // weigert /cdn-cgi/image/ de bron. Zie src/lib/cfImage.ts.
+  // Hang aan deze bucket een custom domain binnen dezelfde Cloudflare-zone
+  // en zet Image Transformations aan; anders weigert /cdn-cgi/image/ de
+  // bron en laden de afbeeldingen op volle grootte. Zie src/lib/cfImage.ts.
   "r2_buckets": [
     {
       "binding": "R2",
