@@ -22,6 +22,15 @@ const nextConfig: NextConfig = {
   // next/image. Zie src/lib/cfImage.ts voor het waarom.
   images: { unoptimized: true },
 
+  // Eén build-worker. Next verzamelt route-configuratie normaal in
+  // parallelle processen, en payload.config.ts haalt zijn bindings via
+  // getPlatformProxy() — dus elk van die processen start een eigen
+  // miniflare op hetzelfde lokale sqlite-bestand in .wrangler/. Dat
+  // levert "database is locked: SQLITE_BUSY_RECOVERY" op en breekt de
+  // build op elke route af, ook op een schone checkout zonder database.
+  // Serieel kost hier vrijwel niets: zes routes, waarvan drie statisch.
+  experimental: { cpus: 1 },
+
   outputFileTracingIncludes: {
     '/api/**/*': ['./node_modules/**/*.wasm'],
   },
