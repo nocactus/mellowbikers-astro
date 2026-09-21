@@ -9,6 +9,7 @@ import { LogoStrip } from './LogoStrip/config'
 import { MapBlock } from './MapBlock/config'
 import { MediaBlock } from './MediaBlock/config'
 import { MemberGrid } from './MemberGrid/config'
+import { NextEvent } from './NextEvent/config'
 import { RichTextBlock } from './RichTextBlock/config'
 import { SeparatorBlock } from './SeparatorBlock/config'
 import { SplitContent } from './SplitContent/config'
@@ -27,6 +28,7 @@ export const pageBlocks = [
   Gallery,
   FaqBlock,
   EventList,
+  NextEvent,
   MemberGrid,
   FormBlock,
   LogoStrip,

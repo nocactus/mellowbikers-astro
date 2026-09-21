@@ -164,6 +164,7 @@ export interface Page {
         | GalleryBlock
         | FaqBlockType
         | EventListBlock
+        | NextEventBlock
         | MemberGridBlock
         | FormBlockType
         | LogoStripBlock
@@ -568,6 +569,51 @@ export interface EventListBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'eventList';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NextEventBlock".
+ */
+export interface NextEventBlock {
+  eyebrow?: string | null;
+  /**
+   * Aan het eind van het seizoen staat er niets in de agenda. Dan toont dit blok deze tekst, in plaats van van de pagina te verdwijnen.
+   */
+  emptyText: string;
+  /**
+   * Gebruikt wanneer de rit zelf geen foto heeft, en bij de terugvaltekst.
+   */
+  image?: (number | null) | Media;
+  button?: {
+    link?: {
+      /**
+       * Leeg laten als je hier geen knop wilt.
+       */
+      label?: string | null;
+      type?: ('internal' | 'external' | 'anchor') | null;
+      page?: (number | null) | Page;
+      url?: string | null;
+      /**
+       * Bijvoorbeeld: contact
+       */
+      anchor?: string | null;
+      newTab?: boolean | null;
+      style?: ('primary' | 'secondary' | 'ghost') | null;
+    };
+  };
+  mediaPosition?: ('right' | 'left') | null;
+  /**
+   * Achtergrond en ruimte rond dit blok.
+   */
+  appearance?: {
+    background?: ('dark' | 'red' | 'white' | 'blue' | 'none') | null;
+    padding?: ('none' | 'sm' | 'md' | 'lg') | null;
+    separatorTop?: boolean | null;
+    separatorBottom?: boolean | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'nextEvent';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1166,6 +1212,7 @@ export interface PagesSelect<T extends boolean = true> {
         gallery?: T | GalleryBlockSelect<T>;
         faqBlock?: T | FaqBlockTypeSelect<T>;
         eventList?: T | EventListBlockSelect<T>;
+        nextEvent?: T | NextEventBlockSelect<T>;
         memberGrid?: T | MemberGridBlockSelect<T>;
         formBlock?: T | FormBlockTypeSelect<T>;
         logoStrip?: T | LogoStripBlockSelect<T>;
@@ -1420,6 +1467,41 @@ export interface EventListBlockSelect<T extends boolean = true> {
   intro?: T;
   filter?: T;
   limit?: T;
+  appearance?:
+    | T
+    | {
+        background?: T;
+        padding?: T;
+        separatorTop?: T;
+        separatorBottom?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NextEventBlock_select".
+ */
+export interface NextEventBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  emptyText?: T;
+  image?: T;
+  button?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              label?: T;
+              type?: T;
+              page?: T;
+              url?: T;
+              anchor?: T;
+              newTab?: T;
+              style?: T;
+            };
+      };
+  mediaPosition?: T;
   appearance?:
     | T
     | {

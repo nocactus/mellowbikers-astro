@@ -11,6 +11,7 @@ import { GalleryComponent } from '@/blocks/Gallery/Component'
 import { FaqBlockComponent } from '@/blocks/FaqBlock/Component'
 import { EventListComponent } from '@/blocks/EventList/Component'
 import { MemberGridComponent } from '@/blocks/MemberGrid/Component'
+import { NextEventComponent } from '@/blocks/NextEvent/Component'
 import { FormBlockComponent } from '@/blocks/FormBlock/Component'
 import { LogoStripComponent } from '@/blocks/LogoStrip/Component'
 import { MapBlockComponent } from '@/blocks/MapBlock/Component'
@@ -44,6 +45,8 @@ const renderBlock = (block: LayoutBlock, isPageTitle: boolean) => {
       return <FaqBlockComponent block={block} />
     case 'eventList':
       return <EventListComponent block={block} />
+    case 'nextEvent':
+      return <NextEventComponent block={block} />
     case 'memberGrid':
       return <MemberGridComponent block={block} />
     case 'formBlock':
